@@ -4,7 +4,7 @@ import Card from '../components/card'
 class VictoryCards extends React.Component {
   render() {
     return(
-      <div>
+      <div id="victory-card-area">
         {}
       </div>
     )

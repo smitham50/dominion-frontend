@@ -4,7 +4,7 @@ import Card from '../components/card'
 class TreasureCards extends React.Component {
   render() {
     return(
-      <div>
+      <div id="treasure-card-area">
         {}
       </div>
     )
