@@ -3,7 +3,7 @@ import Card from './card'
 
 function Trash() {
   return(
-    <div></div>
+    <div id="trash" ></div>
   )
 }
 

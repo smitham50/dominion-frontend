@@ -4,7 +4,7 @@ import Card from '../components/card'
 class PlayerDeck extends React.Component {
   render() {
     return(
-      <div>
+      <div className="player-deck" >
         {}
       </div>
     )

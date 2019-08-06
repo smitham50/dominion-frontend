@@ -6,7 +6,7 @@ import PlayerHand from './playerhand'
 class PlayerArea extends React.Component {
   render() {
     return(
-      <div>
+      <div className="player-area" >
         <PlayerDeck cards={this.props.cards} />
         <PlayerDiscard cards={this.props.cards} />
         <PlayerHand cards={this.props.cards} />
