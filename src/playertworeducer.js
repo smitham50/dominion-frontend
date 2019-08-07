@@ -10,7 +10,7 @@ const defaultState = {
   hand: []
 }
 
-function playerTwoReducer(prevState = defaultState, action) {
+function playerTwoReducer(prevState=defaultState, action) {
 
   switch (action.type) {
 
