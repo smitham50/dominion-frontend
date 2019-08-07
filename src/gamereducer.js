@@ -6,7 +6,7 @@ const defaultState = {
 
 //Player 1 turn on false, Player 2 turn on true
 function gameReducer(prevState=defaultState, action) {
-
+  console.log("REDUCER ACTION", action)
   switch (action.type) {
     case "TURN":
       return { ...prevState, playerTurn: !prevState.playerTurn}

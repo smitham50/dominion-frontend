@@ -6,8 +6,8 @@ class PlayTable extends React.Component {
   render() {
     return(
       <div id="play-table">
-        <PlayerArea cards={this.props.cards} />
-        <SupplyArea cards={this.props.cards} />
+        <PlayerArea />
+        <SupplyArea />
       </div>
     )
   }

@@ -2,20 +2,15 @@ import React from 'react'
 import './App.css'
 import PlayTable from './containers/playtable'
 import Menu from './containers/menu'
+import { connect } from 'react-redux'
 
 class App extends React.Component {
-
-  state = {
-    cards: []
-  }
 
   componentDidMount() {
     fetch('http://localhost:3000/api/v1/cards')
     .then(resp => resp.json())
     .then(cards => {
-      this.setState({
-        cards: cards
-      })
+      this.props.setCards(cards)
     })
   }
 
@@ -23,10 +18,26 @@ class App extends React.Component {
     return (
       <div className="App">
         <Menu />
-        <PlayTable cards={this.state.cards} />
+        <PlayTable />
       </div>
     )
   }
+} // end of App component
+
+function msp(state) {
+  console.log(state)
+
+  return {
+
+  }
 }
 
-export default App
+function mdp(dispatch) {
+  return {
+    setCards: (cards) => {
+      dispatch({type: "CARDS", payload: cards})
+    }
+  }
+}
+
+export default connect(msp, mdp)(App)
