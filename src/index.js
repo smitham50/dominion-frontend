@@ -3,6 +3,25 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import { createStore } from 'redux'
+
+const defaultState = {
+
+}
+
+function reducer(prevState=defaultState, action) {
+
+  switch(action.type) {
+    case "":
+      return {...prevState, }
+  }
+
+  return prevState
+}
+
+const store = createStore(reducer)
+
+store.dispatch({type: "WHATEV"})
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
