@@ -7,22 +7,24 @@ import { createStore } from 'redux'
 import supplyReducer from './supplyreducer'
 import turnReducer from './turnreducer'
 import gameReducer from './gamereducer'
+import playerOneReducer from './playeronereducer'
+import playerTwoReducer from './playertworeducer'
 
 
-const defaultState = {
+// const defaultState = {
 
-}
+// }
 
-function reducer(prevState=defaultState, action) {
+// function reducer(prevState=defaultState, action) {
 
-  switch(action.type) {
-    case "":
-      return {...prevState, }
-    default:
-      return prevState
-  }
+//   switch(action.type) {
+//     case "":
+//       return {...prevState, }
+//     default:
+//       return prevState
+//   }
 
-}
+// }
 
 const store = createStore(reducer)
 
