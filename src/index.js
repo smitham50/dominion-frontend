@@ -4,6 +4,10 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { createStore } from 'redux'
+import supplyReducer from './supplyreducer'
+import turnReducer from './turnreducer'
+import gameReducer from './gamereducer'
+
 
 const defaultState = {
 
@@ -14,9 +18,10 @@ function reducer(prevState=defaultState, action) {
   switch(action.type) {
     case "":
       return {...prevState, }
+    default:
+      return prevState
   }
 
-  return prevState
 }
 
 const store = createStore(reducer)

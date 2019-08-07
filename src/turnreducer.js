@@ -18,3 +18,5 @@ function turnReducer(prevState=defaultState, action) {
   }
 
 }
+
+export default turnReducer

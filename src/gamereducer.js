@@ -17,5 +17,7 @@ function gameReducer(prevState=defaultState, action) {
     default:
       return prevState
   }
-  
+
 }
+
+export default gameReducer

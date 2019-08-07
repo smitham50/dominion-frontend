@@ -9,7 +9,7 @@ const defaultState = {
 
 
 //Not sure about buy card and trash card yet. Maybe there's a better way to handle this?
-function turnReducer(prevState = defaultState, action) {
+function supplyReducer(prevState = defaultState, action) {
 
   switch (action.type) {
     case "BUY_CARD":
@@ -25,3 +25,5 @@ function turnReducer(prevState = defaultState, action) {
   }
 
 }
+
+export default supplyReducer
