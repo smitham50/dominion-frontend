@@ -244,7 +244,7 @@
 }
 
 #treasure-card-area div {
-  border: solid 1px;
+  /* border: solid 1px; */
   width: 30%;
   margin-left: 10px;
 }
@@ -264,9 +264,64 @@
 /* END TREASURE AND VICTORY AREA STYLING */
 
 /* COPPER STYLING */
+#coppers {
+  height: 180px;
+  display: flex;
+  margin-top: 15px;
+}
 
+#coppers img {
+  height: 150px;
+  margin-left: 0px;
+  margin-top: 15px;
+}
 
+#coppers .rest {
+  height: 150px;
+  margin-left: -93px;
+  margin-top: 15px;
+}
 /* END COPPER STYLING */
+
+/* SILVER STYLING */
+#silvers {
+  height: 180px;
+  display: flex;
+  margin-top: 15px;
+}
+
+#silvers img {
+  height: 150px;
+  margin-left: 0px;
+  margin-top: 15px;
+}
+
+#silvers .rest {
+  height: 150px;
+  margin-left: -93px;
+  margin-top: 15px;
+}
+/* END SILVER STYLING */
+
+/* GOLD STYLING */
+#golds {
+  height: 180px;
+  display: flex;
+  margin-top: 15px;
+}
+
+#golds img {
+  height: 150px;
+  margin-left: 0px;
+  margin-top: 15px;
+}
+
+#golds .rest {
+  height: 150px;
+  margin-left: -95px;
+  margin-top: 15px;
+}
+/* END GOLD STYLING */
 
 #trash {
   

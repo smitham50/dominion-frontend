@@ -42,13 +42,13 @@ class TreasureCards extends React.Component {
     return(
       <div id="treasure-card-area">
         <div id="coppers">
-          {}
+          {this.renderCoppers()}
         </div>
         <div id="silvers">
-          {}
+          {this.renderSilvers()}
         </div>
         <div id="golds">
-          {}
+          {this.renderGolds()}
         </div>
       </div>
     )
