@@ -3,7 +3,7 @@ import PlayerDeck from './playerdeck'
 import PlayerDiscard from './playerdiscard'
 import PlayerHand from './playerhand'
 
-class PlayerArea extends React.Component {
+class PlayerOneArea extends React.Component {
   render() {
     return(
       <div className="player-area" >
@@ -15,4 +15,4 @@ class PlayerArea extends React.Component {
   }
 }
 
-export default PlayerArea
+export default PlayerOneArea

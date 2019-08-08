@@ -1,12 +1,14 @@
 import React from 'react'
-import PlayerArea from './playerarea'
+import PlayerOneArea from './playeronearea'
+import PlayerTwoArea from './playertwoarea'
 import SupplyArea from './supplyarea'
 
 class PlayTable extends React.Component {
   render() {
     return(
       <div id="play-table">
-        <PlayerArea />
+        <PlayerOneArea />
+        <PlayerTwoArea />
         <SupplyArea />
       </div>
     )
