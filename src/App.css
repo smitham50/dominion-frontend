@@ -45,7 +45,17 @@
   border: solid 1px;
   display: flex;
   width: 60%;
+  flex-wrap: wrap;
+}
 
+#action-card-area div {
+  border: solid 1px;
+  width: 16%;
+  height: 200px;
+  margin-bottom: 20px;
+  margin-top: 15px;
+  margin-left: 20px;
+  
 }
 
 #treasure-card-area {
