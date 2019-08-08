@@ -1,0 +1,241 @@
+/* SUPPLY AREA STYLING */
+
+#supply-area {
+  width: 85%;
+  margin-left: 7%;
+  border: solid 1px;
+  height: 500px;
+  display: flex;
+
+}
+
+#tvcard-container {
+  border: solid 1px;
+  display: flex;
+  width: 40%;
+}
+
+/* ACTION CARD STYLING */
+#action-card-container {
+  border: solid 1px;
+  display: flex;
+  width: 60%;
+
+}
+
+#action-card-area {
+  border: solid 1px;
+  display: flex;
+  width: 60%;
+  flex-wrap: wrap;
+}
+
+#action-card-area div {
+  /* border: solid 1px; */
+  width: 16%;
+  height: 200px;
+  margin-bottom: 20px;
+  margin-top: 15px;
+  margin-left: 20px;
+}
+/* END ACTION CARD STYLING */
+
+/* CELLAR STYLING */
+#cellars {
+  height: 150px;
+  display: flex;
+}
+
+#cellars img {
+  height: 150px;
+  margin-left: 0px;
+  margin-top: 15px;
+}
+
+#cellars .rest {
+  height: 150px;
+  margin-left: -91px;
+  margin-top: 15px;
+}
+/* END CELLAR STYLING */
+
+/* MOAT STYLING */
+#moats {
+  height: 150px;
+  display: flex;
+}
+
+#moats img {
+  height: 150px;
+  margin-left: 0px;
+  margin-top: 15px;
+}
+
+#moats .rest {
+  height: 150px;
+  margin-left: -91px;
+  margin-top: 15px;
+}
+/* END MOAT STYLING */
+
+/* WORKSHOP STYLING */
+#workshops {
+  height: 150px;
+  display: flex;
+}
+
+#workshops img {
+  height: 150px;
+  margin-left: 0px;
+  margin-top: 15px;
+}
+
+#workshops .rest {
+  height: 150px;
+  margin-left: -91px;
+  margin-top: 15px;
+}
+/* END WORKSHOP STYLING */
+
+/* WOODCUTTER STYLING */
+#woodcutters {
+  height: 150px;
+  display: flex;
+}
+
+#woodcutters img {
+  height: 150px;
+  margin-left: 0px;
+  margin-top: 15px;
+}
+
+#woodcutters .rest {
+  height: 150px;
+  margin-left: -91px;
+  margin-top: 15px;
+}
+/* END WOODCUTTER STYLING */
+
+/* VILLAGE STYLING */
+#villages {
+  height: 150px;
+  display: flex;
+}
+
+#villages img {
+  height: 150px;
+  margin-left: 0px;
+  margin-top: 15px;
+}
+
+#villages .rest {
+  height: 150px;
+  margin-left: -91px;
+  margin-top: 15px;
+}
+/* END VILLAGE STYLING */
+
+/* SMITHY STYLING */
+#smithies {
+  height: 150px;
+  display: flex;
+}
+
+#smithies img {
+  height: 150px;
+  margin-left: 0px;
+  margin-top: 15px;
+}
+
+#smithies .rest {
+  height: 150px;
+  margin-left: -91px;
+  margin-top: 15px;
+}
+/* END SMITHY STYLING */
+
+/* MILITIA STYLING */
+#militias {
+  height: 150px;
+  display: flex;
+}
+
+#militias img {
+  height: 150px;
+  margin-left: 0px;
+  margin-top: 15px;
+}
+
+#militias .rest {
+  height: 150px;
+  margin-left: -91px;
+  margin-top: 15px;
+}
+/* END MILITIA STYLING */
+
+/* REMODEL STYLING */
+#remodels {
+  height: 150px;
+  display: flex;
+}
+
+#remodels img {
+  height: 150px;
+  margin-left: 0px;
+  margin-top: 15px;
+}
+
+#remodels .rest {
+  height: 150px;
+  margin-left: -91px;
+  margin-top: 15px;
+}
+/* END REMODEL STYLING */
+
+/* MARKET STYLING */
+#markets {
+  height: 150px;
+  display: flex;
+}
+
+#markets img {
+  height: 150px;
+  margin-left: 0px;
+  margin-top: 15px;
+}
+
+#markets .rest {
+  height: 150px;
+  margin-left: -91px;
+  margin-top: 15px;
+}
+/* END MARKET STYLING */
+
+/* MINE STYLING */
+#mines {
+  height: 150px;
+  display: flex;
+}
+
+#mines img {
+  height: 150px;
+  margin-left: 0px;
+  margin-top: 15px;
+}
+
+#mines .rest {
+  height: 150px;
+  margin-left: -91px;
+  margin-top: 15px;
+}
+/* END MINE STYLING */
+
+#treasure-card-area {
+
+}
+
+#trash {
+  
+}
+
+/* END SUPPLY AREA STYLING */

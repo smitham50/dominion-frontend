@@ -1,5 +1,6 @@
 import React from 'react'
 import './App.css'
+import './Supply.css'
 import PlayTable from './containers/playtable'
 import Menu from './containers/menu'
 import { connect } from 'react-redux'
