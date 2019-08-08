@@ -6,7 +6,7 @@ import PlayerHand from './playerhand'
 class PlayerOneArea extends React.Component {
   render() {
     return(
-      <div className="player-area" >
+      <div id="player-one-area" >
         <PlayerDeck />
         <PlayerDiscard />
         <PlayerHand />
