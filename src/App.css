@@ -13,9 +13,6 @@
   /* justify-content: space-around; */
 }
 
-.card {
-  
-}
 
 /* SUPPLY AREA STYLING */
 
@@ -55,8 +52,152 @@
   margin-bottom: 20px;
   margin-top: 15px;
   margin-left: 20px;
-  
 }
+
+/* CELLARS STYLING */
+#cellars {
+  height: 150px;
+  display: flex;
+}
+
+#cellars img {
+  height: 150px;
+  margin-left: 0px;
+  margin-top: 15px;
+}
+
+#cellars .rest {
+  height: 150px;
+  margin-left: -91px;
+  margin-top: 15px;
+}
+/* END CELLARS STYLING */
+
+/* MOAT STYLING */
+
+#moats {
+  height: 150px;
+  display: flex;
+}
+
+#moats img {
+  height: 150px;
+  margin-left: 0px;
+  margin-top: 15px;
+}
+
+#moats .rest {
+  height: 150px;
+  margin-left: -91px;
+  margin-top: 15px;
+}
+
+/* END MOAT STYLING */
+
+/* WORKSHOP STYLING */
+
+#workshops {
+  height: 150px;
+  display: flex;
+}
+
+#workshops img {
+  height: 150px;
+  margin-left: 0px;
+  margin-top: 15px;
+}
+
+#workshops .rest {
+  height: 150px;
+  margin-left: -91px;
+  margin-top: 15px;
+}
+
+/* END WORKSHOP STYLING */
+
+/* WOODCUTTER STYLING */
+
+#woodcutters {
+  height: 150px;
+  display: flex;
+}
+
+#woodcutters img {
+  height: 150px;
+  margin-left: 0px;
+  margin-top: 15px;
+}
+
+#woodcutters .rest {
+  height: 150px;
+  margin-left: -91px;
+  margin-top: 15px;
+}
+
+/* END WOODCUTTER STYLING */
+
+/* VILLAGE STYLING */
+
+#villages {
+  height: 150px;
+  display: flex;
+}
+
+#villages img {
+  height: 150px;
+  margin-left: 0px;
+  margin-top: 15px;
+}
+
+#villages .rest {
+  height: 150px;
+  margin-left: -91px;
+  margin-top: 15px;
+}
+
+/* END VILLAGE STYLING */
+
+/* SMITHY STYLING */
+
+#smithies {
+  height: 150px;
+  display: flex;
+}
+
+#smithies img {
+  height: 150px;
+  margin-left: 0px;
+  margin-top: 15px;
+}
+
+#smithies .rest {
+  height: 150px;
+  margin-left: -91px;
+  margin-top: 15px;
+}
+
+/* END SMITHY STYLING */
+
+/* MILITIA STYLING */
+
+#militias {
+  height: 150px;
+  display: flex;
+}
+
+#militias img {
+  height: 150px;
+  margin-left: 0px;
+  margin-top: 15px;
+}
+
+#militias .rest {
+  height: 150px;
+  margin-left: -91px;
+  margin-top: 15px;
+}
+
+/* END MILITIA STYLING */
 
 #treasure-card-area {
 

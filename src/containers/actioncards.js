@@ -42,8 +42,44 @@ class ActionCards extends React.Component {
   }
 
   renderCellars = () => {
-    return this.props.cellars.map(card => {
-      return <Card key={card.id} card={card} />
+    return this.props.cellars.map((card, index) => {
+      return <Card key={card.id} card={card} index={index} />
+    })
+  }
+
+  renderMoats = () => {
+    return this.props.moats.map((card, index) => {
+      return <Card key={card.id} card={card} index={index} />
+    })
+  }
+
+  renderWorkshops = () => {
+    return this.props.workshops.map((card, index) => {
+      return <Card key={card.id} card={card} index={index} />
+    })
+  }
+
+  renderWoodcutters = () => {
+    return this.props.woodcutters.map((card, index) => {
+      return <Card key={card.id} card={card} index={index} />
+    })
+  }
+
+  renderVillages = () => {
+    return this.props.villages.map((card, index) => {
+      return <Card key={card.id} card={card} index={index} />
+    })
+  }
+
+  renderSmithies = () => {
+    return this.props.smithies.map((card, index) => {
+      return <Card key={card.id} card={card} index={index} />
+    })
+  }
+
+  renderMilitias = () => {
+    return this.props.militias.map((card, index) => {
+      return <Card key={card.id} card={card} index={index} />
     })
   }
 
@@ -56,22 +92,22 @@ class ActionCards extends React.Component {
           {this.renderCellars()}
         </div>
         <div id="moats">
-          {}
+          {this.renderMoats()}
         </div>
         <div id="workshops">
-          {}
+          {this.renderWorkshops()}
         </div>
         <div id="woodcutters">
-          {}
+          {this.renderWoodcutters()}
         </div>
         <div id="villages">
-          {}
+          {this.renderVillages()}
         </div>
         <div id="smithies">
-          {}
+          {this.renderSmithies()}
         </div>
         <div id="militias">
-          {}
+          {this.renderMilitias()}
         </div>
         <div id="remodels">
           {}
@@ -88,7 +124,9 @@ class ActionCards extends React.Component {
 }
 
 function msp(state) {
+
   const { cellars, moats, workshops, woodcutters, villages, militias, smithies, remodels, markets, mines } = state.supply
+
   return {
     cellars: cellars,
     moats: moats,
@@ -101,6 +139,7 @@ function msp(state) {
     markets: markets,
     mines: mines
   }
+
 }
 
 function mdp(dispatch) {
