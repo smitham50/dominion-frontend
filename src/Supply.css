@@ -230,6 +230,7 @@
 }
 /* END MINE STYLING */
 
+/* TREASURE AND VICTORY AREA STYLING */
 #tvcard-container {
   display: flex;
   flex-direction: column;
@@ -242,6 +243,12 @@
   height: 50%;;
 }
 
+#treasure-card-area div {
+  border: solid 1px;
+  width: 30%;
+  margin-left: 10px;
+}
+
 #victory-card-area {
   border: solid 1px;
   display: flex;
@@ -249,8 +256,19 @@
   height: 50%;
 }
 
+#victory-card-area div {
+  border: solid 1px;
+  width: 30%;
+  margin-left: 10px;
+}
+
+
+/* END TREASURE AND VICTORY AREA STYLING */
+
 #trash {
   
 }
+
+
 
 /* END SUPPLY AREA STYLING */
