@@ -41,7 +41,11 @@ class ActionCards extends React.Component {
       })
   }
 
-  
+  renderCellars = () => {
+    return this.props.cellars.map(card => {
+      return <Card key={card.id} card={card} />
+    })
+  }
 
 
   render() {
@@ -49,7 +53,7 @@ class ActionCards extends React.Component {
     return(
       <div id="action-card-area" >
         <div id="cellars">
-          {}
+          {this.renderCellars()}
         </div>
         <div id="moats">
           {}
@@ -84,18 +88,18 @@ class ActionCards extends React.Component {
 }
 
 function msp(state) {
-
+  const { cellars, moats, workshops, woodcutters, villages, militias, smithies, remodels, markets, mines } = state.supply
   return {
-    cellars: state.supply.cellars,
-    moats: state.supply.moats,
-    workshops: state.supply.workshops,
-    woodcutters: state.supply.woodcutters,
-    villages: state.supply.villages,
-    militias: state.supply.militias,
-    smithies: state.supply.smithies,
-    remodels: state.supply.remodels,
-    markets: state.supply.markets,
-    mines: state.supply.mines
+    cellars: cellars,
+    moats: moats,
+    workshops: workshops,
+    woodcutters: woodcutters,
+    villages: villages,
+    militias: militias,
+    smithies: smithies,
+    remodels: remodels,
+    markets: markets,
+    mines: mines
   }
 }
 

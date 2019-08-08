@@ -1,5 +1,4 @@
 const defaultState = {
-  actionCards: [],
   cellars: [],
   moats: [],
   workshops: [],
