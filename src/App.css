@@ -199,6 +199,69 @@
 
 /* END MILITIA STYLING */
 
+/* REMODEL STYLING */
+
+#remodels {
+  height: 150px;
+  display: flex;
+}
+
+#remodels img {
+  height: 150px;
+  margin-left: 0px;
+  margin-top: 15px;
+}
+
+#remodels .rest {
+  height: 150px;
+  margin-left: -91px;
+  margin-top: 15px;
+}
+
+/* END REMODEL STYLING */
+
+/* MARKET STYLING */
+
+#markets {
+  height: 150px;
+  display: flex;
+}
+
+#markets img {
+  height: 150px;
+  margin-left: 0px;
+  margin-top: 15px;
+}
+
+#markets .rest {
+  height: 150px;
+  margin-left: -91px;
+  margin-top: 15px;
+}
+
+/* END MARKET STYLING */
+
+/* MINE STYLING */
+
+#mines {
+  height: 150px;
+  display: flex;
+}
+
+#mines img {
+  height: 150px;
+  margin-left: 0px;
+  margin-top: 15px;
+}
+
+#mines .rest {
+  height: 150px;
+  margin-left: -91px;
+  margin-top: 15px;
+}
+
+/* END MINE STYLING */
+
 #treasure-card-area {
 
 }

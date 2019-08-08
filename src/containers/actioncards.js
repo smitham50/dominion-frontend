@@ -83,6 +83,24 @@ class ActionCards extends React.Component {
     })
   }
 
+  renderRemodels = () => {
+    return this.props.remodels.map((card, index) => {
+      return <Card key={card.id} card={card} index={index} />
+    })
+  }
+
+  renderMarkets = () => {
+    return this.props.markets.map((card, index) => {
+      return <Card key={card.id} card={card} index={index} />
+    })
+  }
+
+  renderMines = () => {
+    return this.props.mines.map((card, index) => {
+      return <Card key={card.id} card={card} index={index} />
+    })
+  }
+
 
   render() {
     console.log("CARDS", this.props.cellars, this.props.moats, this.props.workshops, this.props.woodcutters, this.props.villages, this.props.militias, this.props.smithies, this.props.remodels, this.props.markets, this.props.mines)
@@ -110,13 +128,13 @@ class ActionCards extends React.Component {
           {this.renderMilitias()}
         </div>
         <div id="remodels">
-          {}
+          {this.renderRemodels()}
         </div>
         <div id="markets">
-          {}
+          {this.renderMarkets()}
         </div>
         <div id="mines">
-          {}
+          {this.renderMines()}
         </div>
       </div>
     )
