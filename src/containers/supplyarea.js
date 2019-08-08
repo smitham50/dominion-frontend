@@ -11,9 +11,7 @@ class SupplyArea extends React.Component {
           <TreasureCards />
           <VictoryCards />
         </div>
-        <div id="action-card-container">
-          <ActionCards />
-        </div>
+        <ActionCards />
       </div>
     )
   }

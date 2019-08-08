@@ -42,6 +42,9 @@
 }
 
 #action-card-area {
+  border: solid 1px;
+  display: flex;
+  width: 60%;
 
 }
 

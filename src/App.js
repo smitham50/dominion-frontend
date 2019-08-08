@@ -25,7 +25,6 @@ class App extends React.Component {
 } // end of App component
 
 function msp(state) {
-  console.log(state)
 
   return {
 
