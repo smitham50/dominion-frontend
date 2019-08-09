@@ -19,8 +19,13 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <Menu />
         <Switch>
+          <Route 
+          path="/menu"
+          render={() => 
+            <Menu />
+          }
+          />
           <Route 
             path="/playgame"
             render={() =>

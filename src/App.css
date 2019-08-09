@@ -23,6 +23,7 @@
 #player-one-area {
   border: solid 1px;
   width: 43%;
+  display: flex;
 }
 
 #trash {
@@ -33,6 +34,22 @@
 #player-two-area {
   border: solid 1px;
   width: 43%;
+  display: flex;
+}
+
+.player-deck {
+  border: solid 1px;
+  width: 25%;
+}
+
+.player-discard {
+  border: solid 1px;
+  width: 25%;
+}
+
+.player-hand {
+  border: solid 1px;
+  width: 50%;
 }
 
 /* END PLAYER AREA STYLING */

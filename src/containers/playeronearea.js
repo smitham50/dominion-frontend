@@ -7,8 +7,8 @@ class PlayerOneArea extends React.Component {
   render() {
     return(
       <div id="player-one-area" >
-        <PlayerDeck />
         <PlayerDiscard />
+        <PlayerDeck />
         <PlayerHand />
       </div>
     )
