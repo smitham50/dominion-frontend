@@ -42,13 +42,13 @@ class VictoryCards extends React.Component {
     return(
       <div id="victory-card-area">
         <div id="estates">
-          {}
+          {this.renderEstates()}
         </div>
         <div id="duchies">
-          {}
+          {this.renderDuchies()}
         </div>
         <div id="provinces">
-          {}
+          {this.renderProvinces()}
         </div>
       </div>
     )

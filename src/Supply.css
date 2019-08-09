@@ -257,7 +257,7 @@
 }
 
 #victory-card-area div {
-  border: solid 1px;
+  /* border: solid 1px; */
   width: 30%;
   margin-left: 10px;
 }
@@ -318,10 +318,70 @@
 
 #golds .rest {
   height: 150px;
-  margin-left: -95px;
+  margin-left: -96px;
   margin-top: 15px;
 }
 /* END GOLD STYLING */
+
+/* ESTATE STYLING */
+#estates {
+  height: 180px;
+  display: flex;
+  margin-top: 15px;
+}
+
+#estates img {
+  height: 150px;
+  margin-left: 0px;
+  margin-top: 15px;
+}
+
+#estates .rest {
+  height: 150px;
+  margin-left: -93px;
+  margin-top: 15px;
+}
+/* END ESTATE STYLING */
+
+/* DUCHY STYLING */
+#duchies {
+  height: 180px;
+  display: flex;
+  margin-top: 15px;
+}
+
+#duchies img {
+  height: 150px;
+  margin-left: 0px;
+  margin-top: 15px;
+}
+
+#duchies .rest {
+  height: 150px;
+  margin-left: -93px;
+  margin-top: 15px;
+}
+/* END DUCHY STYLING */
+
+/* PROVINCE STYLING */
+#provinces {
+  height: 180px;
+  display: flex;
+  margin-top: 15px;
+}
+
+#provinces img {
+  height: 150px;
+  margin-left: 0px;
+  margin-top: 15px;
+}
+
+#provinces .rest {
+  height: 150px;
+  margin-left: -93px;
+  margin-top: 15px;
+}
+/* END PROVINCE STYLING */
 
 #trash {
   
