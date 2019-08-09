@@ -4,6 +4,7 @@ import './Supply.css'
 import PlayTable from './containers/playtable'
 import Menu from './containers/menu'
 import { connect } from 'react-redux'
+import { Route, Switch, Link } from "react-router-dom"
 
 class App extends React.Component {
 
@@ -19,7 +20,14 @@ class App extends React.Component {
     return (
       <div className="App">
         <Menu />
-        <PlayTable />
+        <Switch>
+          <Route 
+            path="/playgame"
+            render={() =>
+              <PlayTable />
+            }
+          />
+        </Switch>
       </div>
     )
   }
