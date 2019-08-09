@@ -20,8 +20,6 @@ const defaultState = {
   provincesEmpty: false
 }
 
-
-//Not sure about buy card and trash card yet. Maybe there's a better way to handle this?
 function supplyReducer(prevState=defaultState, action) {
 
   switch (action.type) {
