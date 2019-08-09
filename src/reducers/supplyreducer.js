@@ -16,8 +16,6 @@ const defaultState = {
   duchies: [],
   provinces: [],
   trash: [],
-  deck1: [],
-  deck2: [],
   emptyStacks: 0,
   provincesEmpty: false
 }

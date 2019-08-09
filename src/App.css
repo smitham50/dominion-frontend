@@ -37,10 +37,25 @@
   display: flex;
 }
 
+/* PLAYER DECK STYLING */
 .player-deck {
   border: solid 1px;
   width: 25%;
+  display: flex;
 }
+
+.player-deck img {
+  height: 150px;
+  margin-left: 0px;
+  margin-top: 15px;
+}
+
+.player-deck .rest {
+  height: 150px;
+  margin-left: -91px;
+  margin-top: 15px;
+}
+/* END PLAYER DECK STYLING */
 
 .player-discard {
   border: solid 1px;

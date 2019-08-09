@@ -6,40 +6,48 @@ import { connect } from 'react-redux'
 
 class PlayerOneArea extends React.Component {
 
-  componentDidMount() {
-    // this.props.drawDeck()
+  handleClick = () => {
+    let shuffle = require('shuffle-array')
+    let coppers = this.props.coppers.splice(0, 7)
+    let estates = this.props.estates.splice(0, 3)
+    let deck = coppers.concat(estates)
+    this.props.drawDeck(shuffle(deck))
+    
   }
 
   render() {
+    console.log("MSP", this.props.deck)
     return(
       <div id="player-one-area" >
-        <PlayerDiscard />
-        <PlayerDeck />
-        <PlayerHand />
+        <PlayerDiscard discard={this.props.discard} />
+        <PlayerDeck deck={this.props.deck} handleClick={this.handleClick} />
+        <PlayerHand hand={this.props.hand} />
       </div>
     )
   }
 }
 
 function msp(state) {
-
   const { gameStart } = state.game
-  const { deck1 } = state.supply
-  const { deck } = state.playerOne
+  const { coppers, estates } = state.supply
+  const { deck, discard, hand } = state.playerOne
 
   return {
     gameStart: gameStart,
-    deck1: deck1,
-    deck: deck
+    coppers: coppers,
+    estates: estates,
+    deck: deck,
+    discard: discard,
+    hand: hand
   }
 
 }
 
 function mdp(dispatch) {
   return {
-    // drawDeck: () => {
-    //   dispatch({ type: "START", payload:  })
-    // }
+    drawDeck: (deck) => {
+      dispatch({ type: "DEAL", payload: deck})
+    }
   }
 }
 

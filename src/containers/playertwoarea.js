@@ -24,17 +24,22 @@ class PlayerTwoArea extends React.Component {
 function msp(state) {
 
   const { gameStart } = state.game
+  const { coppers, estates } = state.supply
+  const { deck } = state.playerTwo
 
   return {
-    gameStart: gameStart
+    gameStart: gameStart,
+    coppers: coppers,
+    estates: estates,
+    deck: deck
   }
 
 }
 
 function mdp(dispatch) {
   return {
-    drawDeck: () => {
-      dispatch({ type: "START" })
+    drawDeck: (deck) => {
+      dispatch({ type: "DEAL", payload: deck })
     }
   }
 }
