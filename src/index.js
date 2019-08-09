@@ -10,8 +10,9 @@ import turnReducer from './reducers/turnreducer'
 import gameReducer from './reducers/gamereducer'
 import playerOneReducer from './reducers/playeronereducer'
 import playerTwoReducer from './reducers/playertworeducer'
+import cardReducer from './reducers/cardreducer'
 
-const rootReducer = combineReducers({supply: supplyReducer, turn: turnReducer, game: gameReducer, playerOne: playerOneReducer, playerTwo: playerTwoReducer})
+const rootReducer = combineReducers({supply: supplyReducer, turn: turnReducer, game: gameReducer, playerOne: playerOneReducer, playerTwo: playerTwoReducer, card: cardReducer})
 
 const store = createStore(rootReducer)
 
