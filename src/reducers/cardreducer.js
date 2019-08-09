@@ -16,6 +16,8 @@ function cardReducer(prevState = defaultState, action) {
       return { ...prevState, isInDiscard: false, isInDeck: true }
     case "DRAW":
       return { ...prevState, isInDeck: false, isInHand: true }
+    case "PLAY":
+      return { ...prevState, isInHand: false, isInDiscard: true }  
     case "SCRAP":
       return { ...prevState, isInHand: false, isInTrash: true }
     default:

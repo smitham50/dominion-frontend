@@ -1,11 +1,64 @@
 import React, { Fragment } from 'react'
+import { connect } from 'react-redux'
 
-function Card(props) {
-  return(
-    <Fragment>
-      { props.index === 0 ? <img src={props.card.picture} alt="oops"></img> : <img src={props.card.picture} alt="oops" className="rest"></img> }
-    </Fragment>
-  )
+class Card extends React.Component {
+
+  handleClick = () => {
+    console.log("CARD PROPS", this.props)
+    if (this.props.isInSupply) {
+      this.props.buyCard()
+    }
+    else if (this.props.isInHand) {
+      this.props.playCard()
+    }
+  }
+
+  render() {
+    
+    return(
+      <Fragment>
+        {this.props.index === 0 ? <img src={this.props.card.picture} alt="oops" onClick={() => this.handleClick()}></img> : <img src={this.props.card.picture} alt="oops" className="rest" onClick={() => this.handleClick()}></img> }
+      </Fragment>
+    )
+  }
+
 }
 
-export default Card
+function msp(state) {
+
+  const { isInSupply, isInDiscard, isInDeck, isInHand, isInTrash } = state.card
+
+  return {
+    isInSupply: isInSupply,
+    isInDiscard: isInDiscard,
+    isInDeck: isInDeck,
+    isInHand: isInHand,
+    isInTrash: isInTrash
+  }
+
+}
+
+function mdp(dispatch) {
+  return {
+    buyCard: () => {
+      dispatch({ type: "BUY" })
+    },
+    deal: () => {
+      dispatch({ type: "DEAL" })
+    },
+    cycle: () => {
+      dispatch({ type: "CYCLE" })
+    },
+    draw: () => {
+      dispatch({ type: "DRAW" })
+    },
+    scrap: () => {
+      dispatch({ type: "SCRAP" })
+    },
+    playCard: () => {
+      dispatch({ type: "PLAY" })
+    }
+  }
+}
+
+export default connect(msp, mdp)(Card)
