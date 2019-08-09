@@ -56,7 +56,9 @@ function supplyReducer(prevState=defaultState, action) {
     case "DUCHIES":
       return { ...prevState, duchies: action.payload }
     case "PROVINCES":
-      return { ...prevState, provinces: action.payload }                  
+      return { ...prevState, provinces: action.payload }
+    case "TRASH":
+      return { ...prevState, trash: action.payload }               
     case "TRASH_CARD":
       return { ...prevState, trash: action.payload }
     case "STACK_EMPTY":

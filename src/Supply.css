@@ -383,10 +383,24 @@
 }
 /* END PROVINCE STYLING */
 
+/* TRASH STYLING */
 #trash {
-  
+  height: 180px;
+  display: flex;
+  margin-top: 15px;
 }
 
+#trash img {
+  height: 150px;
+  margin-left: 25%;
+  margin-top: 15px;
+}
 
+#trash .rest {
+  height: 150px;
+  margin-left: -93px;
+  margin-top: 15px;
+}
+/* END TRASH STYLING */
 
 /* END SUPPLY AREA STYLING */

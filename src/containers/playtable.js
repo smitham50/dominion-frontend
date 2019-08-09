@@ -5,6 +5,7 @@ import SupplyArea from './supplyarea'
 import Trash from '../components/trash'
 
 class PlayTable extends React.Component {
+
   render() {
     return(
       <div id="play-table">

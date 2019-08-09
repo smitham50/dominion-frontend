@@ -1,10 +1,50 @@
 import React from 'react'
 import Card from './card'
+import { connect } from 'react-redux'
 
-function Trash() {
-  return(
-    <div id="trash" ></div>
-  )
+class Trash extends React.Component {
+
+  componentDidMount() {
+    fetch('http://localhost:3000/api/v1/cards')
+      .then(resp => resp.json())
+      .then(cards => {
+        this.props.setTrash(cards.filter(card => {
+          return card.name === "Trash"
+        }))
+      })
+  }
+
+  renderTrash = () => {
+    return this.props.trash.map((card, index) => {
+      return <Card key={card.id} card={card} index={index} />
+    })
+  }
+
+  render() {
+    return(
+      <div id="trash" >
+        {this.renderTrash()}
+      </div>
+    )
+  }
 }
 
-export default Trash
+function msp(state) {
+
+  const { trash } = state.supply
+
+  return {
+    trash: trash
+  }
+
+}
+
+function mdp(dispatch) {
+  return {
+    setTrash: (trash) => {
+      dispatch({ type: "TRASH", payload: trash })
+    }
+  }
+}
+
+export default connect(msp, mdp)(Trash)
