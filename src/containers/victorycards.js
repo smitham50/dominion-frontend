@@ -81,4 +81,4 @@ function mdp(dispatch) {
   }
 }
 
-export default connect(msp, mdp)(VictoryCards)
+export default connect(msp, mdp)(VictoryCards) 

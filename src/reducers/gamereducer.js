@@ -1,4 +1,5 @@
 const defaultState = {
+  gameStart: false,
   playerTurn: false,
   gameEnd: false,
   cards: []
@@ -8,6 +9,8 @@ const defaultState = {
 function gameReducer(prevState=defaultState, action) {
   console.log("REDUCER ACTION", action)
   switch (action.type) {
+    case "START":
+      return { ...prevState, gameStart: true }
     case "TURN":
       return { ...prevState, playerTurn: !prevState.playerTurn}
     case "END":
@@ -20,4 +23,4 @@ function gameReducer(prevState=defaultState, action) {
 
 }
 
-export default gameReducer
+export default gameReducer 

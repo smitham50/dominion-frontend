@@ -103,7 +103,6 @@ class ActionCards extends React.Component {
 
 
   render() {
-    console.log("CARDS", this.props.cellars, this.props.moats, this.props.workshops, this.props.woodcutters, this.props.villages, this.props.militias, this.props.smithies, this.props.remodels, this.props.markets, this.props.mines)
     return(
       <div id="action-card-area" >
         <div id="cellars">

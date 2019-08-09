@@ -58,11 +58,13 @@ class TreasureCards extends React.Component {
 function msp(state) {
 
   const { coppers, silvers, golds } = state.supply
+  const { gameStart } = state.game
 
   return {
     coppers: coppers,
     silvers: silvers,
-    golds: golds
+    golds: golds,
+    gameStart: gameStart
   }
 
 }
@@ -81,4 +83,4 @@ function mdp(dispatch) {
   }
 }
 
-export default connect(msp, mdp)(TreasureCards)
+export default connect(msp, mdp)(TreasureCards) 
