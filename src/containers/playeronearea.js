@@ -7,16 +7,15 @@ import { connect } from 'react-redux'
 class PlayerOneArea extends React.Component {
 
   handleClick = () => {
+    this.props.deal()
+    let deck = this.props.deck1
     let shuffle = require('shuffle-array')
-    let coppers = this.props.coppers.splice(0, 7)
-    let estates = this.props.estates.splice(0, 3)
-    let deck = coppers.concat(estates)
-    this.props.drawDeck(shuffle(deck))
+    this.props.setDeck(shuffle(deck))
     
   }
 
   render() {
-    console.log("MSP", this.props.deck)
+    console.log("DECK AFTER CLICK", this.props.deck)
     return(
       <div id="player-one-area" >
         <PlayerDiscard discard={this.props.discard} />
@@ -29,7 +28,7 @@ class PlayerOneArea extends React.Component {
 
 function msp(state) {
   const { gameStart } = state.game
-  const { coppers, estates } = state.supply
+  const { coppers, estates, deck1 } = state.supply
   const { deck, discard, hand } = state.playerOne
 
   return {
@@ -37,6 +36,7 @@ function msp(state) {
     coppers: coppers,
     estates: estates,
     deck: deck,
+    deck1,
     discard: discard,
     hand: hand
   }
@@ -45,9 +45,13 @@ function msp(state) {
 
 function mdp(dispatch) {
   return {
-    drawDeck: (deck) => {
-      dispatch({ type: "DEAL", payload: deck})
+    deal: () => {
+      dispatch({ type: "DEAL"})
+    },
+    setDeck: (deck) => {
+      dispatch({type: "SET_DECK", payload: deck})
     }
+
   }
 }
 

@@ -6,16 +6,21 @@ import { connect } from 'react-redux'
 
 class PlayerTwoArea extends React.Component {
 
-  componentDidMount() {
-    this.props.drawDeck()
+  handleClick = () => {
+    let shuffle = require('shuffle-array')
+    let coppers = this.props.coppers.splice(0, 7)
+    let estates = this.props.estates.splice(0, 3)
+    let deck = coppers.concat(estates)
+    this.props.drawDeck(shuffle(deck))
+
   }
 
   render() {
     return (
       <div id="player-two-area" >
         <PlayerHand />
-        <PlayerDeck />
-        <PlayerDiscard />
+        <PlayerDeck deck={this.props.deck} />
+        <PlayerDiscard discard={this.props.discard}/>
       </div>
     )
   }

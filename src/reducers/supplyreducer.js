@@ -15,6 +15,7 @@ const defaultState = {
   estates: [],
   duchies: [],
   provinces: [],
+  deck1: [],
   trash: [],
   emptyStacks: 0,
   provincesEmpty: false
@@ -57,8 +58,8 @@ function supplyReducer(prevState=defaultState, action) {
       return { ...prevState, provinces: action.payload }
     case "TRASH":
       return { ...prevState, trash: action.payload }  
-    case "START":
-      return { ...prevState, deck1: [prevState.estates.splice(0, 3), prevState.coppers.splice(0, 7)], deck2: [prevState.estates.splice(-1, 3), prevState.coppers.splice(-1, 7)] }               
+    case "DEAL":
+      return { ...prevState, deck1: prevState.estates.splice(0, 3).concat(prevState.coppers.splice(0, 7)) }               
     case "TRASH_CARD":
       return { ...prevState, trash: action.payload }
     case "STACK_EMPTY":

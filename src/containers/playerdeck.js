@@ -13,7 +13,7 @@ class PlayerDeck extends React.Component {
     console.log("DECK", this.props.deck)
     return(
       <div className="player-deck" >
-        {!this.props.deck ? <button onClick={() => this.props.handleClick()}>Deal Cards</button> : this.renderDeck() }
+        { !this.props.length ? <button onClick={() => this.props.handleClick()}>Deal Cards</button> : this.renderDeck() }
       </div>
     )
   }
