@@ -1,25 +1,28 @@
 /* SUPPLY AREA STYLING */
 
 #supply-area {
-  width: 85%;
-  margin-left: 7%;
+  width: 100%;
   border: solid 1px;
   height: 500px;
   display: flex;
 
 }
 
+.margins {
+  width: 7.5%;
+}
+
 #tvcard-container {
   border: solid 1px;
   display: flex;
-  width: 40%;
+  width: 35%;
 }
 
 /* ACTION CARD STYLING */
 #action-card-container {
   border: solid 1px;
   display: flex;
-  width: 60%;
+  width: 50%;
 
 }
 

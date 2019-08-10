@@ -7,11 +7,15 @@ class SupplyArea extends React.Component {
   render() {
     return(
       <div id="supply-area">
+        <div className="margins">
+        </div>
         <div id="tvcard-container">
           <TreasureCards />
           <VictoryCards />
         </div>
         <ActionCards />
+        <div className="margins">
+        </div>
       </div>
     )
   }
