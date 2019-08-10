@@ -12,6 +12,15 @@
   width: 7.5%;
 }
 
+.player-turn-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.end-turn {
+  
+}
+
 #tvcard-container {
   border: solid 1px;
   display: flex;

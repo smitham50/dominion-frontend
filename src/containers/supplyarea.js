@@ -7,8 +7,20 @@ import { connect } from 'react-redux'
 
 class SupplyArea extends React.Component {
   render() {
-    const { actions1, buys1, wallet1, victoryPoints1, turns1 } = this.props
-    const { actions2, buys2, wallet2, victoryPoints2, turns2 } = this.props
+    const { 
+      actions1,
+      buys1, 
+      wallet1, 
+      victoryPoints1, 
+      turns1, 
+      actions2, 
+      buys2, 
+      wallet2, 
+      victoryPoints2, 
+      turns2, 
+      playerTurn,
+      endTurn } = this.props
+    
     return(
       <div id="supply-area">
         <div className="margins">
@@ -20,6 +32,9 @@ class SupplyArea extends React.Component {
             victoryPoints={victoryPoints1}
             turns={turns1}
           />
+          <div className="end-turn">
+            {playerTurn === false ? <button onClick={endTurn} >End Turn</button> : null}
+          </div>
         </div>
         <div id="tvcard-container">
           <TreasureCards />
@@ -35,6 +50,9 @@ class SupplyArea extends React.Component {
             victoryPoints={victoryPoints2}
             turns={turns2}
           />
+          <div className="end-turn">
+            {playerTurn === true ? <button onClick={endTurn}>End Turn</button> : null}
+          </div>
         </div>
       </div>
     )
@@ -42,9 +60,9 @@ class SupplyArea extends React.Component {
 }
 
 function msp(state) {
-  console.log("STATE", state)
   const { actions1, buys1, wallet1, victoryPoints1, turns1 } = state.playerOne
   const { actions2, buys2, wallet2, victoryPoints2, turns2 } = state.playerTwo
+  const { playerTurn } = state.game
 
   return {
     actions1: actions1,
@@ -57,15 +75,17 @@ function msp(state) {
     buys2: buys2,
     wallet2: wallet2,
     victoryPoints2: victoryPoints2,
-    turns2: turns2
+    turns2: turns2,
+
+    playerTurn: playerTurn
   }
 
 }
 
 function mdp(dispatch) {
   return {
-    deal: () => {
-      dispatch({ type: "DEAL1" })
+    endTurn: () => {
+      dispatch({ type: "TURN" })
     },
     draw: () => {
       dispatch({ type: "DRAW1" })
