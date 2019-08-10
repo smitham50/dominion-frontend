@@ -60,7 +60,7 @@
 /* PLAYER HAND STYLING */
 .player-hand {
   border: solid 1px;
-  width: 25%;
+  width: 50%;
   display: flex;
 }
 
@@ -75,16 +75,28 @@
   margin-left: -55px;
   margin-top: 15px;
 }
-/* END PLAYER DECK STYLING */
+/* END PLAYER HAND STYLING */
 
+/* PLAYER DISCARD STYLING */
 .player-discard {
   border: solid 1px;
   width: 25%;
+  display: flex;
 }
 
-.player-hand {
-  border: solid 1px;
-  width: 50%;
+.player-discard img {
+  height: 150px;
+  margin-left: 0px;
+  margin-top: 15px;
 }
+
+.player-discard .rest {
+  height: 150px;
+  margin-left: -91px;
+  margin-top: 15px;
+}
+/* END PLAYER DISCARD STYLING */
+
+
 
 /* END PLAYER AREA STYLING */
