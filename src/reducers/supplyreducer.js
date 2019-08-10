@@ -1,4 +1,6 @@
 const defaultState = {
+// PLAYER 1 TURN ON FALSE, PLAYER 2 TURN ON TRUE
+  playerTurn: false,
 
   cellars: [],
   moats: [],
@@ -27,13 +29,17 @@ const defaultState = {
   // PLAYER 2 ARRAYS
   deck2: [],
   discard2: [],
-  hand2: [],
+  hand2: []
 
 }
 
 function supplyReducer(prevState=defaultState, action) {
   let shuffle = require('shuffle-array')
   switch (action.type) {
+    case "TURN1":
+      return { ...prevState, playerTurn: !prevState.playerTurn, discard1: [...prevState.discard1.concat(...prevState.hand1)], hand1: [] }
+    case "TURN2":
+      return { ...prevState, playerTurn: !prevState.playerTurn, discard2: [...prevState.discard2.concat(...prevState.hand2)], hand2: [] }
     case "CELLARS":
       return {...prevState, cellars: action.payload }
     case "MOATS":

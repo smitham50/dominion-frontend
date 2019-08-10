@@ -19,11 +19,12 @@ class PlayerOneArea extends React.Component {
   }
 
   render() {
+    const { discard1, deck1, hand1 } = this.props
     return(
       <div id="player-one-area" >
-        <PlayerDiscard discard={this.props.discard1} />
-        <PlayerDeck key="deck1" deck={this.props.deck1} handleDeal={this.handleDeal} />
-        <PlayerHand key="hand1" hand={this.props.hand1} handleDraw={this.handleDraw} />
+        <PlayerDiscard key="discard1" discard={discard1} />
+        <PlayerDeck key="deck1" deck={deck1} handleDeal={this.handleDeal} />
+        <PlayerHand key="hand1" hand={hand1} handleDraw={this.handleDraw} />
       </div>
     )
   }

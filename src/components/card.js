@@ -25,7 +25,7 @@ class Card extends React.Component {
             ? 
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnxjXZTHcRqwUrA4nW09UvtRlXPGlhAZdOQC6_-s71LayIknwS" 
             : 
-            this.props.card.picture} alt="oops" onClick={() => this.handleClick()}>
+              this.props.card.picture} alt="oops" onClick={() => this.handleClick()} >
             </img> 
           : 
           <img src={
@@ -33,8 +33,7 @@ class Card extends React.Component {
             ? 
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnxjXZTHcRqwUrA4nW09UvtRlXPGlhAZdOQC6_-s71LayIknwS" 
             :
-            this.props.card.picture} alt="oops" className="rest" onClick={() => this.handleClick()}>
-
+              this.props.card.picture} alt="oops" className="rest" onClick={() => this.handleClick()}>
             </img> 
           }
       </Fragment>

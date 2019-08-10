@@ -15,11 +15,12 @@ class PlayerTwoArea extends React.Component {
   }
 
   render() {
+    const { hand2, discard2, deck2} = this.props
     return (
       <div id="player-two-area" >
-        <PlayerHand key="hand2" hand={this.props.hand2} handleDraw={this.handleDraw}/>
-        <PlayerDeck key="deck2" deck={this.props.deck2} handleDeal={this.handleDeal} />
-        <PlayerDiscard discard={this.props.discard}/>
+        <PlayerHand key="hand2" hand={hand2} handleDraw={this.handleDraw}/>
+        <PlayerDeck key="deck2" deck={deck2} handleDeal={this.handleDeal} />
+        <PlayerDiscard key="discard2" discard={discard2}/>
       </div>
     )
   }

@@ -19,7 +19,8 @@ class SupplyArea extends React.Component {
       victoryPoints2, 
       turns2, 
       playerTurn,
-      endTurn } = this.props
+      endTurn1,
+      endTurn2 } = this.props
     
     return(
       <div id="supply-area">
@@ -33,7 +34,7 @@ class SupplyArea extends React.Component {
             turns={turns1}
           />
           <div className="end-turn">
-            {playerTurn === false ? <button onClick={endTurn} >End Turn</button> : null}
+            {playerTurn === false ? <button onClick={endTurn1} >End Turn</button> : null}
           </div>
         </div>
         <div id="tvcard-container">
@@ -51,7 +52,7 @@ class SupplyArea extends React.Component {
             turns={turns2}
           />
           <div className="end-turn">
-            {playerTurn === true ? <button onClick={endTurn}>End Turn</button> : null}
+            {playerTurn === true ? <button onClick={endTurn2}>End Turn</button> : null}
           </div>
         </div>
       </div>
@@ -84,8 +85,11 @@ function msp(state) {
 
 function mdp(dispatch) {
   return {
-    endTurn: () => {
-      dispatch({ type: "TURN" })
+    endTurn1: () => {
+      dispatch({ type: "TURN1" })
+    },
+    endTurn2: () => {
+      dispatch({ type: "TURN2" })
     },
     draw: () => {
       dispatch({ type: "DRAW1" })
