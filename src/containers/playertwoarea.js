@@ -6,15 +6,19 @@ import { connect } from 'react-redux'
 
 class PlayerTwoArea extends React.Component {
 
-  handleClick = () => {
+  handleDeal = () => {
     this.props.deal()
+  }
+
+  handleDraw = () => {
+    this.props.draw()
   }
 
   render() {
     return (
       <div id="player-two-area" >
-        <PlayerHand />
-        <PlayerDeck key="deck2" deck={this.props.deck2} handleClick={this.handleClick} />
+        <PlayerHand key="hand2" hand={this.props.hand2} handleDraw={this.handleDraw}/>
+        <PlayerDeck key="deck2" deck={this.props.deck2} handleDeal={this.handleDeal} />
         <PlayerDiscard discard={this.props.discard}/>
       </div>
     )
@@ -22,13 +26,10 @@ class PlayerTwoArea extends React.Component {
 }
 
 function msp(state) {
-
-  // const { gameStart } = state.game
   const { coppers, estates, deck2, discard2, hand2 } = state.supply
   const {  } = state.playerTwo
 
   return {
-    // gameStart: gameStart,
     coppers: coppers,
     estates: estates,
     deck2: deck2,
@@ -42,6 +43,9 @@ function mdp(dispatch) {
   return {
     deal: () => {
       dispatch({ type: "DEAL2" })
+    },
+    draw: () => {
+      dispatch({ type: "DRAW2" })
     }
   }
 }

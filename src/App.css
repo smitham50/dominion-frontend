@@ -57,6 +57,26 @@
 }
 /* END PLAYER DECK STYLING */
 
+/* PLAYER HAND STYLING */
+.player-hand {
+  border: solid 1px;
+  width: 25%;
+  display: flex;
+}
+
+.player-hand img {
+  height: 150px;
+  margin-left: 0px;
+  margin-top: 15px;
+}
+
+.player-hand .rest {
+  height: 150px;
+  margin-left: -55px;
+  margin-top: 15px;
+}
+/* END PLAYER DECK STYLING */
+
 .player-discard {
   border: solid 1px;
   width: 25%;

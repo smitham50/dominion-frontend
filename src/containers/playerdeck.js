@@ -5,7 +5,7 @@ class PlayerDeck extends React.Component {
 
   renderDeck = () => {
     return this.props.deck.map((card, index) => {
-      return <Card key={card.id} card={card} index={index} />
+      return <Card key={card.id} card={card} index={index} className="deck-card" />
     })
   }
 
@@ -13,7 +13,7 @@ class PlayerDeck extends React.Component {
     console.log("DECK", this.props)
     return(
       <div className="player-deck" >
-        {this.props.deck.length > 0 ? this.renderDeck() : <button onClick={() => this.props.handleClick()}>Deal Cards</button> }
+        {this.props.deck.length > 0 ? this.renderDeck() : <button onClick={() => this.props.handleDeal()}>Deal Cards</button> }
       </div>
     )
   }

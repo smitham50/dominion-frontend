@@ -71,7 +71,11 @@ function supplyReducer(prevState=defaultState, action) {
     case "DEAL1":
       return { ...prevState, deck1: shuffle([...prevState.estates.splice(0, 3).concat(...prevState.coppers.splice(0, 7))]), estates: [...prevState.estates.slice(3)], coppers: [...prevState.coppers.slice(7)] }
     case "DEAL2":
-      return { ...prevState, deck2: shuffle([...prevState.estates.splice(0, 3).concat(...prevState.coppers.splice(0, 7))]), estates: [...prevState.estates.slice(3)], coppers: [...prevState.coppers.slice(7)] }                 
+      return { ...prevState, deck2: shuffle([...prevState.estates.splice(0, 3).concat(...prevState.coppers.splice(0, 7))]), estates: [...prevState.estates.slice(3)], coppers: [...prevState.coppers.slice(7)] }
+    case "DRAW1":
+      return { ...prevState, hand1: [...prevState.deck1.splice(-5, 5)], deck1: [...prevState.deck1.slice(-5)] }
+    case "DRAW2":
+      return { ...prevState, hand2: [...prevState.deck1.splice(-5, 5)], deck2: [...prevState.deck2.slice(-5)] }                   
     case "TRASH_CARD":
       return { ...prevState, trash: action.payload }
     case "STACK_EMPTY":
