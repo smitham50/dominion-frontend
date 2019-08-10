@@ -32,7 +32,7 @@ const defaultState = {
 }
 
 function supplyReducer(prevState=defaultState, action) {
-
+  let shuffle = require('shuffle-array')
   switch (action.type) {
     case "CELLARS":
       return {...prevState, cellars: action.payload }
@@ -69,9 +69,9 @@ function supplyReducer(prevState=defaultState, action) {
     case "TRASH":
       return { ...prevState, trash: action.payload }  
     case "DEAL1":
-      return { ...prevState, deck1: [...prevState.estates.splice(0, 3).concat(...prevState.coppers.splice(0, 7))], estates: [...prevState.estates.slice(3)], coppers: [...prevState.coppers.slice(7)] }
+      return { ...prevState, deck1: shuffle([...prevState.estates.splice(0, 3).concat(...prevState.coppers.splice(0, 7))]), estates: [...prevState.estates.slice(3)], coppers: [...prevState.coppers.slice(7)] }
     case "DEAL2":
-      return { ...prevState, deck2: [...prevState.estates.splice(0, 3).concat(...prevState.coppers.splice(0, 7))], estates: [...prevState.estates.slice(3)], coppers: [...prevState.coppers.slice(7)] }                 
+      return { ...prevState, deck2: shuffle([...prevState.estates.splice(0, 3).concat(...prevState.coppers.splice(0, 7))]), estates: [...prevState.estates.slice(3)], coppers: [...prevState.coppers.slice(7)] }                 
     case "TRASH_CARD":
       return { ...prevState, trash: action.payload }
     case "STACK_EMPTY":

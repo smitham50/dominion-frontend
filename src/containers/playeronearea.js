@@ -46,9 +46,6 @@ function mdp(dispatch) {
   return {
     deal: () => {
       dispatch({ type: "DEAL1"})
-    },
-    setDeck: (deck) => {
-      dispatch({type: "SET_DECK", payload: deck})
     }
 
   }
