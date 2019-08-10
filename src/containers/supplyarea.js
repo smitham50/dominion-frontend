@@ -27,6 +27,7 @@ class SupplyArea extends React.Component {
         <div className="margins">
           <PlayerTurnInfo 
             key="player1"
+            player="Player 1"
             actions={actions1}
             buys={buys1}
             wallet={wallet1}
@@ -45,6 +46,7 @@ class SupplyArea extends React.Component {
         <div className="margins">
           <PlayerTurnInfo 
             key="player2"
+            player="Player 2"
             actions={actions2}
             buys={buys2}
             wallet={wallet2}

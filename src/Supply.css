@@ -8,24 +8,29 @@
 
 }
 
+#tvcard-container {
+  border: solid 1px;
+  display: flex;
+  width: 35%;
+}
+
+/* MARGINS STYLING */
 .margins {
   width: 7.5%;
 }
 
 .player-turn-info {
   display: flex;
+  justify-content: space-around;
   flex-direction: column;
+  height: 90%;
 }
 
 .end-turn {
-  
+  height: 10%;
 }
 
-#tvcard-container {
-  border: solid 1px;
-  display: flex;
-  width: 35%;
-}
+/* END MARGINS STYLING */
 
 /* ACTION CARD STYLING */
 #action-card-container {
