@@ -19,11 +19,10 @@ class PlayerOneArea extends React.Component {
   }
 
   render() {
-    let shuffle = require('shuffle-array')
     return(
       <div id="player-one-area" >
         <PlayerDiscard discard={this.props.discard1} />
-        <PlayerDeck key="deck1" deck={shuffle(this.props.deck1)} handleDeal={this.handleDeal} />
+        <PlayerDeck key="deck1" deck={this.props.deck1} handleDeal={this.handleDeal} />
         <PlayerHand key="hand1" hand={this.props.hand1} handleDraw={this.handleDraw} />
       </div>
     )

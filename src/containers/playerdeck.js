@@ -5,7 +5,7 @@ class PlayerDeck extends React.Component {
 
   renderDeck = () => {
     return this.props.deck.map((card, index) => {
-      return <Card key={card.id} card={card} index={index} className="deck-card" />
+      return <Card key={card.id} card={card} index={index} id="deck-card" />
     })
   }
 
