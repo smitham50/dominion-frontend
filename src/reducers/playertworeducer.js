@@ -7,10 +7,7 @@ const defaultState = {
   buys: 1,
   wallet: 0,
   victoryPoints: 3,
-  turns: 0,
-  deck: [],
-  discard: [],
-  hand: []
+  turns: 0
 }
 
 function playerTwoReducer(prevState=defaultState, action) {

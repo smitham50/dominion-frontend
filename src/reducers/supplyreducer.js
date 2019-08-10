@@ -1,4 +1,5 @@
 const defaultState = {
+
   cellars: [],
   moats: [],
   workshops: [],
@@ -15,10 +16,19 @@ const defaultState = {
   estates: [],
   duchies: [],
   provinces: [],
-  deck1: [],
   trash: [],
   emptyStacks: 0,
-  provincesEmpty: false
+  provincesEmpty: false,
+
+  // PLAYER 1 ARRAYS
+  deck1: [],
+  discard1: [],
+  hand1: [],
+  // PLAYER 2 ARRAYS
+  deck2: [],
+  discard2: [],
+  hand2: [],
+
 }
 
 function supplyReducer(prevState=defaultState, action) {
@@ -58,8 +68,10 @@ function supplyReducer(prevState=defaultState, action) {
       return { ...prevState, provinces: action.payload }
     case "TRASH":
       return { ...prevState, trash: action.payload }  
-    case "DEAL":
-      return { ...prevState, deck1: prevState.estates.splice(0, 3).concat(prevState.coppers.splice(0, 7)) }               
+    case "DEAL1":
+      return { ...prevState, deck1: [...prevState.estates.splice(0, 3).concat(...prevState.coppers.splice(0, 7))], estates: [...prevState.estates.slice(3)], coppers: [...prevState.coppers.slice(7)] }
+    case "DEAL2":
+      return { ...prevState, deck2: [...prevState.estates.splice(0, 3).concat(...prevState.coppers.splice(0, 7))], estates: [...prevState.estates.slice(3)], coppers: [...prevState.coppers.slice(7)] }                 
     case "TRASH_CARD":
       return { ...prevState, trash: action.payload }
     case "STACK_EMPTY":

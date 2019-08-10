@@ -8,37 +8,36 @@ class PlayerOneArea extends React.Component {
 
   handleClick = () => {
     this.props.deal()
-    let deck = this.props.deck1
-    let shuffle = require('shuffle-array')
-    this.props.setDeck(shuffle(deck))
-    
+  }
+
+  componentDidUpdate() {
+    console.log("UPDATED")
   }
 
   render() {
-    console.log("DECK AFTER CLICK", this.props.deck)
+    let shuffle = require('shuffle-array')
     return(
       <div id="player-one-area" >
-        <PlayerDiscard discard={this.props.discard} />
-        <PlayerDeck deck={this.props.deck} handleClick={this.handleClick} />
-        <PlayerHand hand={this.props.hand} />
+        <PlayerDiscard discard={this.props.discard1} />
+        <PlayerDeck key="deck1" deck={shuffle(this.props.deck1)} handleClick={this.handleClick} />
+        <PlayerHand hand={this.props.hand1} />
       </div>
     )
   }
 }
 
 function msp(state) {
-  const { gameStart } = state.game
-  const { coppers, estates, deck1 } = state.supply
-  const { deck, discard, hand } = state.playerOne
+  // const { gameStart } = state.game
+  const { coppers, estates, deck1, discard1, hand1 } = state.supply
+  const {  } = state.playerOne
 
   return {
-    gameStart: gameStart,
+    // gameStart: gameStart,
     coppers: coppers,
     estates: estates,
-    deck: deck,
-    deck1,
-    discard: discard,
-    hand: hand
+    deck1: deck1,
+    discard1: discard1,
+    hand1: hand1
   }
 
 }
@@ -46,7 +45,7 @@ function msp(state) {
 function mdp(dispatch) {
   return {
     deal: () => {
-      dispatch({ type: "DEAL"})
+      dispatch({ type: "DEAL1"})
     },
     setDeck: (deck) => {
       dispatch({type: "SET_DECK", payload: deck})

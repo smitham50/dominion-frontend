@@ -10,10 +10,10 @@ class PlayerDeck extends React.Component {
   }
 
   render() {
-    console.log("DECK", this.props.deck)
+    console.log("DECK", this.props)
     return(
       <div className="player-deck" >
-        { !this.props.length ? <button onClick={() => this.props.handleClick()}>Deal Cards</button> : this.renderDeck() }
+        {this.props.deck.length > 0 ? this.renderDeck() : <button onClick={() => this.props.handleClick()}>Deal Cards</button> }
       </div>
     )
   }
