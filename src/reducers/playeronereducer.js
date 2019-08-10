@@ -1,8 +1,4 @@
 const defaultState = {
-  playerTurn: false,
-  actionPhase: false,
-  buyPhase: false,
-  cleanupPhase: false,
   actions: 1,
   buys: 1,
   wallet: 0,
