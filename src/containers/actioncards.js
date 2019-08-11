@@ -26,7 +26,7 @@ class ActionCards extends React.Component {
         this.props.setMilitias(cards.filter(card => {
           return card.name === "Militia"
         }))
-        this.props.setSmithies(cards.filter(card => {
+        this.props.setSmithys(cards.filter(card => {
           return card.name === "Smithy"
         }))
         this.props.setRemodels(cards.filter(card => {
@@ -71,8 +71,8 @@ class ActionCards extends React.Component {
     })
   }
 
-  renderSmithies = () => {
-    return this.props.smithies.map((card, index) => {
+  renderSmithys = () => {
+    return this.props.smithys.map((card, index) => {
       return <Card key={card.id} card={card} index={index} className="supply-card" />
     })
   }
@@ -120,8 +120,8 @@ class ActionCards extends React.Component {
         <div id="villages">
           {this.renderVillages()}
         </div>
-        <div id="smithies">
-          {this.renderSmithies()}
+        <div id="smithys">
+          {this.renderSmithys()}
         </div>
         <div id="militias">
           {this.renderMilitias()}
@@ -142,7 +142,7 @@ class ActionCards extends React.Component {
 
 function msp(state) {
 
-  const { cellars, moats, workshops, woodcutters, villages, militias, smithies, remodels, markets, mines } = state.supply
+  const { cellars, moats, workshops, woodcutters, villages, militias, smithys, remodels, markets, mines } = state.supply
 
   return {
     cellars: cellars,
@@ -151,7 +151,7 @@ function msp(state) {
     woodcutters: woodcutters,
     villages: villages,
     militias: militias,
-    smithies: smithies,
+    smithys: smithys,
     remodels: remodels,
     markets: markets,
     mines: mines
@@ -179,8 +179,8 @@ function mdp(dispatch) {
     setMilitias: (militias) => {
       dispatch({ type: "MILITIAS", payload: militias })
     },
-    setSmithies: (smithies) => {
-      dispatch({ type: "SMITHIES", payload: smithies })
+    setSmithys: (smithys) => {
+      dispatch({ type: "SMITHYS", payload: smithys })
     },
     setRemodels: (remodels) => {
       dispatch({ type: "REMODELS", payload: remodels })

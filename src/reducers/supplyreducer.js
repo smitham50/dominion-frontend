@@ -8,7 +8,7 @@ const defaultState = {
   woodcutters: [],
   villages: [],
   militias: [],
-  smithies: [],
+  smithys: [],
   remodels: [],
   markets: [],
   mines: [],
@@ -49,8 +49,8 @@ function supplyReducer(prevState=defaultState, action) {
       return { ...prevState, villages: action.payload }
     case "MILITIAS":
       return { ...prevState, militias: action.payload }
-    case "SMITHIES":
-      return { ...prevState, smithies: action.payload }
+    case "SMITHYS":
+      return { ...prevState, smithys: action.payload }
     case "REMODELS":
       return { ...prevState, remodels: action.payload }
     case "MARKETS":
@@ -79,12 +79,16 @@ function supplyReducer(prevState=defaultState, action) {
     case "PLAY_TREASURE2":
       return { ...prevState, discard2: prevState.discard2.concat(action.payload), hand2: prevState.hand2.filter(card => card.id !== action.payload.id) }
     // PLAYER BUYS
-    case "BUY1":
+    case "BUY1": {
       let pile = Object.keys(prevState).find(key => key == `${action.payload.name.toLowerCase()}s`)
+      console.log("PILE1", pile)
       return { ...prevState, discard1: prevState.discard1.concat(action.payload), [pile]: prevState[pile].filter(card => card.id !== action.payload.id) }
-    case "BUY2":
-      let pile2 = Object.keys(prevState).find(key => key == `${action.payload.name.toLowerCase()}s`)
-      return { ...prevState, discard2: prevState.discard2.concat(action.payload), [pile2]: prevState[pile2].filter(card => card.id !== action.payload.id) }   
+    }
+    case "BUY2": {
+      let pile = Object.keys(prevState).find(key => key == `${action.payload.name.toLowerCase()}s`)
+      console.log("PILE2", pile)
+      return { ...prevState, discard2: prevState.discard2.concat(action.payload), [pile]: prevState[pile].filter(card => card.id !== action.payload.id) }   
+    }
     case "TRASH":
       return { ...prevState, trash: action.payload }  
     case "DEAL1":

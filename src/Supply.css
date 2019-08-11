@@ -153,18 +153,18 @@
 /* END VILLAGE STYLING */
 
 /* SMITHY STYLING */
-#smithies {
+#smithys {
   height: 150px;
   display: flex;
 }
 
-#smithies img {
+#smithys img {
   height: 150px;
   margin-left: 0px;
   margin-top: 15px;
 }
 
-#smithies .rest {
+#smithys .rest {
   height: 150px;
   margin-left: -91px;
   margin-top: 15px;
