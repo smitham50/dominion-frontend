@@ -20,12 +20,12 @@ class Card extends React.Component {
       buyCard1(card)
     } else if (className === "supply-card" && playerTurn === true && card.cost <= wallet2 && buys2 > 0 ) {
       buyCard2(card)
-    } else if (card.card_type === "Action" && playerTurn === false && actions1 > 0 ) {
+    } else if (className === "hand-card" && card.card_type === "Action" && playerTurn === false && actions1 > 0 ) {
       playAction1(card)
       card.triggers.forEach(trigger => {
         triggerDispatch1(`${trigger}1`)
       })
-    } else if (card.card_type === "Action" && playerTurn === true && actions2 > 0) {
+    } else if (className === "hand-card" && card.card_type === "Action" && playerTurn === true && actions2 > 0) {
       playAction2(card)
       card.triggers.forEach(trigger => {
         triggerDispatch2(`${trigger}2`)
