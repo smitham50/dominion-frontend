@@ -112,7 +112,7 @@ function msp(state) {
     wallet2: wallet2,
     buys2: buys2,
     turns2: turns2,
-    actions2: actions2
+    actions2: actions2,
 
   }
 
@@ -125,15 +125,6 @@ function mdp(dispatch) {
     },
     buyCard2: (card) => {
       dispatch({ type: "BUY2", payload: card})
-    },
-    deal: () => {
-      dispatch({ type: "DEAL" })
-    },
-    cycle: () => {
-      dispatch({ type: "CYCLE" })
-    },
-    draw: () => {
-      dispatch({ type: "DRAW" })
     },
     playTreasureCard1: (card) => {
       dispatch({ type: "PLAY_TREASURE1", payload: card })

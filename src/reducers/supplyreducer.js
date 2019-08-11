@@ -100,27 +100,66 @@ function supplyReducer(prevState=defaultState, action) {
       return { ...prevState, deck1: shuffle(prevState.discard1), discard1: [] }
       case "CYCLE2":
       return { ...prevState, deck2: shuffle(prevState.discard2), discard2: [] }
-    case "DRAW1":
-      return { ...prevState, hand1: prevState.deck1.slice(-5), deck1: prevState.deck1.slice(0, -5) }
+    case "DRAW1": {
+      if (prevState.deck1.length >= 5) {
+        return { ...prevState, hand1: prevState.deck1.slice(-5), deck1: prevState.deck1.slice(0, -5) }
+      } else {
+        return { ...prevState, deck1: shuffle(prevState.deck1.concat(prevState.discard1)), discard1: [] }
+      }
+    }
     case "DRAW2":
-      return { ...prevState, hand2: prevState.deck2.slice(-5), deck2: prevState.deck2.slice(0, -5) }                   
+      if (prevState.deck2.length >= 5) {
+        return { ...prevState, hand2: prevState.deck2.slice(-5), deck2: prevState.deck2.slice(0, -5) }
+      } else {
+        return { ...prevState, deck2: shuffle(prevState.deck2.concat(prevState.discard2)), discard2: [] }
+      }
     case "STACK_EMPTY":
       return { ...prevState, emptyStacks: prevState.emptyStacks + 1 }
     case "PROVINCES_EMPTY":
       return { ...prevState, provincesEmpty: true }
     // CARD TRIGGERS
-    case "+1CARD1":
-      return { ...prevState, hand1: prevState.hand1.concat(prevState.deck1.slice(-1)), deck1: prevState.deck1.slice(0, -1) }
-    case "+2CARDS1":
-      return { ...prevState, hand1: prevState.hand1.concat(prevState.deck1.slice(-2)), deck1: prevState.deck1.slice(0, -2) }
-    case "+3CARDS1":
-      return { ...prevState, hand1: prevState.hand1.concat(prevState.deck1.slice(-3)), deck1: prevState.deck1.slice(0, -3)}
-    case "+1CARD2":
-      return { ...prevState, hand2: prevState.hand2.concat(prevState.deck2.slice(-1)), deck2: prevState.deck2.slice(0, -1) }
-    case "+2CARDS2":
-      return { ...prevState, hand2: prevState.hand2.concat(prevState.deck2.slice(-2)), deck2: prevState.deck2.slice(0, -2) }
-    case "+3CARDS2":
-      return { ...prevState, hand2: prevState.hand2.concat(prevState.deck2.slice(-3)), deck2: prevState.deck2.slice(0, -3) }
+    case "+1CARD1": {
+      if (prevState.deck1.length > 0) {
+        return { ...prevState, hand1: prevState.hand1.concat(prevState.deck1.slice(-1)), deck1: prevState.deck1.slice(0, -1) }
+      } else {
+        return { ...prevState, deck1: shuffle(prevState.deck1.concat(prevState.discard1)), discard1: [] }
+      }
+    }
+    case "+2CARDS1": {
+      if (prevState.deck1.length > 1) {
+        return { ...prevState, hand1: prevState.hand1.concat(prevState.deck1.slice(-2)), deck1: prevState.deck1.slice(0, -2) }
+      } else {
+        return { ...prevState, deck1: shuffle(prevState.deck1.concat(prevState.discard1)), discard1: [] }
+      }
+    }
+    case "+3CARDS1": {
+      if (prevState.deck1.length > 2) {
+        return { ...prevState, hand1: prevState.hand1.concat(prevState.deck1.slice(-3)), deck1: prevState.deck1.slice(0, -3) }
+      } else {
+        return { ...prevState, deck1: shuffle(prevState.deck1.concat(prevState.discard1)), discard1: [] }
+      }
+    }
+    case "+1CARD2": {
+      if (prevState.deck2.length > 0) {
+        return { ...prevState, hand2: prevState.hand2.concat(prevState.deck2.slice(-1)), deck2: prevState.deck2.slice(0, -1) }
+      } else {
+        return { ...prevState, deck2: shuffle(prevState.deck2.concat(prevState.discard2)), discard2: [] }
+      }
+    }
+    case "+2CARDS2": {
+      if (prevState.deck2.length > 1) {
+        return { ...prevState, hand2: prevState.hand2.concat(prevState.deck2.slice(-2)), deck2: prevState.deck2.slice(0, -2) }
+      } else {
+        return { ...prevState, deck2: shuffle(prevState.deck2.concat(prevState.discard2)), discard2: [] }
+      }
+    }
+    case "+3CARDS2": {
+      if (prevState.deck2.length > 2) {
+        return { ...prevState, hand2: prevState.hand2.concat(prevState.deck2.slice(-3)), deck2: prevState.deck2.slice(0, -3) }
+      } else {
+        return { ...prevState, deck2: shuffle(prevState.deck2.concat(prevState.discard2)), discard2: [] }
+      }
+    }
     
 
     default:
