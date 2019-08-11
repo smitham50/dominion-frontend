@@ -24,7 +24,7 @@ class PlayerOneArea extends React.Component {
       <div id="player-one-area" >
         <PlayerDiscard key="discard1" discard={discard1} />
         <PlayerDeck key="deck1" deck={deck1} handleDeal={this.handleDeal} />
-        <PlayerHand key="hand1" hand={hand1} handleDraw={this.handleDraw} />
+        <PlayerHand key="hand1" hand={hand1} handleDraw={this.handleDraw} player="player1" />
       </div>
     )
   }

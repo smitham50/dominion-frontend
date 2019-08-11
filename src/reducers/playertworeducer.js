@@ -9,8 +9,8 @@ const defaultState = {
 function playerTwoReducer(prevState=defaultState, action) {
 
   switch (action.type) {
-    case "DEAL":
-      return { ...prevState, deck: action.payload}
+    case "PLAY_TREASURE2":
+      return { ...prevState, wallet2: prevState.wallet2 + action.payload.value }
     default:
       return prevState
   }

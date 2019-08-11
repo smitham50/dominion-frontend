@@ -36,10 +36,7 @@ const defaultState = {
 function supplyReducer(prevState=defaultState, action) {
   let shuffle = require('shuffle-array')
   switch (action.type) {
-    case "TURN1":
-      return { ...prevState, playerTurn: !prevState.playerTurn, discard1: [...prevState.discard1.concat(...prevState.hand1)], hand1: [] }
-    case "TURN2":
-      return { ...prevState, playerTurn: !prevState.playerTurn, discard2: [...prevState.discard2.concat(...prevState.hand2)], hand2: [] }
+    // INITIAL SUPPLY RENDER
     case "CELLARS":
       return {...prevState, cellars: action.payload }
     case "MOATS":
@@ -72,16 +69,25 @@ function supplyReducer(prevState=defaultState, action) {
       return { ...prevState, duchies: action.payload }
     case "PROVINCES":
       return { ...prevState, provinces: action.payload }
+    // PLAYER ACTIONS  
+    case "TURN1":
+      return { ...prevState, playerTurn: !prevState.playerTurn, discard1: prevState.discard1.concat(prevState.hand1), hand1: [] }
+    case "TURN2":
+      return { ...prevState, playerTurn: !prevState.playerTurn, discard2: prevState.discard2.concat(prevState.hand2), hand2: [] }
+    case "PLAY_TREASURE1":
+      return {...prevState, discard1: prevState.discard1.concat(action.payload), hand1: prevState.hand1.filter(card => card.id !== action.payload.id) }
+    case "PLAY_TREASURE2":
+      return { ...prevState, discard2: prevState.discard2.concat(action.payload), hand2: prevState.hand2.filter(card => card.id !== action.payload.id) }  
     case "TRASH":
       return { ...prevState, trash: action.payload }  
     case "DEAL1":
-      return { ...prevState, deck1: shuffle([...prevState.estates.splice(0, 3).concat([...prevState.coppers.splice(0, 7)])]), estates: [...prevState.estates.slice(3)], coppers: [...prevState.coppers.slice(7)] }
+      return { ...prevState, deck1: shuffle(prevState.estates.splice(0, 3).concat(prevState.coppers.splice(0, 7))), estates: prevState.estates.slice(3), coppers: prevState.coppers.slice(7) }
     case "DEAL2":
-      return { ...prevState, deck2: shuffle([...prevState.estates.splice(0, 3).concat([...prevState.coppers.splice(0, 7)])]), estates: [...prevState.estates.slice(3)], coppers: [...prevState.coppers.slice(7)] }
+      return { ...prevState, deck2: shuffle(prevState.estates.splice(0, 3).concat(prevState.coppers.splice(0, 7))), estates: prevState.estates.slice(3), coppers: prevState.coppers.slice(7) }
     case "DRAW1":
-      return { ...prevState, hand1: [...prevState.deck1.splice(-5, 5)], deck1: [...prevState.deck1.slice(-5)] }
+      return { ...prevState, hand1: prevState.deck1.splice(-5, 5), deck1: prevState.deck1.slice(-5) }
     case "DRAW2":
-      return { ...prevState, hand2: [...prevState.deck2.splice(-5, 5)], deck2: [...prevState.deck2.slice(-5)] }                   
+      return { ...prevState, hand2: prevState.deck2.splice(-5, 5), deck2: prevState.deck2.slice(-5) }                   
     case "TRASH_CARD":
       return { ...prevState, trash: action.payload }
     case "STACK_EMPTY":

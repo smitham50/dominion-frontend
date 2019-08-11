@@ -4,13 +4,13 @@ import { connect } from 'react-redux'
 class Card extends React.Component {
 
   handleClick = () => {
-    console.log("CARD PROPS", this.props)
-    if (this.props.isInSupply) {
-      this.props.buyCard()
+    const { className, card, player, playerTurn, playTreasureCard1, playTreasureCard2} = this.props
+    if (className === "hand-card" && player === "player1" && card.card_type === "Treasure" && playerTurn === false) {
+      playTreasureCard1(card)
+    } else if (className === "hand-card" && player === "player2" && card.card_type === "Treasure" && playerTurn === true) {
+      playTreasureCard2(card)
     }
-    else if (this.props.isInHand) {
-      this.props.playCard()
-    }
+    
   }
 
   render() {
@@ -44,14 +44,10 @@ class Card extends React.Component {
 
 function msp(state) {
 
-  const { isInSupply, isInDiscard, isInDeck, isInHand, isInTrash } = state.card
+  const { playerTurn } = state.supply
 
   return {
-    isInSupply: isInSupply,
-    isInDiscard: isInDiscard,
-    isInDeck: isInDeck,
-    isInHand: isInHand,
-    isInTrash: isInTrash
+    playerTurn: playerTurn
   }
 
 }
@@ -73,8 +69,11 @@ function mdp(dispatch) {
     scrap: () => {
       dispatch({ type: "SCRAP" })
     },
-    playCard: () => {
-      dispatch({ type: "PLAY" })
+    playTreasureCard1: (card) => {
+      dispatch({ type: "PLAY_TREASURE1", payload: card })
+    },
+    playTreasureCard2: (card) => {
+      dispatch({ type: "PLAY_TREASURE2", payload: card })
     }
   }
 }

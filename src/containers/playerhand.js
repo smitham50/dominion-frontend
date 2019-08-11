@@ -5,7 +5,7 @@ class PlayerHand extends React.Component {
 
   renderHand = () => {
     return this.props.hand.map((card, index) => {
-      return <Card key={card.id} card={card} index={index} className="hand-card" />
+      return <Card key={card.id} card={card} index={index} player={this.props.player} className="hand-card" />
     })
   }
 
