@@ -12,20 +12,51 @@ class Card extends React.Component {
       actions2, triggerDispatch1, triggerDispatch2
     } = this.props
 
-    if (className === "hand-card" && player === "player1" && card.card_type === "Treasure" && playerTurn === false) {
+    if (
+      className === "hand-card" && 
+      player === "player1" && 
+      card.card_type === "Treasure" && 
+      playerTurn === false
+      ) {
       playTreasureCard1(card)
-    } else if (className === "hand-card" && player === "player2" && card.card_type === "Treasure" && playerTurn === true) {
+    } else if (
+      className === "hand-card" && 
+      player === "player2" && 
+      card.card_type === "Treasure" && 
+      playerTurn === true
+      ) {
       playTreasureCard2(card)
-    } else if (className === "supply-card" && playerTurn === false && card.cost <= wallet1 && buys1 > 0 ) {
+    } else if (
+      className === "supply-card" && 
+      playerTurn === false && 
+      card.cost <= wallet1 && buys1 > 0 
+      ) {
       buyCard1(card)
-    } else if (className === "supply-card" && playerTurn === true && card.cost <= wallet2 && buys2 > 0 ) {
+    } else if (
+      className === "supply-card" && 
+      playerTurn === true && 
+      card.cost <= wallet2 && 
+      buys2 > 0 
+      ) {
       buyCard2(card)
-    } else if (className === "hand-card" && card.card_type === "Action" && playerTurn === false && actions1 > 0 ) {
+    } else if (
+      className === "hand-card" &&
+      player === "player1" && 
+      card.card_type === "Action" && 
+      playerTurn === false && 
+      actions1 > 0 
+      ) {
       playAction1(card)
       card.triggers.forEach(trigger => {
         triggerDispatch1(`${trigger}1`)
       })
-    } else if (className === "hand-card" && card.card_type === "Action" && playerTurn === true && actions2 > 0) {
+    } else if (
+      className === "hand-card" && 
+      player === "player2" &&
+      card.card_type === "Action" && 
+      playerTurn === true && 
+      actions2 > 0
+      ) {
       playAction2(card)
       card.triggers.forEach(trigger => {
         triggerDispatch2(`${trigger}2`)
