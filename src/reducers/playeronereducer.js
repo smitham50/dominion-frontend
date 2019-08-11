@@ -14,7 +14,7 @@ function playerOneReducer(prevState = defaultState, action) {
     case "BUY1":
       return { ...prevState, wallet1: prevState.wallet1 - action.payload.cost, buys1: prevState.buys1 -1}
     case "TURN1":
-      return { ...prevState, actions1: 1, buys1: 1, wallet1: 0, turns1: prevState.turns1++}
+      return { ...prevState, actions1: 1, buys1: 1, wallet1: 0, turns1: prevState.turns1 + 1}
     default:
       return prevState
   }

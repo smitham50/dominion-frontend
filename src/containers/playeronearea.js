@@ -14,13 +14,17 @@ class PlayerOneArea extends React.Component {
     this.props.draw()
   }
 
+  handleCycle = () => {
+    this.props.cycle()
+  }
+
 
   render() {
-    const { discard1, deck1, hand1 } = this.props
+    const { discard1, deck1, hand1, turns1 } = this.props
     return(
       <div id="player-one-area" >
         <PlayerDiscard key="discard1" discard={discard1} />
-        <PlayerDeck key="deck1" deck={deck1} handleDeal={this.handleDeal} />
+        <PlayerDeck key="deck1" deck={deck1} handleDeal={this.handleDeal} turns={turns1} handleCycle={this.handleCycle} />
         <PlayerHand key="hand1" hand={hand1} handleDraw={this.handleDraw} player="player1" />
       </div>
     )
@@ -29,14 +33,15 @@ class PlayerOneArea extends React.Component {
 
 function msp(state) {
   const { coppers, estates, deck1, discard1, hand1 } = state.supply
-  const {  } = state.playerOne
+  const { turns1 } = state.playerOne
 
   return {
     coppers: coppers,
     estates: estates,
     deck1: deck1,
     discard1: discard1,
-    hand1: hand1
+    hand1: hand1,
+    turns1: turns1
   }
 
 }
@@ -48,6 +53,9 @@ function mdp(dispatch) {
     },
     draw: () => {
       dispatch({ type: "DRAW1" })
+    },
+    cycle: () => {
+      dispatch({ type: "CYCLE1" })
     }
 
   }
