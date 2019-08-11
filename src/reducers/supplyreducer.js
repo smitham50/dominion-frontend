@@ -110,12 +110,19 @@ function supplyReducer(prevState=defaultState, action) {
     case "PROVINCES_EMPTY":
       return { ...prevState, provincesEmpty: true }
     // CARD TRIGGERS
+    case "+1CARD1":
+      return { ...prevState, hand1: prevState.hand1.concat(prevState.deck1.splice(-1, 1)), deck1: prevState.deck1.slice(-1) }
     case "+2CARDS1":
       return { ...prevState, hand1: prevState.hand1.concat(prevState.deck1.splice(-2, 2)), deck1: prevState.deck1.slice(-2) }
     case "+3CARDS1":
       return { ...prevState, hand1: prevState.hand1.concat(prevState.deck1.splice(-3, 3)), deck1: prevState.deck1.slice(-3)}
+    case "+1CARD2":
+      return { ...prevState, hand2: prevState.hand2.concat(prevState.deck2.splice(-1, 1)), deck2: prevState.deck2.slice(-1) }
+    case "+2CARDS2":
+      return { ...prevState, hand2: prevState.hand2.concat(prevState.deck2.splice(-2, 2)), deck2: prevState.deck2.slice(-2) }
     case "+3CARDS2":
       return { ...prevState, hand2: prevState.hand2.concat(prevState.deck2.splice(-3, 3)), deck2: prevState.deck2.slice(-3) }
+    
 
     default:
       return prevState
