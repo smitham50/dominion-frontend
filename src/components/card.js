@@ -21,7 +21,7 @@ class Card extends React.Component {
       playTreasureCard2(card)
     } else if (className === "supply-card" && playerTurn === false && card.cost <= wallet1 ) {
       buyCard1(card)
-    } else if (className === "supply-card" && playerTurn === false && card.cost <= wallet2) {
+    } else if (className === "supply-card" && playerTurn === true && card.cost <= wallet2) {
       buyCard2(card)
     }
     

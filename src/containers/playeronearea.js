@@ -14,9 +14,6 @@ class PlayerOneArea extends React.Component {
     this.props.draw()
   }
 
-  componentDidUpdate() {
-    console.log("UPDATED")
-  }
 
   render() {
     const { discard1, deck1, hand1 } = this.props
