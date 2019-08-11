@@ -34,6 +34,7 @@ const defaultState = {
 }
 
 function supplyReducer(prevState=defaultState, action) {
+  console.log("REDUCER ACTION", action.type)
   let shuffle = require('shuffle-array')
   switch (action.type) {
     // INITIAL SUPPLY RENDER
@@ -86,6 +87,10 @@ function supplyReducer(prevState=defaultState, action) {
       let pile = Object.keys(prevState).find(key => key == `${action.payload.name.toLowerCase()}s`)
       return { ...prevState, discard2: prevState.discard2.concat(action.payload), [pile]: prevState[pile].filter(card => card.id !== action.payload.id) }   
     }
+    case "ACTION1":
+      return { ...prevState, discard1: prevState.discard1.concat(action.payload), hand1: prevState.hand1.filter(card => card.id !== action.payload.id) }
+    case "ACTION2":
+      return { ...prevState, discard2: prevState.discard2.concat(action.payload), hand2: prevState.hand2.filter(card => card.id !== action.payload.id) }
     case "TRASH":
       return { ...prevState, trash: action.payload }  
     case "DEAL1":
@@ -94,18 +99,24 @@ function supplyReducer(prevState=defaultState, action) {
       return { ...prevState, deck2: shuffle(prevState.estates.splice(0, 3).concat(prevState.coppers.splice(0, 7))), estates: prevState.estates.slice(3), coppers: prevState.coppers.slice(7) }
     case "CYCLE1":
       return { ...prevState, deck1: shuffle(prevState.discard1), discard1: [] }
-    case "CYCLE2":
+      case "CYCLE2":
       return { ...prevState, deck2: shuffle(prevState.discard2), discard2: [] }
     case "DRAW1":
       return { ...prevState, hand1: prevState.deck1.splice(-5, 5), deck1: prevState.deck1.slice(-5) }
     case "DRAW2":
       return { ...prevState, hand2: prevState.deck2.splice(-5, 5), deck2: prevState.deck2.slice(-5) }                   
-    case "TRASH_CARD":
-      return { ...prevState, trash: action.payload }
     case "STACK_EMPTY":
-      return { ...prevState, emptyStacks: prevState.emptyStacks++ }
+      return { ...prevState, emptyStacks: prevState.emptyStacks + 1 }
     case "PROVINCES_EMPTY":
       return { ...prevState, provincesEmpty: true }
+    // CARD TRIGGERS
+    case "+2CARDS1":
+      return { ...prevState, hand1: prevState.hand1.concat(prevState.deck1.splice(-2, 2)), deck1: prevState.deck1.slice(-2) }
+    case "+3CARDS1":
+      return { ...prevState, hand1: prevState.hand1.concat(prevState.deck1.splice(-3, 3)), deck1: prevState.deck1.slice(-3)}
+    case "+3CARDS2":
+      return { ...prevState, hand2: prevState.hand2.concat(prevState.deck2.splice(-3, 3)), deck2: prevState.deck2.slice(-3) }
+
     default:
       return prevState
   }

@@ -7,8 +7,9 @@ class Card extends React.Component {
 
     const { 
       className, card, player, playerTurn, playTreasureCard1, 
-      playTreasureCard2, buyCard1, buyCard2, wallet1, 
-      wallet2, buys1, buys2 
+      playTreasureCard2, buyCard1, buyCard2, playAction1,
+      playAction2, wallet1, wallet2, buys1, buys2, actions1, 
+      actions2, triggerDispatch1, triggerDispatch2
     } = this.props
 
     if (className === "hand-card" && player === "player1" && card.card_type === "Treasure" && playerTurn === false) {
@@ -19,6 +20,16 @@ class Card extends React.Component {
       buyCard1(card)
     } else if (className === "supply-card" && playerTurn === true && card.cost <= wallet2 && buys2 > 0 ) {
       buyCard2(card)
+    } else if (card.card_type === "Action" && playerTurn === false && actions1 > 0 ) {
+      playAction1(card)
+      card.triggers.forEach(trigger => {
+        triggerDispatch1(`${trigger}1`)
+      })
+    } else if (card.card_type === "Action" && playerTurn === true && actions2 > 0) {
+      playAction2(card)
+      card.triggers.forEach(trigger => {
+        triggerDispatch2(`${trigger}2`)
+      })
     }
     
   }
@@ -93,14 +104,23 @@ function mdp(dispatch) {
     draw: () => {
       dispatch({ type: "DRAW" })
     },
-    scrap: () => {
-      dispatch({ type: "SCRAP" })
-    },
     playTreasureCard1: (card) => {
       dispatch({ type: "PLAY_TREASURE1", payload: card })
     },
     playTreasureCard2: (card) => {
       dispatch({ type: "PLAY_TREASURE2", payload: card })
+    },
+    playAction1: (card) => {
+      dispatch({ type: "ACTION1", payload: card })
+    },
+    playAction2: (card) => {
+      dispatch({ type: "ACTION2", payload: card })
+    },
+    triggerDispatch1: (trigger) => {
+      dispatch({ type: trigger})
+    },
+    triggerDispatch2: (trigger) => {
+      dispatch({ type: trigger })
     }
   }
 }
