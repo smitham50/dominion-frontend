@@ -9,10 +9,19 @@ class PlayerHand extends React.Component {
     })
   }
 
+  upToFive = () => {
+    
+  }
+
   render() {
     return (
       <div className="player-hand" >
-        {this.props.hand.length > 0 ? this.renderHand() : <button onClick={() => this.props.handleDraw()}>Draw Hand</button>}
+        {
+          this.props.hand.length > 0 
+          ? 
+          this.renderHand() 
+          : 
+          <button onClick={() => this.props.handleDraw()}>Draw Hand</button>}
       </div>
     )
   }
