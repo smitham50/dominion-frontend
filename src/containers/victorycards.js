@@ -11,7 +11,7 @@ class VictoryCards extends React.Component {
         this.props.setEstates(cards.filter(card => {
           return card.name === "Estate"
         }))
-        this.props.setDuchies(cards.filter(card => {
+        this.props.setDuchys(cards.filter(card => {
           return card.name === "Duchy"
         }))
         this.props.setProvinces(cards.filter(card => {
@@ -26,8 +26,8 @@ class VictoryCards extends React.Component {
     })
   }
 
-  renderDuchies = () => {
-    return this.props.duchies.map((card, index) => {
+  renderDuchys = () => {
+    return this.props.duchys.map((card, index) => {
       return <Card key={card.id} card={card} index={index} className="supply-card" />
     })
   }
@@ -44,8 +44,8 @@ class VictoryCards extends React.Component {
         <div id="estates">
           {this.renderEstates()}
         </div>
-        <div id="duchies">
-          {this.renderDuchies()}
+        <div id="duchys">
+          {this.renderDuchys()}
         </div>
         <div id="provinces">
           {this.renderProvinces()}
@@ -57,11 +57,11 @@ class VictoryCards extends React.Component {
 
 function msp(state) {
 
-  const { estates, duchies, provinces } = state.supply
+  const { estates, duchys, provinces } = state.supply
 
   return {
     estates: estates,
-    duchies: duchies,
+    duchys: duchys,
     provinces: provinces
   }
 
@@ -72,8 +72,8 @@ function mdp(dispatch) {
     setEstates: (estates) => {
       dispatch({ type: "ESTATES", payload: estates })
     },
-    setDuchies: (duchies) => {
-      dispatch({ type: "DUCHIES", payload: duchies })
+    setDuchys: (duchys) => {
+      dispatch({ type: "DUCHYS", payload: duchys })
     },
     setProvinces: (provinces) => {
       dispatch({ type: "PROVINCES", payload: provinces })

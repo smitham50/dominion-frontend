@@ -7,7 +7,6 @@ const defaultState = {
 }
 
 function playerOneReducer(prevState = defaultState, action) {
-
   switch (action.type) {
     case "PLAY_TREASURE1":
       return { ...prevState, wallet1: prevState.wallet1 + action.payload.value }

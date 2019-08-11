@@ -11,6 +11,7 @@ class PlayerDeck extends React.Component {
 
   render() {
     const { deck, handleDeal, handleCycle, turns } = this.props
+    console.log("PLAYER DECK", deck)
     return(
       <div className="player-deck" >
         {

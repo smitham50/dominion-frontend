@@ -361,19 +361,19 @@
 /* END ESTATE STYLING */
 
 /* DUCHY STYLING */
-#duchies {
+#duchys {
   height: 180px;
   display: flex;
   margin-top: 15px;
 }
 
-#duchies img {
+#duchys img {
   height: 150px;
   margin-left: 0px;
   margin-top: 15px;
 }
 
-#duchies .rest {
+#duchys .rest {
   height: 150px;
   margin-left: -93px;
   margin-top: 15px;
