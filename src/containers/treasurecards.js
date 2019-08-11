@@ -22,19 +22,19 @@ class TreasureCards extends React.Component {
 
   renderCoppers = () => {
     return this.props.coppers.map((card, index) => {
-      return <Card key={card.id} card={card} index={index} />
+      return <Card key={card.id} card={card} index={index} className="supply-card" />
     })
   }
 
   renderSilvers = () => {
     return this.props.silvers.map((card, index) => {
-      return <Card key={card.id} card={card} index={index} />
+      return <Card key={card.id} card={card} index={index} className="supply-card" />
     })
   }
 
   renderGolds = () => {
     return this.props.golds.map((card, index) => {
-      return <Card key={card.id} card={card} index={index} />
+      return <Card key={card.id} card={card} index={index} className="supply-card" />
     })
   }
 

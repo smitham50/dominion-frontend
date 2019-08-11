@@ -43,61 +43,61 @@ class ActionCards extends React.Component {
 
   renderCellars = () => {
     return this.props.cellars.map((card, index) => {
-      return <Card key={card.id} card={card} index={index} />
+      return <Card key={card.id} card={card} index={index} className="supply-card" />
     })
   }
 
   renderMoats = () => {
     return this.props.moats.map((card, index) => {
-      return <Card key={card.id} card={card} index={index} />
+      return <Card key={card.id} card={card} index={index} className="supply-card" />
     })
   }
 
   renderWorkshops = () => {
     return this.props.workshops.map((card, index) => {
-      return <Card key={card.id} card={card} index={index} />
+      return <Card key={card.id} card={card} index={index} className="supply-card" />
     })
   }
 
   renderWoodcutters = () => {
     return this.props.woodcutters.map((card, index) => {
-      return <Card key={card.id} card={card} index={index} />
+      return <Card key={card.id} card={card} index={index} className="supply-card" />
     })
   }
 
   renderVillages = () => {
     return this.props.villages.map((card, index) => {
-      return <Card key={card.id} card={card} index={index} />
+      return <Card key={card.id} card={card} index={index} className="supply-card" />
     })
   }
 
   renderSmithies = () => {
     return this.props.smithies.map((card, index) => {
-      return <Card key={card.id} card={card} index={index} />
+      return <Card key={card.id} card={card} index={index} className="supply-card" />
     })
   }
 
   renderMilitias = () => {
     return this.props.militias.map((card, index) => {
-      return <Card key={card.id} card={card} index={index} />
+      return <Card key={card.id} card={card} index={index} className="supply-card" />
     })
   }
 
   renderRemodels = () => {
     return this.props.remodels.map((card, index) => {
-      return <Card key={card.id} card={card} index={index} />
+      return <Card key={card.id} card={card} index={index} className="supply-card" />
     })
   }
 
   renderMarkets = () => {
     return this.props.markets.map((card, index) => {
-      return <Card key={card.id} card={card} index={index} />
+      return <Card key={card.id} card={card} index={index} className="supply-card" />
     })
   }
 
   renderMines = () => {
     return this.props.mines.map((card, index) => {
-      return <Card key={card.id} card={card} index={index} />
+      return <Card key={card.id} card={card} index={index} className="supply-card" />
     })
   }
 

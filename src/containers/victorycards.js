@@ -22,19 +22,19 @@ class VictoryCards extends React.Component {
 
   renderEstates = () => {
     return this.props.estates.map((card, index) => {
-      return <Card key={card.id} card={card} index={index} />
+      return <Card key={card.id} card={card} index={index} className="supply-card" />
     })
   }
 
   renderDuchies = () => {
     return this.props.duchies.map((card, index) => {
-      return <Card key={card.id} card={card} index={index} />
+      return <Card key={card.id} card={card} index={index} className="supply-card" />
     })
   }
 
   renderProvinces = () => {
     return this.props.provinces.map((card, index) => {
-      return <Card key={card.id} card={card} index={index} />
+      return <Card key={card.id} card={card} index={index} className="supply-card" />
     })
   }
 
