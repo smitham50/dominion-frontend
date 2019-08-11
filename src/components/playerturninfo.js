@@ -1,7 +1,6 @@
 import React from 'react'
 
 function PlayerTurnInfo(props) {
-  console.log("TURN INFO", props)
   return(
     <div className="player-turn-info" >
       <div className="player-tag">{props.player}</div>

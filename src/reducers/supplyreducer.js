@@ -34,7 +34,6 @@ const defaultState = {
 }
 
 function supplyReducer(prevState=defaultState, action) {
-  console.log("REDUCER ACTION", action.type)
   let shuffle = require('shuffle-array')
   switch (action.type) {
     // INITIAL SUPPLY RENDER

@@ -10,7 +10,6 @@ class PlayerDiscard extends React.Component {
   }
 
   render() {
-    console.log("PLAYER DISCARD", this.props.discard)
     return (
       <div className="player-discard" >
         {this.props.discard.length > 0 ? this.renderDiscard() : null}
