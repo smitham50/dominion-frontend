@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react'
 import { connect } from 'react-redux'
+import trash from './trash';
 
 class Card extends React.Component {
 
@@ -9,7 +10,8 @@ class Card extends React.Component {
       className, card, player, playerTurn, playTreasureCard1, 
       playTreasureCard2, buyCard1, buyCard2, playAction1,
       playAction2, wallet1, wallet2, buys1, buys2, actions1, 
-      actions2, triggerDispatch1, triggerDispatch2, deck1, deck2
+      actions2, triggerDispatch1, triggerDispatch2, deck1, deck2,
+      mine, hand1, hand2, trashTreasure1, trashTreasure2
     } = this.props
 
     if (
@@ -18,14 +20,30 @@ class Card extends React.Component {
       card.card_type === "Treasure" && 
       playerTurn === false
       ) {
-      playTreasureCard1(card)
+        if (mine === false) {
+          playTreasureCard1(card)
+        } else if (mine === true) {
+          if (card.name === "Copper") {
+            trashTreasure1(card, "silvers")
+          } else if (card.name === "Silver") {
+            trashTreasure1(card, "golds")
+          }
+        }
     } else if (
       className === "hand-card" && 
       player === "player2" && 
       card.card_type === "Treasure" && 
       playerTurn === true
       ) {
-      playTreasureCard2(card)
+        if (mine === false) {
+          playTreasureCard2(card)
+        } else if (mine === true) {
+          if (card.name === "Copper") {
+            trashTreasure2(card, "silvers")
+          } else if (card.name === "Silver") {
+            trashTreasure2(card, "golds")
+          }
+        }
     } else if (
       className === "supply-card" && 
       playerTurn === false && 
@@ -61,7 +79,7 @@ class Card extends React.Component {
       card.triggers.forEach(trigger => {
         triggerDispatch2(`${trigger}2`)
       })
-    }
+    } 
     
   }
 
@@ -96,25 +114,28 @@ class Card extends React.Component {
 
 function msp(state) {
 
-  const { playerTurn, deck1, deck2 } = state.supply
+  const { playerTurn, deck1, deck2, hand1, hand2, mine } = state.supply
   const { wallet1, buys1, turns1, actions1 } = state.playerOne
   const { wallet2, buys2, turns2, actions2 } = state.playerTwo
 
   return {
 
     playerTurn: playerTurn,
+    mine: mine,
 
     wallet1: wallet1,
     buys1: buys1,
     turns1: turns1,
     actions1: actions1,
     deck1: deck1,
+    hand1: hand1,
 
     wallet2: wallet2,
     buys2: buys2,
     turns2: turns2,
     actions2: actions2,
-    deck2: deck2
+    deck2: deck2,
+    hand2: hand2
 
   }
 
@@ -145,8 +166,15 @@ function mdp(dispatch) {
     },
     triggerDispatch2: (trigger) => {
       dispatch({ type: trigger })
+    },
+    trashTreasure1: (card, treasure) => {
+      dispatch({ type: "TRASH_TREASURE1", payload: card, treasure: treasure })
+    },
+    trashTreasure2: (card, treasure) => {
+      dispatch({ type: "TRASH_TREASURE2", payload: card, treasure: treasure })
     }
   }
+
 }
 
 export default connect(msp, mdp)(Card)

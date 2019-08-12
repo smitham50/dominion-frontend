@@ -1,6 +1,7 @@
 const defaultState = {
 // PLAYER 1 TURN ON FALSE, PLAYER 2 TURN ON TRUE
   playerTurn: false,
+  mine: false,
 
   cellars: [],
   moats: [],
@@ -69,6 +70,8 @@ function supplyReducer(prevState=defaultState, action) {
       return { ...prevState, duchys: action.payload }
     case "PROVINCES":
       return { ...prevState, provinces: action.payload }
+    case "TRASH":
+      return { ...prevState, trash: prevState.trash.concat(action.payload) }
     // PLAYER ACTIONS  
     case "TURN1":
       return { ...prevState, playerTurn: !prevState.playerTurn, discard1: prevState.discard1.concat(prevState.hand1), hand1: [] }
@@ -100,8 +103,14 @@ function supplyReducer(prevState=defaultState, action) {
         return { ...prevState }
       }
     }
-    case "TRASH":
-      return { ...prevState, trash: action.payload }  
+    case "TRASH_TREASURE1": {
+      let pile = action.treasure
+      return { ...prevState, trash: prevState.trash.concat(action.payload), hand1: prevState.hand1.concat(prevState[pile].slice(-1)), [pile]: prevState[pile].slice(0, -1), mine: false }  
+    }
+    case "TRASH_TREASURE2": {
+      let pile = action.treasure
+      return { ...prevState, trash: prevState.trash.concat(action.payload), hand2: prevState.hand2.concat(prevState[pile].slice(-1)), [pile]: prevState[pile].slice(0, -1), mine: false }  
+    }
     case "DEAL1":
       return { ...prevState, deck1: shuffle(prevState.estates.slice(-3).concat(prevState.coppers.slice(-7))), estates: prevState.estates.slice(0, -3), coppers: prevState.coppers.slice(0, -7) }
     case "DEAL2":
@@ -169,6 +178,12 @@ function supplyReducer(prevState=defaultState, action) {
       } else {
         return { ...prevState, deck2: shuffle(prevState.deck2.concat(prevState.discard2)), discard2: [] }
       }
+    }
+    case "MINE1": {
+      return { ...prevState, mine: true }
+    }
+    case "MINE2": {
+      return { ...prevState, mine: true }
     }
     
 

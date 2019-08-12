@@ -1,7 +1,7 @@
 .App {
   border: solid 1px;
   width: 100%;
-  height: 700px;
+  height: 100%;
 }
 
 button {
@@ -12,7 +12,7 @@ button {
 #play-table {
  border: solid 1px;
   width: 100%;
-  height: 700px;
+  height: 100%;
   display: flex;
   flex-direction: column;
 }
@@ -32,7 +32,6 @@ button {
 }
 
 #trash {
-  border: solid 1px;
   width: 14%;
 }
 
@@ -47,6 +46,7 @@ button {
   border: solid 1px;
   width: 25%;
   display: flex;
+  overflow: scroll;
 }
 
 .player-deck img {
@@ -67,6 +67,7 @@ button {
   border: solid 1px;
   width: 50%;
   display: flex;
+  overflow: scroll;
 }
 
 .player-hand img {
@@ -87,6 +88,7 @@ button {
   border: solid 1px;
   width: 25%;
   display: flex;
+  overflow: scroll;
 }
 
 .player-discard img {
