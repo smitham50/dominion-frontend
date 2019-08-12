@@ -86,10 +86,20 @@ function supplyReducer(prevState=defaultState, action) {
       let pile = Object.keys(prevState).find(key => key == `${action.payload.name.toLowerCase()}s`)
       return { ...prevState, discard2: prevState.discard2.concat(action.payload), [pile]: prevState[pile].filter(card => card.id !== action.payload.id) }   
     }
-    case "ACTION1":
-      return { ...prevState, discard1: prevState.discard1.concat(action.payload), hand1: prevState.hand1.filter(card => card.id !== action.payload.id) }
-    case "ACTION2":
-      return { ...prevState, discard2: prevState.discard2.concat(action.payload), hand2: prevState.hand2.filter(card => card.id !== action.payload.id) }
+    case "ACTION1": {
+      if (action.payload.draw <= prevState.deck1.length) {
+        return { ...prevState, discard1: prevState.discard1.concat(action.payload), hand1: prevState.hand1.filter(card => card.id !== action.payload.id) }
+      } else {
+        return { ...prevState }
+      }
+    }
+    case "ACTION2": {
+      if (action.payload.draw <= prevState.deck2.length) {
+        return { ...prevState, discard2: prevState.discard2.concat(action.payload.card), hand2: prevState.hand2.filter(card => card.id !== action.payload.card.id) }
+      } else {
+        return { ...prevState }
+      }
+    }
     case "TRASH":
       return { ...prevState, trash: action.payload }  
     case "DEAL1":
