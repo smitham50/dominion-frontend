@@ -82,9 +82,9 @@ function supplyReducer(prevState=defaultState, action) {
     case "TURN2":
       return { ...prevState, playerTurn: !prevState.playerTurn, discard2: prevState.discard2.concat(prevState.hand2), hand2: [] }
     case "PLAY_TREASURE1":
-      return {...prevState, discard1: prevState.discard1.concat(action.payload), hand1: prevState.hand1.filter(card => card.id !== action.payload.id), remodelValue: action.payload.cost + 2 }
+      return {...prevState, discard1: prevState.discard1.concat(action.payload), hand1: prevState.hand1.filter(card => card.id !== action.payload.id) }
     case "PLAY_TREASURE2":
-      return { ...prevState, discard2: prevState.discard2.concat(action.payload), hand2: prevState.hand2.filter(card => card.id !== action.payload.id), remodelValue: action.payload.cost + 2 }
+      return { ...prevState, discard2: prevState.discard2.concat(action.payload), hand2: prevState.hand2.filter(card => card.id !== action.payload.id) }
     case "BUY1": {
       let pile = Object.keys(prevState).find(key => key == `${action.payload.name.toLowerCase()}s`)
       return { ...prevState, discard1: prevState.discard1.concat(action.payload), [pile]: prevState[pile].filter(card => card.id !== action.payload.id) }
@@ -116,10 +116,10 @@ function supplyReducer(prevState=defaultState, action) {
       return { ...prevState, trash: prevState.trash.concat(action.payload), hand2: prevState.hand2.filter(card => card.id !== action.payload.id).concat(prevState[pile].slice(-1)), [pile]: prevState[pile].slice(0, -1), mine: false }  
     }
     case "TRASH_REMODEL1": {
-      return { ...prevState, remodel: false, remodelGain: true, trash: prevState.trash.concat(action.payload), hand1: prevState.hand1.filter(card => card.id !== action.payload.id)  }
+      return { ...prevState, remodel: false, remodelGain: true, trash: prevState.trash.concat(action.payload), hand1: prevState.hand1.filter(card => card.id !== action.payload.id), remodelValue: action.payload.cost + 2  }
     }
     case "TRASH_REMODEL2": {
-      return { ...prevState, remodel: false, remodelGain: true, trash: prevState.trash.concat(action.payload), hand2: prevState.hand2.filter(card => card.id !== action.payload.id) }
+      return { ...prevState, remodel: false, remodelGain: true, trash: prevState.trash.concat(action.payload), hand2: prevState.hand2.filter(card => card.id !== action.payload.id), remodelValue: action.payload.cost + 2 }
     }
     case "GAIN_REMODEL1": {
       let pile = `${action.payload.name.toLowerCase()}s`

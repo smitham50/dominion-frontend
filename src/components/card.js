@@ -90,7 +90,8 @@ class Card extends React.Component {
     else if (
       className === "hand-card" &&
       player === "player1" && 
-      card.card_type === "Action" && 
+      card.card_type === "Action" &&
+      remodel === false && 
       playerTurn === false && 
       actions1 > 0 
       ) {
@@ -102,6 +103,7 @@ class Card extends React.Component {
       className === "hand-card" && 
       player === "player2" &&
       card.card_type === "Action" && 
+      remodel === false &&
       playerTurn === true && 
       actions2 > 0
       ) {
@@ -109,6 +111,22 @@ class Card extends React.Component {
       card.triggers.forEach(trigger => {
         triggerDispatch2(`${trigger}2`)
       })
+    }
+    // REMODEL ACTION CARD
+    else if (
+      className === "hand-card" &&
+      playerTurn === false &&
+      remodel === true &&
+      card.card_type === "Action"
+    ) {
+      trashRemodel1(card)
+    } else if (
+      className === "hand-card" &&
+      playerTurn === true &&
+      remodel === true &&
+      card.card_type === "Action"
+    ) {
+      trashRemodel2(card)
     } 
     
   }
