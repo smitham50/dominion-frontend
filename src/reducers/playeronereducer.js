@@ -37,6 +37,8 @@ function playerOneReducer(prevState = defaultState, action) {
       return { ...prevState, wallet1: prevState.wallet1 + 1 }
     case "+2WALLET1":
       return { ...prevState, wallet1: prevState.wallet1 + 2 }
+    case "TRASH_REMODEL1":
+      return { ...prevState, victoryPoints1: prevState.victoryPoints1 - action.payload.victory_points }
     default:
       return prevState
   }

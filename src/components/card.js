@@ -112,22 +112,23 @@ class Card extends React.Component {
         triggerDispatch2(`${trigger}2`)
       })
     }
-    // REMODEL ACTION CARD
+    // REMODEL ACTION  OR VICTORY CARD
     else if (
       className === "hand-card" &&
       playerTurn === false &&
       remodel === true &&
-      card.card_type === "Action"
+      card.card_type === "Action" || card.card_type === "Victory"
     ) {
       trashRemodel1(card)
     } else if (
       className === "hand-card" &&
       playerTurn === true &&
       remodel === true &&
-      card.card_type === "Action"
+      card.card_type === "Action" || card.card_type === "Victory"
     ) {
       trashRemodel2(card)
     } 
+    // REMODEL VICTORY CARD
     
   }
 
@@ -229,6 +230,12 @@ function mdp(dispatch) {
     },
     trashRemodel2: (card) => {
       dispatch({ type: "TRASH_REMODEL2", payload: card })
+    },
+    trashVictory1: (card) => {
+      dispatch({ type: "TRASH_VICTORY1", payload: card})
+    },
+    trashVictory2: (card) => {
+      dispatch({ type: "TRASH_VICTORY2", payload: card })
     },
     gainRemodel1: (card) => {
       dispatch({ type: "GAIN_REMODEL1", payload: card })
