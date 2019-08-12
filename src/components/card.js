@@ -39,7 +39,7 @@ class Card extends React.Component {
       card.card_type === "Treasure" && 
       playerTurn === true
       ) {
-        if (mine === false) {
+        if (mine === false && remodel === false) {
           playTreasureCard2(card)
         } else if (mine === true) {
           if (card.name === "Copper") {
