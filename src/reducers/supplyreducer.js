@@ -105,11 +105,11 @@ function supplyReducer(prevState=defaultState, action) {
     }
     case "TRASH_TREASURE1": {
       let pile = action.treasure
-      return { ...prevState, trash: prevState.trash.concat(action.payload), hand1: prevState.hand1.concat(prevState[pile].slice(-1)), [pile]: prevState[pile].slice(0, -1), mine: false }  
+      return { ...prevState, trash: prevState.trash.concat(action.payload), hand1: prevState.hand1.filter(card => card.id !== action.payload.id).concat(prevState[pile].slice(-1)), [pile]: prevState[pile].slice(0, -1), mine: false }  
     }
     case "TRASH_TREASURE2": {
       let pile = action.treasure
-      return { ...prevState, trash: prevState.trash.concat(action.payload), hand2: prevState.hand2.concat(prevState[pile].slice(-1)), [pile]: prevState[pile].slice(0, -1), mine: false }  
+      return { ...prevState, trash: prevState.trash.concat(action.payload), hand2: prevState.hand2.filter(card => card.id !== action.payload.id).concat(prevState[pile].slice(-1)), [pile]: prevState[pile].slice(0, -1), mine: false }  
     }
     case "DEAL1":
       return { ...prevState, deck1: shuffle(prevState.estates.slice(-3).concat(prevState.coppers.slice(-7))), estates: prevState.estates.slice(0, -3), coppers: prevState.coppers.slice(0, -7) }
