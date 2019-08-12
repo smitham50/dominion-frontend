@@ -95,7 +95,7 @@ function supplyReducer(prevState=defaultState, action) {
     }
     case "ACTION2": {
       if (action.payload.draw <= prevState.deck2.length) {
-        return { ...prevState, discard2: prevState.discard2.concat(action.payload.card), hand2: prevState.hand2.filter(card => card.id !== action.payload.card.id) }
+        return { ...prevState, discard2: prevState.discard2.concat(action.payload), hand2: prevState.hand2.filter(card => card.id !== action.payload.id) }
       } else {
         return { ...prevState }
       }
