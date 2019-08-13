@@ -5,6 +5,8 @@ const defaultState = {
   remodel: false,
   remodelGain: false,
   remodelValue: 0,
+  workshop: false,
+  workshopGain: false,
 
   cellars: [],
   moats: [],
@@ -39,7 +41,6 @@ const defaultState = {
 
 function supplyReducer(prevState=defaultState, action) {
   let shuffle = require('shuffle-array')
-  console.log("REMODEL", action.type, prevState.remodel, prevState.remodelGain, prevState.remodelValue, action.payload)
   switch (action.type) {
     // INITIAL SUPPLY RENDER
     case "CELLARS":
@@ -129,6 +130,14 @@ function supplyReducer(prevState=defaultState, action) {
       let pile = `${action.payload.name.toLowerCase()}s`
       return { ...prevState, remodelGain: false, [pile]: prevState[pile].slice(0, -1), discard2: prevState.discard2.concat(prevState[pile].slice(-1)) }
     }
+    case "GAIN_WORKSHOP1": {
+      let pile = `${action.payload.name.toLowerCase()}s`
+      return { ...prevState, workshop: false, [pile]: prevState[pile].slice(0, -1), discard1: prevState.discard1.concat(prevState[pile].slice(-1)) }
+    }
+    case "GAIN_WORKSHOP2": {
+      let pile = `${action.payload.name.toLowerCase()}s`
+      return { ...prevState, workshop: false, [pile]: prevState[pile].slice(0, -1), discard2: prevState.discard2.concat(prevState[pile].slice(-1)) }
+    }
     case "DEAL1":
       return { ...prevState, deck1: shuffle(prevState.estates.slice(-3).concat(prevState.coppers.slice(-7))), estates: prevState.estates.slice(0, -3), coppers: prevState.coppers.slice(0, -7) }
     case "DEAL2":
@@ -207,6 +216,10 @@ function supplyReducer(prevState=defaultState, action) {
       return { ...prevState, remodel: true }
     case "REMODEL2":
       return { ...prevState, remodel: true}
+    case "WORKSHOP1":
+      return { ...prevState, workshop: true }
+    case "WORKSHOP2":
+      return { ...prevState, workshop: true }
     default:
       return prevState
   }

@@ -13,7 +13,8 @@ class Card extends React.Component {
       actions2, triggerDispatch1, triggerDispatch2, deck1, deck2,
       mine, hand1, hand2, trashTreasure1, trashTreasure2,
       trashRemodel1, trashRemodel2, gainRemodel1, gainRemodel2,
-      remodel, remodelGain, remodelValue
+      remodel, remodelGain, remodelValue, workshop, gainWorkshop1,
+      gainWorkshop2
     } = this.props
     // PLAY TREASURE CARD OR TRASH TREASURE CARD IF MINE OR REMODEL PLAYED
     if (
@@ -56,6 +57,7 @@ class Card extends React.Component {
       className === "supply-card" && 
       playerTurn === false && 
       remodelGain === false &&
+      workshop === false &&
       card.cost <= wallet1 && 
       buys1 > 0 
       ) {
@@ -64,11 +66,28 @@ class Card extends React.Component {
       className === "supply-card" && 
       playerTurn === true && 
       remodelGain === false &&
+      workshop === false &&
       card.cost <= wallet2 && 
       buys2 > 0 
       ) {
       buyCard2(card)
     } 
+    // WORKSHOP GAIN CARD
+    else if (
+      className === "supply-card" &&
+      playerTurn === false &&
+      workshop === true &&
+      card.cost <= 4
+    ) {
+      gainWorkshop1(card)
+    } else if (
+      className === "supply-card" &&
+      playerTurn === true &&
+      workshop === true &&
+      card.cost <= 4
+    ) {
+      gainWorkshop2(card)
+    }
     // REMODEL GAIN CARD
     else if (
       className === "supply-card" &&
@@ -88,8 +107,7 @@ class Card extends React.Component {
     }
     // PLAY ACTION CARD
     else if (
-      className === "hand-card" &&
-      player === "player1" && 
+      className === "hand-card" && 
       card.card_type === "Action" &&
       remodel === false && 
       playerTurn === false && 
@@ -135,7 +153,7 @@ class Card extends React.Component {
   }
 
   render() {
-    
+    console.log("WHAAAT", this.props.workshop)
     return(
       <Fragment>
         {
@@ -165,7 +183,7 @@ class Card extends React.Component {
 
 function msp(state) {
 
-  const { playerTurn, deck1, deck2, hand1, hand2, mine, remodel, remodelGain, remodelValue } = state.supply
+  const { playerTurn, deck1, deck2, hand1, hand2, mine, remodel, remodelGain, remodelValue, workshop } = state.supply
   const { wallet1, buys1, turns1, actions1 } = state.playerOne
   const { wallet2, buys2, turns2, actions2 } = state.playerTwo
 
@@ -176,6 +194,7 @@ function msp(state) {
     remodel: remodel,
     remodelGain: remodelGain,
     remodelValue: remodelValue,
+    workshop,
 
     wallet1: wallet1,
     buys1: buys1,
@@ -244,6 +263,12 @@ function mdp(dispatch) {
     },
     gainRemodel2: (card) => {
       dispatch({ type: "GAIN_REMODEL2", payload: card })
+    },
+    gainWorkshop1: (card) => {
+      dispatch({ type: "GAIN_WORKSHOP1", payload: card })
+    },
+    gainWorkshop2: (card) => {
+      dispatch({ type: "GAIN_WORKSHOP2", payload: card })
     }
   }
 
