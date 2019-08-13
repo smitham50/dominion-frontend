@@ -14,6 +14,7 @@ class PlayerHand extends React.Component {
   }
 
   render() {
+    console.log("HAND", this.props.hand, "CLASS", this.className)
     return (
       <div className="player-hand" >
         {
