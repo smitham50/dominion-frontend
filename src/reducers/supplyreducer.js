@@ -12,6 +12,7 @@ const defaultState = {
   militiaDiscardSecond: false,
   cellar1: false,
   cellar2: false,
+  cellarCycles: 0,
 
   cellars: [],
   moats: [],
@@ -169,10 +170,12 @@ function supplyReducer(prevState=defaultState, action) {
       return { ...prevState, deck1: shuffle(prevState.estates.slice(-3).concat(prevState.coppers.slice(-7))), estates: prevState.estates.slice(0, -3), coppers: prevState.coppers.slice(0, -7) }
     case "DEAL2":
       return { ...prevState, deck2: shuffle(prevState.estates.slice(-3).concat(prevState.coppers.slice(-7))), estates: prevState.estates.slice(0, -3), coppers: prevState.coppers.slice(0, -7) }
-    case "CYCLE1":
-      return { ...prevState, deck1: shuffle(prevState.discard1), discard1: [] }
-      case "CYCLE2":
-      return { ...prevState, deck2: shuffle(prevState.discard2), discard2: [] }
+    case "CYCLE1": {
+        return { ...prevState, deck1: shuffle(prevState.discard1), discard1: [] }
+    }
+    case "CYCLE2": {
+        return { ...prevState, deck2: shuffle(prevState.discard2), discard2: [] }
+    }
     case "DRAW1": {
       if (prevState.deck1.length >= 5) {
         return { ...prevState, hand1: prevState.deck1.slice(-5), deck1: prevState.deck1.slice(0, -5) }
@@ -187,9 +190,13 @@ function supplyReducer(prevState=defaultState, action) {
         return { ...prevState, deck2: shuffle(prevState.deck2.concat(prevState.discard2)), discard2: [] }
       }
     case "CELLAR_DISCARD1":
-      return { ...prevState, hand1: prevState.hand1.filter(card => card.id !== action.payload.id), discard1: prevState.discard1.concat(action.payload) }
+      if (prevState.cellarCycles < 5) {
+        return { ...prevState, hand1: prevState.hand1.filter(card => card.id !== action.payload.id).concat(prevState.deck1.slice(-1)), discard1: prevState.discard1.concat(action.payload), deck1: prevState.deck1.slice(0, -1), cellarCycles: prevState.cellarCycles + 1 }
+      }
     case "CELLAR_DISCARD2":
-      return { ...prevState, hand2: prevState.hand2.filter(card => card.id !== action.payload.id), discard2: prevState.discard2.concat(action.payload) }
+      if (prevState.cellarCycles < 5) {
+        return { ...prevState, hand2: prevState.hand2.filter(card => card.id !== action.payload.id).concat(prevState.deck2.slice(-1)), discard2: prevState.discard2.concat(action.payload), deck2: prevState.deck2.slice(0, -1), cellarCycles: prevState.cellarCycles + 1 }
+      }
     case "END_CELLAR1":
       return { ...prevState, cellar1: false }
     case "END_CELLAR2":

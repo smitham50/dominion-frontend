@@ -23,6 +23,8 @@ class Card extends React.Component {
     if (
       className === "hand-card" && 
       player === "player1" && 
+      cellar1 === false &&
+      cellar2 === false &&
       card.card_type === "Treasure" && 
       playerTurn === false
       ) {
@@ -40,6 +42,8 @@ class Card extends React.Component {
     } else if (
       className === "hand-card" && 
       player === "player2" && 
+      cellar1 === false &&
+      cellar2 === false &&
       card.card_type === "Treasure" && 
       playerTurn === true
       ) {
@@ -145,28 +149,30 @@ class Card extends React.Component {
       })
     }
     // CELLAR
-    else if (
-      cellar1 === true &&
-      className === "hand-card" &&
-      player === "player1" &&
-      playerTurn === "false" &&
-      militia === false &&
-      remodel === false &&
-      militiaDiscardFirst === false &&
-      militiaDiscardSecond === false
+    else if (cellar1 === true ) {
+      if (
+        className === "hand-card" &&
+        player === "player1" &&
+        playerTurn === false &&
+        militia === false &&
+        remodel === false &&
+        militiaDiscardFirst === false &&
+        militiaDiscardSecond === false
       ) {
-        cellarDiscard1(card)
-    } else if (
-      cellar2 === true &&
-      className === "hand-card" &&
-      player === "player2" &&
-      playerTurn === "true" &&
-      militia === false &&
-      remodel === false &&
-      militiaDiscardFirst === false &&
-      militiaDiscardSecond === false
-    ) {
+          cellarDiscard1(card)
+      }
+    } else if (cellar2 === true) {
+      if (
+        className === "hand-card" &&
+        player === "player2" &&
+        playerTurn === true &&
+        militia === false &&
+        remodel === false &&
+        militiaDiscardFirst === false &&
+        militiaDiscardSecond === false
+      ) {
       cellarDiscard2(card)
+      }
     } 
     // MILITIA RESPONSES
       // MOAT OR MILITIA DISCARD FIRST
@@ -246,7 +252,8 @@ class Card extends React.Component {
   }
 
   render() {
-    console.log("CELLARS???", this.props.cellar)
+    console.log("CELLARS???", this.props.cellar1, this.props.cellar2, "CLASS", this.props.className, "PLAYER", this.props.player, "TURN", this.props.playerTurn, "FALSE?", this.props.militia, this.props.militiaDiscardFirst, this.props.militiaDiscardSecond, this.props.remodel)
+
     return(
       <Fragment>
         {
