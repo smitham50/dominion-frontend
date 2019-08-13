@@ -14,8 +14,9 @@ class Card extends React.Component {
       mine, hand1, hand2, trashTreasure1, trashTreasure2,
       trashRemodel1, trashRemodel2, gainRemodel1, gainRemodel2,
       remodel, remodelGain, remodelValue, workshop, gainWorkshop1,
-      gainWorkshop2, militia, militiaDefend, militiaDefend1, militiaDefend2,
-      militiaDiscard, militiaDiscard1, militiaDiscard2
+      gainWorkshop2, militia, militiaDefend1, militiaDefend2,
+      militiaDiscardFirst,militiaDiscardSecond, militiaDiscardFirst1, militiaDiscardFirst2,
+      militiaDiscardSecond1, militiaDiscardSecond2
     } = this.props
     // PLAY TREASURE CARD OR TRASH TREASURE CARD IF MINE OR REMODEL PLAYED
     if (
@@ -109,7 +110,11 @@ class Card extends React.Component {
     // PLAY ACTION CARD
     else if (
       className === "hand-card" && 
+      player ==="player1" &&
       card.card_type === "Action" &&
+      militia === false &&
+      militiaDiscardFirst === false &&
+      militiaDiscardSecond === false &&
       remodel === false && 
       playerTurn === false && 
       actions1 > 0 
@@ -121,7 +126,10 @@ class Card extends React.Component {
     } else if (
       className === "hand-card" && 
       player === "player2" &&
-      card.card_type === "Action" && 
+      card.card_type === "Action" &&
+      militia === false &&
+      militiaDiscardFirst === false &&
+      militiaDiscardSecond === false &&
       remodel === false &&
       playerTurn === true && 
       actions2 > 0
@@ -131,6 +139,59 @@ class Card extends React.Component {
         triggerDispatch2(`${trigger}2`)
       })
     }
+    // MILITIA RESPONSES
+      // MOAT
+    else if (militia === true && militiaDiscardFirst === true) {
+      if (
+        playerTurn === false &&
+        player === "player2" &&
+        className === "hand-card" &&
+        hand2.includes(card => card.name === "Moat") &&
+        card.name === "Moat"
+      ) {
+        militiaDefend1(card)         
+      } else if (
+        playerTurn === true &&
+        player === "player1" &&
+        className === "hand-card" &&
+        hand1.includes(card => card.name === "Moat") &&
+        card.name === "Moat"
+      ) {
+        militiaDefend2(card)
+      } 
+      // MILITIA DISCARD FIRST
+      else if (
+        !hand2.includes(card => card.name === "Moat") &&
+        playerTurn === false &&
+        className === "hand-card" &&
+        player === "player2"
+      ) {
+        militiaDiscardFirst1(card)
+      } else if (
+        !hand1.includes(card => card.name === "Moat") &&
+        playerTurn === true &&
+        className === "hand-card" &&
+        player === "player1"
+      ) {
+        militiaDiscardFirst2(card)
+      }
+    }
+      // MILITIA DISCARD SECOND
+      else if (militiaDiscardSecond === true) {
+        if (
+          playerTurn === false &&
+          className === "hand-card" &&
+          player === "player2"
+        ) {
+          militiaDiscardSecond1(card)
+        } else if (
+          playerTurn === true &&
+          className === "hand-card" &&
+          player === "player1"
+        ) {
+          militiaDiscardSecond2(card)
+        }
+      }
     // REMODEL ACTION OR VICTORY CARD
     else if (
       className === "hand-card" &&
@@ -154,7 +215,7 @@ class Card extends React.Component {
   }
 
   render() {
-    console.log("WHAAAT", this.props.workshop)
+    console.log("MILITIA??", this.props.militia, "MILITIA DISCARD??", this.props.militiaDiscardFirst, this.props.militiaDiscardSecond)
     return(
       <Fragment>
         {
@@ -186,7 +247,7 @@ function msp(state) {
 
   const { 
     playerTurn, deck1, deck2, hand1, hand2, mine, remodel, remodelGain, 
-    remodelValue, workshop, militia, militiaDiscard, militiaDefend
+    remodelValue, workshop, militia, militiaDiscardFirst, militiaDiscardSecond
   } = state.supply
   const { wallet1, buys1, turns1, actions1 } = state.playerOne
   const { wallet2, buys2, turns2, actions2 } = state.playerTwo
@@ -200,8 +261,8 @@ function msp(state) {
     remodelValue,
     workshop,
     militia,
-    militiaDefend,
-    militiaDiscard,
+    militiaDiscardFirst,
+    militiaDiscardSecond,
 
 
     wallet1,
@@ -278,17 +339,23 @@ function mdp(dispatch) {
     gainWorkshop2: (card) => {
       dispatch({ type: "GAIN_WORKSHOP2", payload: card })
     },
-    militiaDefend1: () => {
-      dispatch({ type: "MILITIA_DEFEND1" })
+    militiaDefend1: (card) => {
+      dispatch({ type: "MILITIA_DEFEND1", payload: card })
     },
-    militiaDefend2: () => {
-      dispatch({ type: "MILITIA_DEFEND2" })
+    militiaDefend2: (card) => {
+      dispatch({ type: "MILITIA_DEFEND2", payload: card })
     },
-    militiaDiscard1: () => {
-      dispatch({ type: "MILITIA_DISCARD1" })
+    militiaDiscardFirst1: (card) => {
+      dispatch({ type: "MILITIA_DISCARD_FIRST1", payload: card })
     },
-    militiaDiscard2: () => {
-      dispatch({ type: "MILITIA_DISCARD2" })
+    militiaDiscardFirst2: (card) => {
+      dispatch({ type: "MILITIA_DISCARD_FIRST2", payload: card })
+    },
+    militiaDiscardSecond1: (card) => {
+      dispatch({ type: "MILITIA_DISCARD_SECOND1", payload: card })
+    },
+    militiaDiscardSecond2: (card) => {
+      dispatch({ type: "MILITIA_DISCARD_SECOND2", payload: card })
     }
   }
 

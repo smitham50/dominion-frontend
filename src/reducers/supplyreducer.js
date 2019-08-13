@@ -8,8 +8,8 @@ const defaultState = {
   workshop: false,
   workshopGain: false,
   militia: false,
-  militiaDefend: false,
-  militiaDiscard: false,
+  militiaDiscardFirst: false,
+  militiaDiscardSecond: false,
 
   cellars: [],
   moats: [],
@@ -43,6 +43,7 @@ const defaultState = {
 }
 
 function supplyReducer(prevState=defaultState, action) {
+  console.log("REDUCER ACTION", action.type, "PAYLOAD", action.payload)
   let shuffle = require('shuffle-array')
   switch (action.type) {
     // INITIAL SUPPLY RENDER
@@ -82,9 +83,9 @@ function supplyReducer(prevState=defaultState, action) {
       return { ...prevState, trash: prevState.trash.concat(action.payload) }
     // PLAYER ACTIONS  
     case "TURN1":
-      return { ...prevState, playerTurn: !prevState.playerTurn, discard1: prevState.discard1.concat(prevState.hand1), hand1: [], mine: false, remodel: false, remodelGain: false, workshop: false, workshopGain: false, militia: false, militiaDefend: false, militiaDiscard: false }
+      return { ...prevState, playerTurn: !prevState.playerTurn, discard1: prevState.discard1.concat(prevState.hand1), hand1: [], mine: false, remodel: false, remodelGain: false, workshop: false, workshopGain: false, militia: false, militiaDefend: false, militiaDiscardFirst: false, militiaDiscardSecond: false }
     case "TURN2":
-      return { ...prevState, playerTurn: !prevState.playerTurn, discard2: prevState.discard2.concat(prevState.hand2), hand2: [], mine: false, remodel: false, remodelGain: false, workshop: false, workshopGain: false, militia: false, militiaDefend: false, militiaDiscard: false }
+      return { ...prevState, playerTurn: !prevState.playerTurn, discard2: prevState.discard2.concat(prevState.hand2), hand2: [], mine: false, remodel: false, remodelGain: false, workshop: false, workshopGain: false, militia: false, militiaDefend: false, militiaDiscardFirst: false, militiaDiscardSecond: false }
     case "PLAY_TREASURE1":
       return {...prevState, discard1: prevState.discard1.concat(action.payload), hand1: prevState.hand1.filter(card => card.id !== action.payload.id) }
     case "PLAY_TREASURE2":
@@ -141,17 +142,23 @@ function supplyReducer(prevState=defaultState, action) {
       let pile = `${action.payload.name.toLowerCase()}s`
       return { ...prevState, workshop: false, [pile]: prevState[pile].slice(0, -1), discard2: prevState.discard2.concat(prevState[pile].slice(-1)) }
     }
-    case "MILITIA_DISCARD1": {
-      return { ...prevState, militia: false, militiaDiscard: true }
+    case "MILITIA_DISCARD_FIRST1": {
+      return { ...prevState, militia: false, militiaDiscardFirst: false, militiaDiscardSecond: true, hand2: prevState.hand2.filter(card => card.id !== action.payload.id), discard2: prevState.discard2.concat(action.payload) }
     }
-    case "MILITIA_DISCARD2": {
-      return { ...prevState, militia: false, militiaDiscard: true }
+    case "MILITIA_DISCARD_FIRST2": {
+      return { ...prevState, militia: false, militiaDiscardFirst: false, militiaDiscardSecond: true, hand1: prevState.hand1.filter(card => card.id !== action.payload.id), discard1: prevState.discard1.concat(action.payload) }
+    }
+    case "MILITIA_DISCARD_SECOND1": {
+      return { ...prevState, militiaDiscardSecond: false, hand2: prevState.hand2.filter(card => card.id !== action.payload.id), discard2: prevState.discard2.concat(action.payload) }
+    }
+    case "MILITIA_DISCARD_SECOND2": {
+      return { ...prevState, militiaDiscardSecond: false, hand1: prevState.hand1.filter(card => card.id !== action.payload.id), discard1: prevState.discard1.concat(action.payload) }
     }
     case "MILITIA_DEFEND1": {
-      return { ...prevState, militia: false, militiaDefend: true }
+      return { ...prevState, militia: false, militiaDiscardFirst: false, hand2: prevState.hand2.filter(card => card.id !== action.payload.id), discard2: prevState.discard2.concat(action.payload) }
     }
     case "MILITIA_DEFEND2": {
-      return { ...prevState, militia: false, militiaDefend: true }
+      return { ...prevState, militia: false, militiaDiscardFirst: false, hand1: prevState.hand1.filter(card => card.id !== action.payload.id), discard1: prevState.discard1.concat(action.payload) }
     }
     case "DEAL1":
       return { ...prevState, deck1: shuffle(prevState.estates.slice(-3).concat(prevState.coppers.slice(-7))), estates: prevState.estates.slice(0, -3), coppers: prevState.coppers.slice(0, -7) }
@@ -235,10 +242,10 @@ function supplyReducer(prevState=defaultState, action) {
       return { ...prevState, workshop: true }
     case "WORKSHOP2":
       return { ...prevState, workshop: true }
-    case "MILITIA1":
-      return { ...prevState, militia: true}
-    case "MILITIA2":
-      return { ...prevState, militia: true }
+    case "ATTACK1":
+      return { ...prevState, militia: true, militiaDiscardFirst: true }
+    case "ATTACK2":
+      return { ...prevState, militia: true, militiaDiscardFirst: true }
     default:
       return prevState
   }
