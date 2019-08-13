@@ -155,10 +155,13 @@ function supplyReducer(prevState=defaultState, action) {
       return { ...prevState, militiaDiscardSecond: false, hand1: prevState.hand1.filter(card => card.id !== action.payload.id), discard1: prevState.discard1.concat(action.payload) }
     }
     case "MILITIA_DEFEND1": {
-      return { ...prevState, militia: false, militiaDiscardFirst: false, hand2: prevState.hand2.filter(card => card.id !== action.payload.id), discard2: prevState.discard2.concat(action.payload) }
+      return { ...prevState, militia: false, militiaDiscardFirst: false, militiaDiscardSecond: false, hand2: prevState.hand2.filter(card => card.id !== action.payload.id), discard2: prevState.discard2.concat(action.payload) }
     }
     case "MILITIA_DEFEND2": {
-      return { ...prevState, militia: false, militiaDiscardFirst: false, hand1: prevState.hand1.filter(card => card.id !== action.payload.id), discard1: prevState.discard1.concat(action.payload) }
+      return { ...prevState, militia: false, militiaDiscardFirst: false, militiaDiscardSecond: false, hand1: prevState.hand1.filter(card => card.id !== action.payload.id), discard1: prevState.discard1.concat(action.payload) }
+    }
+    case "MILITIA_BREAK": {
+      return { ...prevState, militia: false, militiaDiscardFirst: false, militiaDiscardSecond: false }
     }
     case "DEAL1":
       return { ...prevState, deck1: shuffle(prevState.estates.slice(-3).concat(prevState.coppers.slice(-7))), estates: prevState.estates.slice(0, -3), coppers: prevState.coppers.slice(0, -7) }

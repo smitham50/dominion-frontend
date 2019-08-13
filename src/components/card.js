@@ -16,7 +16,7 @@ class Card extends React.Component {
       remodel, remodelGain, remodelValue, workshop, gainWorkshop1,
       gainWorkshop2, militia, militiaDefend1, militiaDefend2,
       militiaDiscardFirst,militiaDiscardSecond, militiaDiscardFirst1, militiaDiscardFirst2,
-      militiaDiscardSecond1, militiaDiscardSecond2
+      militiaDiscardSecond1, militiaDiscardSecond2, militiaBreak
     } = this.props
     // PLAY TREASURE CARD OR TRASH TREASURE CARD IF MINE OR REMODEL PLAYED
     if (
@@ -140,40 +140,34 @@ class Card extends React.Component {
       })
     }
     // MILITIA RESPONSES
-      // MOAT
+      // MOAT OR MILITIA DISCARD FIRST
     else if (militia === true && militiaDiscardFirst === true) {
       if (
         playerTurn === false &&
+        className === "hand-card" &&
         player === "player2" &&
-        className === "hand-card" &&
-        hand2.includes(card => card.name === "Moat") &&
-        card.name === "Moat"
+        hand2.length > 3
       ) {
-        militiaDefend1(card)         
+        if (card.name !== "Moat"){
+          militiaDiscardFirst1(card)
+        } else if (card.name === "Moat") {
+          militiaDefend1(card)
+        } else {
+          militiaBreak()
+        }
       } else if (
         playerTurn === true &&
+        className === "hand-card" &&
         player === "player1" &&
-        className === "hand-card" &&
-        hand1.includes(card => card.name === "Moat") &&
-        card.name === "Moat"
+        hand1.length > 3
       ) {
-        militiaDefend2(card)
-      } 
-      // MILITIA DISCARD FIRST
-      else if (
-        !hand2.includes(card => card.name === "Moat") &&
-        playerTurn === false &&
-        className === "hand-card" &&
-        player === "player2"
-      ) {
-        militiaDiscardFirst1(card)
-      } else if (
-        !hand1.includes(card => card.name === "Moat") &&
-        playerTurn === true &&
-        className === "hand-card" &&
-        player === "player1"
-      ) {
-        militiaDiscardFirst2(card)
+        if (card.name !== "Moat"){
+          militiaDiscardFirst2(card)
+        } else if (card.name === "Moat") {
+          militiaDefend2(card)
+        } else {
+          militiaBreak()
+        }
       }
     }
       // MILITIA DISCARD SECOND
@@ -183,13 +177,21 @@ class Card extends React.Component {
           className === "hand-card" &&
           player === "player2"
         ) {
-          militiaDiscardSecond1(card)
+          if (hand2.length > 3) {
+            militiaDiscardSecond1(card)
+          } else {
+            militiaBreak()
+          }
         } else if (
           playerTurn === true &&
           className === "hand-card" &&
           player === "player1"
         ) {
-          militiaDiscardSecond2(card)
+          if (hand1.length > 3) {
+            militiaDiscardSecond2(card)
+          } else {
+            militiaBreak()
+          }
         }
       }
     // REMODEL ACTION OR VICTORY CARD
@@ -356,6 +358,9 @@ function mdp(dispatch) {
     },
     militiaDiscardSecond2: (card) => {
       dispatch({ type: "MILITIA_DISCARD_SECOND2", payload: card })
+    },
+    militiaBreak: () => {
+      dispatch({ type: "MILITIA_BREAK" })
     }
   }
 
