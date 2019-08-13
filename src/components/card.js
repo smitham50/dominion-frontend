@@ -159,7 +159,7 @@ class Card extends React.Component {
         militiaDiscardFirst === false &&
         militiaDiscardSecond === false
       ) {
-          cellarDiscard1(card)
+        cellarDiscard1(card)
       }
     } else if (cellar2 === true) {
       if (
@@ -171,7 +171,7 @@ class Card extends React.Component {
         militiaDiscardFirst === false &&
         militiaDiscardSecond === false
       ) {
-      cellarDiscard2(card)
+        cellarDiscard2(card)
       }
     } 
     // MILITIA RESPONSES

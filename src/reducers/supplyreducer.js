@@ -12,7 +12,7 @@ const defaultState = {
   militiaDiscardSecond: false,
   cellar1: false,
   cellar2: false,
-  cellarCycles: 0,
+  cellarHand: [],
 
   cellars: [],
   moats: [],
@@ -189,14 +189,16 @@ function supplyReducer(prevState=defaultState, action) {
       } else {
         return { ...prevState, deck2: shuffle(prevState.deck2.concat(prevState.discard2)), discard2: [] }
       }
-    case "CELLAR_DISCARD1":
-      if (prevState.cellarCycles < 5) {
-        return { ...prevState, hand1: prevState.hand1.filter(card => card.id !== action.payload.id).concat(prevState.deck1.slice(-1)), discard1: prevState.discard1.concat(action.payload), deck1: prevState.deck1.slice(0, -1), cellarCycles: prevState.cellarCycles + 1 }
+    case "CELLAR_DISCARD1": {
+      if (prevState.cellarHand.includes(action.payload)) {
+        return { ...prevState, hand1: prevState.hand1.filter(card => card.id !== action.payload.id).concat(prevState.deck1.slice(-1)), discard1: prevState.discard1.concat(action.payload), deck1: prevState.deck1.slice(0, -1) }
       }
-    case "CELLAR_DISCARD2":
-      if (prevState.cellarCycles < 5) {
-        return { ...prevState, hand2: prevState.hand2.filter(card => card.id !== action.payload.id).concat(prevState.deck2.slice(-1)), discard2: prevState.discard2.concat(action.payload), deck2: prevState.deck2.slice(0, -1), cellarCycles: prevState.cellarCycles + 1 }
+    }
+    case "CELLAR_DISCARD2": {
+      if (prevState.cellarHand.includes(action.payload)) {
+        return { ...prevState, hand2: prevState.hand2.filter(card => card.id !== action.payload.id).concat(prevState.deck2.slice(-1)), discard2: prevState.discard2.concat(action.payload), deck2: prevState.deck2.slice(0, -1) }
       }
+    }
     case "END_CELLAR1":
       return { ...prevState, cellar1: false }
     case "END_CELLAR2":
@@ -267,9 +269,9 @@ function supplyReducer(prevState=defaultState, action) {
     case "ATTACK2":
       return { ...prevState, militia: true, militiaDiscardFirst: true }
     case "CELLAR1":
-      return { ...prevState, cellar1: true }
+      return { ...prevState, cellar1: true, cellarHand: prevState.hand1 }
     case "CELLAR2":
-      return { ...prevState, cellar2: true }
+      return { ...prevState, cellar2: true, cellarHand: prevState.hand2 }
     default:
       return prevState
   }
