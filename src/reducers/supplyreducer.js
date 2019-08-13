@@ -82,9 +82,9 @@ function supplyReducer(prevState=defaultState, action) {
       return { ...prevState, trash: prevState.trash.concat(action.payload) }
     // PLAYER ACTIONS  
     case "TURN1":
-      return { ...prevState, playerTurn: !prevState.playerTurn, discard1: prevState.discard1.concat(prevState.hand1), hand1: [] }
+      return { ...prevState, playerTurn: !prevState.playerTurn, discard1: prevState.discard1.concat(prevState.hand1), hand1: [], mine: false, remodel: false, remodelGain: false, workshop: false, workshopGain: false, militia: false, militiaDefend: false, militiaDiscard: false }
     case "TURN2":
-      return { ...prevState, playerTurn: !prevState.playerTurn, discard2: prevState.discard2.concat(prevState.hand2), hand2: [] }
+      return { ...prevState, playerTurn: !prevState.playerTurn, discard2: prevState.discard2.concat(prevState.hand2), hand2: [], mine: false, remodel: false, remodelGain: false, workshop: false, workshopGain: false, militia: false, militiaDefend: false, militiaDiscard: false }
     case "PLAY_TREASURE1":
       return {...prevState, discard1: prevState.discard1.concat(action.payload), hand1: prevState.hand1.filter(card => card.id !== action.payload.id) }
     case "PLAY_TREASURE2":
