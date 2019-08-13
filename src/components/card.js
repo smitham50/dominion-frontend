@@ -14,7 +14,8 @@ class Card extends React.Component {
       mine, hand1, hand2, trashTreasure1, trashTreasure2,
       trashRemodel1, trashRemodel2, gainRemodel1, gainRemodel2,
       remodel, remodelGain, remodelValue, workshop, gainWorkshop1,
-      gainWorkshop2
+      gainWorkshop2, militia, militiaDefend, militiaDefend1, militiaDefend2,
+      militiaDiscard, militiaDiscard1, militiaDiscard2
     } = this.props
     // PLAY TREASURE CARD OR TRASH TREASURE CARD IF MINE OR REMODEL PLAYED
     if (
@@ -183,32 +184,39 @@ class Card extends React.Component {
 
 function msp(state) {
 
-  const { playerTurn, deck1, deck2, hand1, hand2, mine, remodel, remodelGain, remodelValue, workshop } = state.supply
+  const { 
+    playerTurn, deck1, deck2, hand1, hand2, mine, remodel, remodelGain, 
+    remodelValue, workshop, militia, militiaDiscard, militiaDefend
+  } = state.supply
   const { wallet1, buys1, turns1, actions1 } = state.playerOne
   const { wallet2, buys2, turns2, actions2 } = state.playerTwo
 
   return {
 
-    playerTurn: playerTurn,
-    mine: mine,
-    remodel: remodel,
-    remodelGain: remodelGain,
-    remodelValue: remodelValue,
+    playerTurn,
+    mine,
+    remodel,
+    remodelGain,
+    remodelValue,
     workshop,
+    militia,
+    militiaDefend,
+    militiaDiscard,
 
-    wallet1: wallet1,
-    buys1: buys1,
-    turns1: turns1,
-    actions1: actions1,
-    deck1: deck1,
-    hand1: hand1,
 
-    wallet2: wallet2,
-    buys2: buys2,
-    turns2: turns2,
-    actions2: actions2,
-    deck2: deck2,
-    hand2: hand2
+    wallet1,
+    buys1,
+    turns1,
+    actions1,
+    deck1,
+    hand1,
+
+    wallet2,
+    buys2,
+    turns2,
+    actions2,
+    deck2,
+    hand2
 
   }
 
@@ -269,6 +277,18 @@ function mdp(dispatch) {
     },
     gainWorkshop2: (card) => {
       dispatch({ type: "GAIN_WORKSHOP2", payload: card })
+    },
+    militiaDefend1: () => {
+      dispatch({ type: "MILITIA_DEFEND1" })
+    },
+    militiaDefend2: () => {
+      dispatch({ type: "MILITIA_DEFEND2" })
+    },
+    militiaDiscard1: () => {
+      dispatch({ type: "MILITIA_DISCARD1" })
+    },
+    militiaDiscard2: () => {
+      dispatch({ type: "MILITIA_DISCARD2" })
     }
   }
 
