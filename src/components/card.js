@@ -15,7 +15,7 @@ class Card extends React.Component {
       trashRemodel1, trashRemodel2, gainRemodel1, gainRemodel2,
       remodel, remodelGain, remodelValue
     } = this.props
-    // PLAY TREASURE CARD OR TRASH TREASURE CARD IF MINE PLAYED
+    // PLAY TREASURE CARD OR TRASH TREASURE CARD IF MINE OR REMODEL PLAYED
     if (
       className === "hand-card" && 
       player === "player1" && 
@@ -112,19 +112,21 @@ class Card extends React.Component {
         triggerDispatch2(`${trigger}2`)
       })
     }
-    // REMODEL ACTION  OR VICTORY CARD
+    // REMODEL ACTION OR VICTORY CARD
     else if (
       className === "hand-card" &&
+      player === "player1" &&
       playerTurn === false &&
       remodel === true &&
-      card.card_type === "Action" || card.card_type === "Victory"
+      (card.card_type === "Action" || card.card_type === "Victory")
     ) {
       trashRemodel1(card)
     } else if (
       className === "hand-card" &&
+      player === "player2" &&
       playerTurn === true &&
       remodel === true &&
-      card.card_type === "Action" || card.card_type === "Victory"
+      (card.card_type === "Action" || card.card_type === "Victory")
     ) {
       trashRemodel2(card)
     } 
