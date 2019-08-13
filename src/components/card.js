@@ -217,7 +217,6 @@ class Card extends React.Component {
   }
 
   render() {
-    console.log("MILITIA??", this.props.militia, "MILITIA DISCARD??", this.props.militiaDiscardFirst, this.props.militiaDiscardSecond)
     return(
       <Fragment>
         {
