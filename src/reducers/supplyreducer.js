@@ -10,6 +10,8 @@ const defaultState = {
   militia: false,
   militiaDiscardFirst: false,
   militiaDiscardSecond: false,
+  cellar1: false,
+  cellar2: false,
 
   cellars: [],
   moats: [],
@@ -44,6 +46,7 @@ const defaultState = {
 
 function supplyReducer(prevState=defaultState, action) {
   let shuffle = require('shuffle-array')
+  console.log("REDUCER", action.type)
   switch (action.type) {
     // INITIAL SUPPLY RENDER
     case "CELLARS":
@@ -183,6 +186,14 @@ function supplyReducer(prevState=defaultState, action) {
       } else {
         return { ...prevState, deck2: shuffle(prevState.deck2.concat(prevState.discard2)), discard2: [] }
       }
+    case "CELLAR_DISCARD1":
+      return { ...prevState, hand1: prevState.hand1.filter(card => card.id !== action.payload.id), discard1: prevState.discard1.concat(action.payload) }
+    case "CELLAR_DISCARD2":
+      return { ...prevState, hand2: prevState.hand2.filter(card => card.id !== action.payload.id), discard2: prevState.discard2.concat(action.payload) }
+    case "END_CELLAR1":
+      return { ...prevState, cellar1: false }
+    case "END_CELLAR2":
+      return { ...prevState, cellar2: false }
     case "STACK_EMPTY":
       return { ...prevState, emptyStacks: prevState.emptyStacks + 1 }
     case "PROVINCES_EMPTY":
@@ -248,6 +259,10 @@ function supplyReducer(prevState=defaultState, action) {
       return { ...prevState, militia: true, militiaDiscardFirst: true }
     case "ATTACK2":
       return { ...prevState, militia: true, militiaDiscardFirst: true }
+    case "CELLAR1":
+      return { ...prevState, cellar1: true }
+    case "CELLAR2":
+      return { ...prevState, cellar2: true }
     default:
       return prevState
   }

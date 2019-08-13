@@ -6,21 +6,20 @@ import PlayerTurnInfo from '../components/playerturninfo'
 import { connect } from 'react-redux'
 
 class SupplyArea extends React.Component {
+
+  handleClick1 = () => {
+    this.props.endCellar1()
+  }
+
+  handleClick2 = () => {
+    this.props.endCellar2()
+  }
+
   render() {
     const { 
-      actions1,
-      buys1, 
-      wallet1, 
-      victoryPoints1, 
-      turns1, 
-      actions2, 
-      buys2, 
-      wallet2, 
-      victoryPoints2, 
-      turns2, 
-      playerTurn,
-      endTurn1,
-      endTurn2 } = this.props
+      actions1, buys1, wallet1, victoryPoints1, turns1, actions2, 
+      buys2, wallet2, victoryPoints2, turns2, playerTurn, endTurn1,
+      endTurn2, cellar1, cellar2 } = this.props
     
     return(
       <div id="supply-area">
@@ -35,7 +34,7 @@ class SupplyArea extends React.Component {
             turns={turns1}
           />
           <div className="end-turn">
-            {playerTurn === false ? <button onClick={endTurn1} >End Turn</button> : null}
+            {cellar1 ? <button onClick={this.handleClick1} >End Discard</button> : playerTurn === false ? <button onClick={endTurn1} >End Turn</button> : null}
           </div>
         </div>
         <div id="tvcard-container">
@@ -54,7 +53,7 @@ class SupplyArea extends React.Component {
             turns={turns2}
           />
           <div className="end-turn">
-            {playerTurn === true ? <button onClick={endTurn2}>End Turn</button> : null}
+            {cellar2 ? <button onClick={this.handleClick2} >End Discard</button> : playerTurn === true ? <button onClick={endTurn2}>End Turn</button> : null}
           </div>
         </div>
       </div>
@@ -66,21 +65,25 @@ function msp(state) {
   const { actions1, buys1, wallet1, victoryPoints1, turns1 } = state.playerOne
   const { actions2, buys2, wallet2, victoryPoints2, turns2 } = state.playerTwo
   const { playerTurn } = state.game
+  const { cellar1, cellar2 } = state.supply
 
   return {
-    actions1: actions1,
-    buys1: buys1,
-    wallet1: wallet1,
-    victoryPoints1: victoryPoints1,
-    turns1: turns1,
+    actions1,
+    buys1,
+    wallet1,
+    victoryPoints1,
+    turns1,
 
-    actions2: actions2,
-    buys2: buys2,
-    wallet2: wallet2,
-    victoryPoints2: victoryPoints2,
-    turns2: turns2,
+    actions2,
+    buys2,
+    wallet2,
+    victoryPoints2,
+    turns2,
 
-    playerTurn: playerTurn
+    playerTurn,
+
+    cellar1,
+    cellar2
   }
 
 }
@@ -95,8 +98,13 @@ function mdp(dispatch) {
     },
     draw: () => {
       dispatch({ type: "DRAW1" })
+    },
+    endCellar1: () => {
+      dispatch({ type: "END_CELLAR1" })
+    },
+    endCellar2: () => {
+      dispatch({ type: "END_CELLAR2" })
     }
-
   }
 }
 

@@ -16,7 +16,8 @@ class Card extends React.Component {
       remodel, remodelGain, remodelValue, workshop, gainWorkshop1,
       gainWorkshop2, militia, militiaDefend1, militiaDefend2,
       militiaDiscardFirst,militiaDiscardSecond, militiaDiscardFirst1, militiaDiscardFirst2,
-      militiaDiscardSecond1, militiaDiscardSecond2, militiaBreak
+      militiaDiscardSecond1, militiaDiscardSecond2, militiaBreak, cellar1, cellar2,
+      cellarDiscard1, cellarDiscard2
     } = this.props
     // PLAY TREASURE CARD OR TRASH TREASURE CARD IF MINE OR REMODEL PLAYED
     if (
@@ -115,7 +116,9 @@ class Card extends React.Component {
       militia === false &&
       militiaDiscardFirst === false &&
       militiaDiscardSecond === false &&
-      remodel === false && 
+      remodel === false &&
+      cellar1 === false && 
+      cellar2 === false &&
       playerTurn === false && 
       actions1 > 0 
       ) {
@@ -131,6 +134,8 @@ class Card extends React.Component {
       militiaDiscardFirst === false &&
       militiaDiscardSecond === false &&
       remodel === false &&
+      cellar1 === false &&
+      cellar2 === false &&
       playerTurn === true && 
       actions2 > 0
       ) {
@@ -139,6 +144,30 @@ class Card extends React.Component {
         triggerDispatch2(`${trigger}2`)
       })
     }
+    // CELLAR
+    else if (
+      cellar1 === true &&
+      className === "hand-card" &&
+      player === "player1" &&
+      playerTurn === "false" &&
+      militia === false &&
+      remodel === false &&
+      militiaDiscardFirst === false &&
+      militiaDiscardSecond === false
+      ) {
+        cellarDiscard1(card)
+    } else if (
+      cellar2 === true &&
+      className === "hand-card" &&
+      player === "player2" &&
+      playerTurn === "true" &&
+      militia === false &&
+      remodel === false &&
+      militiaDiscardFirst === false &&
+      militiaDiscardSecond === false
+    ) {
+      cellarDiscard2(card)
+    } 
     // MILITIA RESPONSES
       // MOAT OR MILITIA DISCARD FIRST
     else if (militia === true && militiaDiscardFirst === true) {
@@ -217,6 +246,7 @@ class Card extends React.Component {
   }
 
   render() {
+    console.log("CELLARS???", this.props.cellar)
     return(
       <Fragment>
         {
@@ -248,7 +278,8 @@ function msp(state) {
 
   const { 
     playerTurn, deck1, deck2, hand1, hand2, mine, remodel, remodelGain, 
-    remodelValue, workshop, militia, militiaDiscardFirst, militiaDiscardSecond
+    remodelValue, workshop, militia, militiaDiscardFirst, militiaDiscardSecond,
+    cellar1, cellar2
   } = state.supply
   const { wallet1, buys1, turns1, actions1 } = state.playerOne
   const { wallet2, buys2, turns2, actions2 } = state.playerTwo
@@ -264,6 +295,8 @@ function msp(state) {
     militia,
     militiaDiscardFirst,
     militiaDiscardSecond,
+    cellar1,
+    cellar2,
 
 
     wallet1,
@@ -360,6 +393,12 @@ function mdp(dispatch) {
     },
     militiaBreak: () => {
       dispatch({ type: "MILITIA_BREAK" })
+    },
+    cellarDiscard1: (card) => {
+      dispatch({ type: "CELLAR_DISCARD1", payload: card })
+    },
+    cellarDiscard2: (card) => {
+      dispatch({ type: "CELLAR_DISCARD2", payload: card })
     }
   }
 
