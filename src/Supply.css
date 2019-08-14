@@ -23,11 +23,11 @@
   display: flex;
   justify-content: space-around;
   flex-direction: column;
-  height: 90%;
+  height: 80%;
 }
 
 .end-turn {
-  height: 10%;
+  height: 20%;
 }
 
 /* END MARGINS STYLING */

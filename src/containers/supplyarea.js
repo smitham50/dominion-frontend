@@ -19,9 +19,9 @@ class SupplyArea extends React.Component {
     const { 
       actions1, buys1, wallet1, victoryPoints1, turns1, actions2, 
       buys2, wallet2, victoryPoints2, turns2, playerTurn, endTurn1,
-      endTurn2, cellar1, cellar2, gameEnd } = this.props
+      endTurn2, cellar1, cellar2, gameEnd, militia, remodelGain, 
+      remodelValue, workshop, remodel } = this.props
       
-    console.log("GAME END?", gameEnd)
     return(
       <div id="supply-area">
         <div className="margins">
@@ -35,7 +35,33 @@ class SupplyArea extends React.Component {
             turns={turns1}
           />
           <div className="end-turn">
-            {cellar1 ? <button onClick={this.handleClick1} >End Discard</button> : playerTurn === false ? <button onClick={endTurn1} >End Turn</button> : null}
+            {
+              cellar1 
+              ? 
+              <button onClick={this.handleClick1} >End Discard</button> 
+              : 
+                playerTurn === false && remodel
+                ?
+                "Discard and gain card costing up to 2 more"
+                : 
+                  playerTurn === false && remodelGain
+                  ?
+                  `Gain card costing up to ${remodelValue}`
+                  :
+                    playerTurn === false && workshop
+                    ?
+                    "Gain card costing up to 4"
+                    :
+                      playerTurn === true && militia
+                      ?
+                      "Discard 2 cards or play Moat"
+                      :
+                        playerTurn === false
+                        ? 
+                        <button onClick={endTurn1} >End Turn</button> 
+                        : 
+                        null
+            }
           </div>
         </div>
         <div id="tvcard-container">
@@ -68,7 +94,33 @@ class SupplyArea extends React.Component {
             turns={turns2}
           />
           <div className="end-turn">
-            {cellar2 ? <button onClick={this.handleClick2} >End Discard</button> : playerTurn === true ? <button onClick={endTurn2}>End Turn</button> : null}
+            {
+              cellar2
+                ?
+                <button onClick={this.handleClick2} >End Discard</button>
+                :
+                playerTurn === true && remodel
+                  ?
+                  "Discard and gain card costing up to 2 more"
+                  :
+                  playerTurn === true && remodelGain
+                    ?
+                    `Gain card costing up to ${remodelValue}`
+                    :
+                    playerTurn === true && workshop
+                      ?
+                      "Gain card costing up to 4"
+                      :
+                      playerTurn === false && militia
+                        ?
+                        "Discard 2 cards or play Moat"
+                        :
+                        playerTurn === true
+                          ?
+                          <button onClick={endTurn1} >End Turn</button>
+                          :
+                          null
+            }
           </div>
         </div>
       </div>
@@ -80,7 +132,9 @@ function msp(state) {
   const { actions1, buys1, wallet1, victoryPoints1, turns1 } = state.playerOne
   const { actions2, buys2, wallet2, victoryPoints2, turns2 } = state.playerTwo
   const { playerTurn } = state.game
-  const { cellar1, cellar2, gameEnd } = state.supply
+  const { cellar1, cellar2, gameEnd, militia, militiaDiscardFirst, 
+          militiaDiscardSecond, workshopGain, remodelGain, remodelValue,
+          workshop, remodel } = state.supply
 
   return {
     actions1,
@@ -99,7 +153,15 @@ function msp(state) {
     gameEnd,
 
     cellar1,
-    cellar2
+    cellar2,
+    militia,
+    militiaDiscardFirst,
+    militiaDiscardSecond,
+    workshopGain,
+    workshop,
+    remodel,
+    remodelGain,
+    remodelValue
   }
 
 }

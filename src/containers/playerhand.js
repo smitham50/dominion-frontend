@@ -9,10 +9,6 @@ class PlayerHand extends React.Component {
     })
   }
 
-  upToFive = () => {
-    
-  }
-
   render() {
     return (
       <div className="player-hand" >

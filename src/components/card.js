@@ -1,6 +1,5 @@
 import React, { Fragment } from 'react'
 import { connect } from 'react-redux'
-import trash from './trash';
 
 class Card extends React.Component {
 
