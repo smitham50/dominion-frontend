@@ -76,6 +76,10 @@ button {
   margin-top: 15px;
 }
 
+/* .player-hand img:hover {
+  transform: scale(1.0)
+} */
+
 .player-hand .rest {
   height: 150px;
   margin-left: -55px;

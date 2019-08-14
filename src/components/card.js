@@ -252,8 +252,6 @@ class Card extends React.Component {
   }
 
   render() {
-    console.log("CELLARS???", this.props.cellar1, this.props.cellar2, "CLASS", this.props.className, "PLAYER", this.props.player, "TURN", this.props.playerTurn, "FALSE?", this.props.militia, this.props.militiaDiscardFirst, this.props.militiaDiscardSecond, this.props.remodel)
-
     return(
       <Fragment>
         {

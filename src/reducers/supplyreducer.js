@@ -31,8 +31,8 @@ const defaultState = {
   duchys: [],
   provinces: [],
   trash: [],
-  emptyStacks: 0,
-  provincesEmpty: false,
+  emptyPiles: 0,
+  gameEnd: false,
 
   // PLAYER 1 ARRAYS
   deck1: [],
@@ -47,7 +47,6 @@ const defaultState = {
 
 function supplyReducer(prevState=defaultState, action) {
   let shuffle = require('shuffle-array')
-  console.log("REDUCER", action.type)
   switch (action.type) {
     // INITIAL SUPPLY RENDER
     case "CELLARS":
@@ -86,20 +85,50 @@ function supplyReducer(prevState=defaultState, action) {
       return { ...prevState, trash: prevState.trash.concat(action.payload) }
     // PLAYER ACTIONS  
     case "TURN1":
-      return { ...prevState, playerTurn: !prevState.playerTurn, discard1: prevState.discard1.concat(prevState.hand1), hand1: [], mine: false, remodel: false, remodelGain: false, workshop: false, workshopGain: false, militia: false, militiaDefend: false, militiaDiscardFirst: false, militiaDiscardSecond: false }
+      return { ...prevState, playerTurn: !prevState.playerTurn, discard1: prevState.discard1.concat(prevState.hand1), hand1: [], mine: false, remodel: false, remodelGain: false, workshop: false, workshopGain: false, militia: false, militiaDefend: false, militiaDiscardFirst: false, militiaDiscardSecond: false, cellar1: false }
     case "TURN2":
-      return { ...prevState, playerTurn: !prevState.playerTurn, discard2: prevState.discard2.concat(prevState.hand2), hand2: [], mine: false, remodel: false, remodelGain: false, workshop: false, workshopGain: false, militia: false, militiaDefend: false, militiaDiscardFirst: false, militiaDiscardSecond: false }
+      return { ...prevState, playerTurn: !prevState.playerTurn, discard2: prevState.discard2.concat(prevState.hand2), hand2: [], mine: false, remodel: false, remodelGain: false, workshop: false, workshopGain: false, militia: false, militiaDefend: false, militiaDiscardFirst: false, militiaDiscardSecond: false, cellar2: false }
     case "PLAY_TREASURE1":
       return {...prevState, discard1: prevState.discard1.concat(action.payload), hand1: prevState.hand1.filter(card => card.id !== action.payload.id) }
     case "PLAY_TREASURE2":
       return { ...prevState, discard2: prevState.discard2.concat(action.payload), hand2: prevState.hand2.filter(card => card.id !== action.payload.id) }
     case "BUY1": {
       let pile = Object.keys(prevState).find(key => key == `${action.payload.name.toLowerCase()}s`)
-      return { ...prevState, discard1: prevState.discard1.concat(action.payload), [pile]: prevState[pile].filter(card => card.id !== action.payload.id) }
+      console.log("PILES", pile, prevState[pile].length, pile === "provinces")
+      if (prevState[pile].length > 1 && pile !== "provinces") {
+        return { ...prevState, discard1: prevState.discard1.concat(action.payload), [pile]: prevState[pile].filter(card => card.id !== action.payload.id) }
+      } else if (prevState[pile].length === 1 && pile !== "provinces") {
+        if (prevState.emptyPiles < 3) {
+          return { ...prevState, discard1: prevState.discard1.concat(action.payload), [pile]: prevState[pile].filter(card => card.id !== action.payload.id), emptyPiles: prevState.emptyPiles + 1 }
+        } else {
+          return { ...prevState, discard1: prevState.discard1.concat(action.payload), [pile]: prevState[pile].filter(card => card.id !== action.payload.id), gameEnd: true }
+        }
+      } else if (pile === "provinces") {
+        if (prevState[pile].length > 1) {
+          return { ...prevState, discard1: prevState.discard1.concat(action.payload), [pile]: prevState[pile].filter(card => card.id !== action.payload.id) }
+        } else {
+            return { ...prevState, discard1: prevState.discard1.concat(action.payload), [pile]: prevState[pile].filter(card => card.id !== action.payload.id), gameEnd: true }
+          }
+      } 
     }
     case "BUY2": {
       let pile = Object.keys(prevState).find(key => key == `${action.payload.name.toLowerCase()}s`)
-      return { ...prevState, discard2: prevState.discard2.concat(action.payload), [pile]: prevState[pile].filter(card => card.id !== action.payload.id) }   
+      console.log("PILES", pile, prevState[pile].length, pile === "provinces")
+      if (prevState[pile].length > 1 && pile !== "provinces") {
+        return { ...prevState, discard2: prevState.discard2.concat(action.payload), [pile]: prevState[pile].filter(card => card.id !== action.payload.id) }   
+      } else if (prevState[pile].length === 1 && pile !== "provinces") {
+        if (prevState.emptyPiles < 3) {
+          return { ...prevState, discard2: prevState.discard2.concat(action.payload), [pile]: prevState[pile].filter(card => card.id !== action.payload.id), emptyPiles: prevState.emptyPiles + 1 }   
+        } else {
+          return { ...prevState, discard2: prevState.discard2.concat(action.payload), [pile]: prevState[pile].filter(card => card.id !== action.payload.id), gameEnd: true }   
+        }
+      } else if (pile === "provinces") {
+        if (prevState[pile].length > 1) {
+          return { ...prevState, discard2: prevState.discard2.concat(action.payload), [pile]: prevState[pile].filter(card => card.id !== action.payload.id) }   
+        } else {
+          return { ...prevState, discard2: prevState.discard2.concat(action.payload), [pile]: prevState[pile].filter(card => card.id !== action.payload.id), gameEnd: true }   
+        }
+      }
     }
     case "ACTION1": {
       if (action.payload.draw <= prevState.deck1.length) {
@@ -203,10 +232,6 @@ function supplyReducer(prevState=defaultState, action) {
       return { ...prevState, cellar1: false }
     case "END_CELLAR2":
       return { ...prevState, cellar2: false }
-    case "STACK_EMPTY":
-      return { ...prevState, emptyStacks: prevState.emptyStacks + 1 }
-    case "PROVINCES_EMPTY":
-      return { ...prevState, provincesEmpty: true }
     // CARD TRIGGERS
     case "+1CARD1": {
       if (prevState.deck1.length > 0) {

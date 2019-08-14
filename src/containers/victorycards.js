@@ -60,9 +60,9 @@ function msp(state) {
   const { estates, duchys, provinces } = state.supply
 
   return {
-    estates: estates,
-    duchys: duchys,
-    provinces: provinces
+    estates,
+    duchys,
+    provinces
   }
 
 }

@@ -74,6 +74,10 @@
   margin-left: -91px;
   margin-top: 15px;
 }
+
+#cellars .rest:last-of-type:hover {
+  transform: scale(1.3)
+}
 /* END CELLAR STYLING */
 
 /* MOAT STYLING */
@@ -92,6 +96,10 @@
   height: 150px;
   margin-left: -91px;
   margin-top: 15px;
+}
+
+#moats .rest:last-of-type:hover {
+  transform: scale(1.3)
 }
 /* END MOAT STYLING */
 
@@ -112,6 +120,10 @@
   margin-left: -91px;
   margin-top: 15px;
 }
+
+#workshops .rest:last-of-type:hover {
+  transform: scale(1.3)
+}
 /* END WORKSHOP STYLING */
 
 /* WOODCUTTER STYLING */
@@ -130,6 +142,10 @@
   height: 150px;
   margin-left: -91px;
   margin-top: 15px;
+}
+
+#woodcutters .rest:last-of-type:hover {
+  transform: scale(1.3)
 }
 /* END WOODCUTTER STYLING */
 
@@ -150,6 +166,10 @@
   margin-left: -91px;
   margin-top: 15px;
 }
+
+#villages .rest:last-of-type:hover {
+  transform: scale(1.3)
+}
 /* END VILLAGE STYLING */
 
 /* SMITHY STYLING */
@@ -168,6 +188,10 @@
   height: 150px;
   margin-left: -91px;
   margin-top: 15px;
+}
+
+#smithys .rest:last-of-type:hover {
+  transform: scale(1.3)
 }
 /* END SMITHY STYLING */
 
@@ -188,6 +212,10 @@
   margin-left: -91px;
   margin-top: 15px;
 }
+
+#militias .rest:last-of-type:hover {
+  transform: scale(1.3)
+}
 /* END MILITIA STYLING */
 
 /* REMODEL STYLING */
@@ -206,6 +234,10 @@
   height: 150px;
   margin-left: -91px;
   margin-top: 15px;
+}
+
+#remodels .rest:last-of-type:hover {
+  transform: scale(1.3)
 }
 /* END REMODEL STYLING */
 
@@ -226,6 +258,10 @@
   margin-left: -91px;
   margin-top: 15px;
 }
+
+#markets .rest:last-of-type:hover {
+  transform: scale(1.3)
+}
 /* END MARKET STYLING */
 
 /* MINE STYLING */
@@ -244,6 +280,10 @@
   height: 150px;
   margin-left: -91px;
   margin-top: 15px;
+}
+
+#mines .rest:last-of-type:hover {
+  transform: scale(1.3)
 }
 /* END MINE STYLING */
 
@@ -298,6 +338,10 @@
   margin-left: -93px;
   margin-top: 15px;
 }
+
+#coppers .rest:last-of-type:hover {
+  transform: scale(1.3)
+}
 /* END COPPER STYLING */
 
 /* SILVER STYLING */
@@ -317,6 +361,10 @@
   height: 150px;
   margin-left: -93px;
   margin-top: 15px;
+}
+
+#silvers .rest:last-of-type:hover {
+  transform: scale(1.3)
 }
 /* END SILVER STYLING */
 
@@ -338,6 +386,10 @@
   margin-left: -96px;
   margin-top: 15px;
 }
+
+#golds .rest:last-of-type:hover {
+  transform: scale(1.3)
+}
 /* END GOLD STYLING */
 
 /* ESTATE STYLING */
@@ -357,6 +409,10 @@
   height: 150px;
   margin-left: -93px;
   margin-top: 15px;
+}
+
+#estates .rest:last-of-type:hover {
+  transform: scale(1.3)
 }
 /* END ESTATE STYLING */
 
@@ -378,6 +434,10 @@
   margin-left: -93px;
   margin-top: 15px;
 }
+
+#duchys .rest:last-of-type:hover {
+  transform: scale(1.3)
+}
 /* END DUCHY STYLING */
 
 /* PROVINCE STYLING */
@@ -397,6 +457,10 @@
   height: 150px;
   margin-left: -93px;
   margin-top: 15px;
+}
+
+#provinces .rest:last-of-type:hover {
+  transform: scale(1.3)
 }
 /* END PROVINCE STYLING */
 

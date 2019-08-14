@@ -19,8 +19,9 @@ class SupplyArea extends React.Component {
     const { 
       actions1, buys1, wallet1, victoryPoints1, turns1, actions2, 
       buys2, wallet2, victoryPoints2, turns2, playerTurn, endTurn1,
-      endTurn2, cellar1, cellar2 } = this.props
-    
+      endTurn2, cellar1, cellar2, gameEnd } = this.props
+      
+    console.log("GAME END?", gameEnd)
     return(
       <div id="supply-area">
         <div className="margins">
@@ -41,7 +42,21 @@ class SupplyArea extends React.Component {
           <TreasureCards />
           <VictoryCards />
         </div>
-        <ActionCards />
+        {
+          gameEnd 
+          ?
+          <div id="game-end">
+            {
+            victoryPoints1 > victoryPoints2
+            ?
+            "Player 1 Wins!"
+            :
+            "Player 2 Wins!"
+            }
+          </div>
+          :      
+          <ActionCards />
+        }
         <div className="margins">
           <PlayerTurnInfo 
             key="player2"
@@ -65,7 +80,7 @@ function msp(state) {
   const { actions1, buys1, wallet1, victoryPoints1, turns1 } = state.playerOne
   const { actions2, buys2, wallet2, victoryPoints2, turns2 } = state.playerTwo
   const { playerTurn } = state.game
-  const { cellar1, cellar2 } = state.supply
+  const { cellar1, cellar2, gameEnd } = state.supply
 
   return {
     actions1,
@@ -81,6 +96,7 @@ function msp(state) {
     turns2,
 
     playerTurn,
+    gameEnd,
 
     cellar1,
     cellar2
