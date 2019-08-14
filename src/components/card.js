@@ -25,6 +25,7 @@ class Card extends React.Component {
       player === "player1" && 
       cellar1 === false &&
       cellar2 === false &&
+      militia === false &&
       card.card_type === "Treasure" && 
       playerTurn === false
       ) {
@@ -44,6 +45,7 @@ class Card extends React.Component {
       player === "player2" && 
       cellar1 === false &&
       cellar2 === false &&
+      militia === false &&
       card.card_type === "Treasure" && 
       playerTurn === true
       ) {
