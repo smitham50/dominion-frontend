@@ -20,7 +20,7 @@ class SupplyArea extends React.Component {
       actions1, buys1, wallet1, victoryPoints1, turns1, actions2, 
       buys2, wallet2, victoryPoints2, turns2, playerTurn, endTurn1,
       endTurn2, cellar1, cellar2, gameEnd, militia, remodelGain, 
-      remodelValue, workshop, remodel } = this.props
+      remodelValue, workshop, remodel, militiaDiscardSecond } = this.props
       
     return(
       <div id="supply-area">
@@ -42,19 +42,27 @@ class SupplyArea extends React.Component {
               : 
                 playerTurn === false && remodel
                 ?
-                "Discard and gain card costing up to 2 more"
+                <div className="message" >
+                  Trash card and gain card from supply costing up to 2 more
+                </div>
                 : 
                   playerTurn === false && remodelGain
                   ?
-                  `Gain card costing up to ${remodelValue}`
+                  <div className="message" >
+                    Gain card from supply costing up to {remodelValue}
+                  </div>
                   :
                     playerTurn === false && workshop
                     ?
-                    "Gain card costing up to 4"
+                    <div className="message" >
+                      Gain card from supply costing up to 4
+                    </div>
                     :
-                      playerTurn === true && militia
+                      playerTurn === true && (militia || militiaDiscardSecond)
                       ?
-                      "Discard 2 cards or play Moat"
+                      <div className="message" >
+                        Discard 2 cards or play Moat
+                      </div>
                       :
                         playerTurn === false
                         ? 
@@ -83,7 +91,7 @@ class SupplyArea extends React.Component {
           :      
           <ActionCards />
         }
-        <div className="margins">
+        <div className="margins" >
           <PlayerTurnInfo 
             key="player2"
             player="Player 2"
@@ -93,7 +101,7 @@ class SupplyArea extends React.Component {
             victoryPoints={victoryPoints2}
             turns={turns2}
           />
-          <div className="end-turn">
+          <div className="end-turn" >
             {
               cellar2
                 ?
@@ -101,23 +109,31 @@ class SupplyArea extends React.Component {
                 :
                 playerTurn === true && remodel
                   ?
-                  "Discard and gain card costing up to 2 more"
+                  <div className="message" >
+                    Trash card and gain card from supply costing up to 2 more
+                  </div>
                   :
                   playerTurn === true && remodelGain
                     ?
-                    `Gain card costing up to ${remodelValue}`
+                    <div className="message" >
+                      Gain card from supply costing up to {remodelValue}
+                    </div>
                     :
                     playerTurn === true && workshop
                       ?
-                      "Gain card costing up to 4"
+                      <div className="message" >
+                        Gain card from supply costing up to 4
+                      </div>
                       :
-                      playerTurn === false && militia
+                      playerTurn === false && (militia || militiaDiscardSecond)
                         ?
-                        "Discard 2 cards or play Moat"
+                        <div className="message" >
+                          Discard 2 cards or play Moat
+                        </div>
                         :
                         playerTurn === true
                           ?
-                          <button onClick={endTurn1} >End Turn</button>
+                          <button onClick={endTurn2} >End Turn</button>
                           :
                           null
             }

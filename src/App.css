@@ -1,3 +1,16 @@
+@font-face {
+  font-family: 'Trajan Pro Regular';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Trajan Pro Regular'), local('Trajan Pro Regular'),
+}
+
+body {
+  font-family: 'Trajan Pro Regular';
+}
+
+
+
 .App {
   border: solid 1px;
   width: 100%;
@@ -16,6 +29,8 @@
 button {
   width: 100%;
   height: 100%;
+  font-family: 'Trajan Pro Regular';
+  font-size: 1em;
 }
 
 #play-table {
@@ -35,7 +50,7 @@ button {
 }
 
 #player-one-area {
-  border: solid 1px;
+  /* border: solid 1px; */
   width: 43%;
   display: flex;
 }
@@ -45,7 +60,7 @@ button {
 }
 
 #player-two-area {
-  border: solid 1px;
+  /* border: solid 1px; */
   width: 43%;
   display: flex;
 }
