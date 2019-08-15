@@ -20,7 +20,7 @@ class SupplyArea extends React.Component {
       actions1, buys1, wallet1, victoryPoints1, turns1, actions2, 
       buys2, wallet2, victoryPoints2, turns2, playerTurn, endTurn1,
       endTurn2, cellar1, cellar2, gameEnd, militia, remodelGain, 
-      remodelValue, workshop, remodel, militiaDiscardSecond } = this.props
+      remodelValue, workshop, remodel, militiaDiscardSecond, mine } = this.props
       
     return(
       <div id="supply-area">
@@ -52,23 +52,29 @@ class SupplyArea extends React.Component {
                     Gain card from supply costing up to {remodelValue}
                   </div>
                   :
-                    playerTurn === false && workshop
+                    playerTurn === false && mine
                     ?
-                    <div className="message" >
-                      Gain card from supply costing up to 4
+                    <div className="message">
+                      Trash a treasure card for treasure costing up to 3 more
                     </div>
                     :
-                      playerTurn === true && (militia || militiaDiscardSecond)
+                      playerTurn === false && workshop
                       ?
                       <div className="message" >
-                        Discard 2 cards or play Moat
+                        Gain card from supply costing up to 4
                       </div>
                       :
-                        playerTurn === false
-                        ? 
-                        <button onClick={endTurn1} >End Turn</button> 
-                        : 
-                        null
+                        playerTurn === true && (militia || militiaDiscardSecond)
+                        ?
+                        <div className="message" >
+                          Discard 2 cards or play Moat
+                        </div>
+                        :
+                          playerTurn === false
+                          ? 
+                          <button onClick={endTurn1} >End Turn</button> 
+                          : 
+                          null
             }
           </div>
         </div>
@@ -119,23 +125,29 @@ class SupplyArea extends React.Component {
                       Gain card from supply costing up to {remodelValue}
                     </div>
                     :
-                    playerTurn === true && workshop
+                      playerTurn === true && mine
                       ?
-                      <div className="message" >
-                        Gain card from supply costing up to 4
+                      <div className="message">
+                        Trash a treasure card for treasure costing up to 3 more
                       </div>
                       :
-                      playerTurn === false && (militia || militiaDiscardSecond)
-                        ?
-                        <div className="message" >
-                          Discard 2 cards or play Moat
-                        </div>
-                        :
-                        playerTurn === true
+                        playerTurn === true && workshop
                           ?
-                          <button onClick={endTurn2} >End Turn</button>
+                          <div className="message" >
+                            Gain card from supply costing up to 4
+                          </div>
                           :
-                          null
+                          playerTurn === false && (militia || militiaDiscardSecond)
+                            ?
+                            <div className="message" >
+                              Discard 2 cards or play Moat
+                            </div>
+                            :
+                            playerTurn === true
+                              ?
+                              <button onClick={endTurn2} >End Turn</button>
+                              :
+                              null
             }
           </div>
         </div>
@@ -150,7 +162,7 @@ function msp(state) {
   const { playerTurn } = state.game
   const { cellar1, cellar2, gameEnd, militia, militiaDiscardFirst, 
           militiaDiscardSecond, workshopGain, remodelGain, remodelValue,
-          workshop, remodel } = state.supply
+          workshop, remodel, mine } = state.supply
 
   return {
     actions1,
@@ -177,7 +189,8 @@ function msp(state) {
     workshop,
     remodel,
     remodelGain,
-    remodelValue
+    remodelValue,
+    mine
   }
 
 }
