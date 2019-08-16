@@ -25,7 +25,7 @@ class PlayerOneArea extends React.Component {
       <div id="player-one-area" >
         <PlayerDiscard key="discard1" discard={discard1} />
         <PlayerDeck key="deck1" deck={deck1} handleDeal={this.handleDeal} turns={turns1} handleCycle={this.handleCycle} />
-        <PlayerHand key="hand1" hand={hand1} handleDraw={this.handleDraw} player="player1" />
+        <PlayerHand key="hand1" hand={hand1} handleDraw={this.handleDraw} player="player1" turns={turns1} />
       </div>
     )
   }
@@ -36,12 +36,12 @@ function msp(state) {
   const { turns1 } = state.playerOne
 
   return {
-    coppers: coppers,
-    estates: estates,
-    deck1: deck1,
-    discard1: discard1,
-    hand1: hand1,
-    turns1: turns1
+    coppers,
+    estates,
+    deck1,
+    discard1,
+    hand1,
+    turns1
   }
 
 }

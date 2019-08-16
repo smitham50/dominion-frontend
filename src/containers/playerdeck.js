@@ -10,7 +10,7 @@ class PlayerDeck extends React.Component {
   }
 
   render() {
-    const { deck, handleDeal, handleCycle, turns } = this.props
+    const { deck, handleDeal, turns } = this.props
     return(
       <div className="player-deck" >
         {

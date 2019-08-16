@@ -144,7 +144,8 @@ function supplyReducer(prevState=defaultState, action) {
           militiaDefend: false, 
           militiaDiscardFirst: false, 
           militiaDiscardSecond: false, 
-          cellar2: false 
+          cellar2: false,
+          cellarHand: [] 
         }
       } else if (prevState.deck2.length < 5) {
         let endDiscard = [...prevState.discard2.concat(endHand)]
@@ -164,7 +165,8 @@ function supplyReducer(prevState=defaultState, action) {
           militiaDefend: false,
           militiaDiscardFirst: false,
           militiaDiscardSecond: false,
-          cellar2: false 
+          cellar2: false,
+          cellarHand: [] 
         }
       }
     }
@@ -298,12 +300,54 @@ function supplyReducer(prevState=defaultState, action) {
       }
     case "CELLAR_DISCARD1": {
       if (prevState.cellarHand.includes(action.payload)) {
-        return { ...prevState, hand1: prevState.hand1.filter(card => card.id !== action.payload.id).concat(prevState.deck1.slice(-1)), discard1: prevState.discard1.concat(action.payload), deck1: prevState.deck1.slice(0, -1) }
+        if (prevState.deck1.length >= 1) {
+          return { 
+            ...prevState, 
+            hand1: prevState.hand1.filter(card => card.id !== action.payload.id).concat(prevState.deck1.slice(-1)), 
+            discard1: prevState.discard1.concat(action.payload), 
+            deck1: prevState.deck1.slice(0, -1) 
+          }
+        } else {
+            let discardCard = action.payload
+            let cycleDiscard = [...prevState.discard1.concat(discardCard)]
+            let shuffleDeck = shuffle([...prevState.deck1.concat(cycleDiscard)])
+            return {
+              ...prevState,
+              hand1: prevState.hand1.concat([...shuffleDeck.slice(-1)]),
+              deck1: [...shuffleDeck.slice(0, -1)],
+              discard1: []
+          }
+        }
+      } else {
+        return {
+          ...prevState
+        }
       }
     }
     case "CELLAR_DISCARD2": {
       if (prevState.cellarHand.includes(action.payload)) {
-        return { ...prevState, hand2: prevState.hand2.filter(card => card.id !== action.payload.id).concat(prevState.deck2.slice(-1)), discard2: prevState.discard2.concat(action.payload), deck2: prevState.deck2.slice(0, -1) }
+        if (prevState.deck2.length >= 1) {
+          return { 
+            ...prevState, 
+            hand2: prevState.hand2.filter(card => card.id !== action.payload.id).concat(prevState.deck2.slice(-1)), 
+            discard2: prevState.discard2.concat(action.payload), 
+            deck2: prevState.deck2.slice(0, -1) 
+          }
+        } else {
+            let discardCard = action.payload
+            let cycleDiscard = [...prevState.discard2.concat(discardCard)]
+            let shuffleDeck = shuffle([...prevState.deck2.concat(cycleDiscard)]) 
+            return {
+              ...prevState,
+              hand2: prevState.hand2.concat([...shuffleDeck.slice(-1)]),
+              deck2: [...shuffleDeck.slice(0, -1)],
+              discard2: []
+          }
+        }
+      } else {
+        return {
+          ...prevState
+        }
       }
     }
     case "END_CELLAR1":
@@ -376,9 +420,9 @@ function supplyReducer(prevState=defaultState, action) {
     case "ATTACK2":
       return { ...prevState, militia: true, militiaDiscardFirst: true }
     case "CELLAR1":
-      return { ...prevState, cellar1: true, cellarHand: prevState.hand1 }
+      return { ...prevState, cellar1: true, cellarHand: [...prevState.hand1] }
     case "CELLAR2":
-      return { ...prevState, cellar2: true, cellarHand: prevState.hand2 }
+      return { ...prevState, cellar2: true, cellarHand: [...prevState.hand2] }
     default:
       return prevState
   }

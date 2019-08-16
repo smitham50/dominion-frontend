@@ -22,7 +22,7 @@ class PlayerTwoArea extends React.Component {
     const { hand2, discard2, deck2, turns2 } = this.props
     return (
       <div id="player-two-area" >
-        <PlayerHand key="hand2" hand={hand2} handleDraw={this.handleDraw} player="player2" />
+        <PlayerHand key="hand2" hand={hand2} handleDraw={this.handleDraw} player="player2" turns={turns2} />
         <PlayerDeck key="deck2" deck={deck2} handleDeal={this.handleDeal} turns={turns2} handleCycle={this.handleCycle} />
         <PlayerDiscard key="discard2" discard={discard2}/>
       </div>
@@ -35,12 +35,12 @@ function msp(state) {
   const { turns2 } = state.playerTwo
 
   return {
-    coppers: coppers,
-    estates: estates,
-    deck2: deck2,
-    discard2: discard2,
-    hand2: hand2,
-    turns2: turns2
+    coppers,
+    estates,
+    deck2,
+    discard2,
+    hand2,
+    turns2
   }
 
 }

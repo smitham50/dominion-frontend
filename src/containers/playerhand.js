@@ -16,8 +16,13 @@ class PlayerHand extends React.Component {
           this.props.hand.length > 0 
           ? 
           this.renderHand() 
-          : 
-          <button onClick={() => this.props.handleDraw()}>Draw Hand</button>}
+          :
+            this.props.turns === 0
+            ? 
+            <button onClick={() => this.props.handleDraw()}>Draw Hand</button>
+            :
+            null
+        }
       </div>
     )
   }
