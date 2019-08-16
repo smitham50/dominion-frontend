@@ -400,11 +400,19 @@ function supplyReducer(prevState=defaultState, action) {
     case "MINE1": {
       if (prevState.hand1.some(card => card.name === "Copper" || card.name === "Silver")) {
         return { ...prevState, mine: true }
+      } else {
+        return {
+          ...prevState
+        }
       }
     }
     case "MINE2": {
       if (prevState.hand2.some(card => card.name === "Copper" || card.name === "Silver")) {
         return { ...prevState, mine: true }
+      } else {
+        return {
+          ...prevState
+        }
       }
     }
     case "REMODEL1":

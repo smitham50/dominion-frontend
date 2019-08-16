@@ -253,7 +253,7 @@ class Card extends React.Component {
   }
 
   render() {
-    console.log("MINE??", this.props.mine, this.props.hand1, this.props.hand1.includes(card => card.name === "Copper"), this.props.hand1.includes(card => card.name === "Silver"))
+    console.log("MINE??", this.props.mine, this.props.hand1, this.props.hand1.some(card => card.name === "Copper" || card.name === "Silver"), this.props.hand2.some(card => card.name === "Copper" || card.name === "Silver"))
     return(
       <Fragment>
         {

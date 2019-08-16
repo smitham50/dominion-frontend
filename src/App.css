@@ -33,9 +33,10 @@ img {
   width: 100%;
   justify-content: center;
   padding-top: 200px;
-  padding-left: 17%;
+  padding-left: 15%;
   font-size: 5em;
-  background: #d3e7e8;
+  background: #d3e7e800;
+  color: white;
   border: solid 1px #4c4c4c;
   border-radius: 3px;
 }
