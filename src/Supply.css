@@ -1,5 +1,20 @@
-/* SUPPLY AREA STYLING */
+/* PULSE EFFECT */
+/* .message {
+  animation: pulse 5s infinite;
+}
 
+@keyframes pulse {
+  0% {
+    background-color: #fdff70;
+  }
+  100% {
+    background-color: rgb(255, 251, 0);
+  }
+}
+ */
+
+
+/* SUPPLY AREA STYLING */
 #supply-area {
   width: 100%;
   height: 500px;
@@ -15,23 +30,32 @@
 /* MARGINS STYLING */
 .margins {
   width: 7.5%;
+  border: solid 1px #4c4c4c;
+  border-radius: 3px;
 }
 
 .player-turn-info {
   display: flex;
   justify-content: space-around;
+  background: #0000002b;
+  color: white;
   padding-left: 5px;
   flex-direction: column;
-  height: 80%;
+  height: 75%;
 }
 
 .message {
   padding-left: 5px;
-  background: #d1f3d9;
+  background: #fdb80e;
+  color: white;
+  border: solid 1px #4c4c4c;
+  height: 100%;
+  justify-content: center;
 }
 
 .end-turn {
-  height: 20%;
+  height: 25%;
+  background: #0000002b;
 }
 
 /* END MARGINS STYLING */
@@ -40,11 +64,10 @@
 #action-card-container {
   display: flex;
   width: 50%;
-
 }
 
 #action-card-area {
-  border: solid 1px;
+  /* border: solid 1px #4c4c4c; */
   border-radius: 3px;
   display: flex;
   width: 60%;
@@ -297,8 +320,9 @@
 }
 
 #treasure-card-area {
-  border: solid 1px;
+  /* border: solid 1px #4c4c4c; */
   border-radius: 3px;
+  padding-left: 25px;
   display: flex;
   width: 100%;
   height: 50%;;
@@ -310,8 +334,9 @@
 }
 
 #victory-card-area {
-  border: solid 1px;
+  /* border: solid 1px #4c4c4c; */
   border-radius: 3px;
+  padding-left: 25px;
   display: flex;
   width: 100%;
   height: 50%;
@@ -469,9 +494,9 @@
 
 /* TRASH STYLING */
 #trash {
-  height: 180px;
+  height: 100%;
   display: flex;
-  margin-top: 15px;
+  
 }
 
 #trash img {

@@ -85,39 +85,87 @@ function supplyReducer(prevState=defaultState, action) {
       return { ...prevState, trash: prevState.trash.concat(action.payload) }
     // PLAYER ACTIONS  
     case "TURN1": {
-      return { 
-        ...prevState, 
-        playerTurn: !prevState.playerTurn, 
-        discard1: prevState.discard1.concat(prevState.hand1), 
-        hand1: [], 
-        mine: false, 
-        remodel: false, 
-        remodelGain: false, 
-        workshop: false, 
-        workshopGain: false, 
-        militia: false, 
-        militiaDefend: false, 
-        militiaDiscardFirst: false, 
-        militiaDiscardSecond: false, 
-        cellar1: false 
+      let endHand = [...prevState.hand1]
+      if (prevState.deck1.length >= 5) {
+        return { 
+          ...prevState, 
+          playerTurn: !prevState.playerTurn, 
+          discard1: prevState.discard1.concat(endHand), 
+          hand1: [...prevState.deck1.slice(-5)], 
+          deck1: [...prevState.deck1.slice(0, -5)],
+          mine: false, 
+          remodel: false, 
+          remodelGain: false, 
+          workshop: false, 
+          workshopGain: false, 
+          militia: false, 
+          militiaDefend: false, 
+          militiaDiscardFirst: false, 
+          militiaDiscardSecond: false, 
+          cellar1: false 
+        }
+      } else if (prevState.deck1.length < 5) {
+        let endDiscard = [...prevState.discard1.concat(endHand)]
+        let shuffleDeck = shuffle([...prevState.deck1.concat(endDiscard)])
+        return {
+          ...prevState,
+          playerTurn: !prevState.playerTurn,
+          discard1: [],
+          hand1: [...shuffleDeck.slice(-5)],
+          deck1: [...shuffleDeck.slice(0, -5)],
+          mine: false,
+          remodel: false,
+          remodelGain: false,
+          workshop: false,
+          workshopGain: false,
+          militia: false,
+          militiaDefend: false,
+          militiaDiscardFirst: false,
+          militiaDiscardSecond: false,
+          cellar1: false 
+        }
       }
     }
     case "TURN2": {
-      return { 
-        ...prevState, 
-        playerTurn: !prevState.playerTurn, 
-        discard2: prevState.discard2.concat(prevState.hand2), 
-        hand2: [], 
-        mine: false, 
-        remodel: false, 
-        remodelGain: false, 
-        workshop: false, 
-        workshopGain: false, 
-        militia: false, 
-        militiaDefend: false, 
-        militiaDiscardFirst: false, 
-        militiaDiscardSecond: false, 
-        cellar2: false 
+      let endHand = [...prevState.hand2]
+      if (prevState.deck2.length >= 5) {
+        return { 
+          ...prevState, 
+          playerTurn: !prevState.playerTurn, 
+          discard2: prevState.discard2.concat(endHand), 
+          hand2: [...prevState.deck2.slice(-5)], 
+          deck2: [...prevState.deck2.slice(0, -5)],
+          mine: false, 
+          remodel: false, 
+          remodelGain: false, 
+          workshop: false, 
+          workshopGain: false, 
+          militia: false, 
+          militiaDefend: false, 
+          militiaDiscardFirst: false, 
+          militiaDiscardSecond: false, 
+          cellar2: false 
+        }
+      } else if (prevState.deck2.length < 5) {
+        let endDiscard = [...prevState.discard2.concat(endHand)]
+        let shuffleDeck = shuffle([...prevState.deck2.concat(endDiscard)])
+        return {
+          ...prevState,
+          playerTurn: !prevState.playerTurn,
+          discard2: [],
+          hand2: [...shuffleDeck.slice(-5)],
+          deck2: [...shuffleDeck.slice(0, -5)],
+          mine: false,
+          remodel: false,
+          remodelGain: false,
+          workshop: false,
+          workshopGain: false,
+          militia: false,
+          militiaDefend: false,
+          militiaDiscardFirst: false,
+          militiaDiscardSecond: false,
+          cellar2: false 
+        }
       }
     }
     case "PLAY_TREASURE1":
@@ -306,10 +354,14 @@ function supplyReducer(prevState=defaultState, action) {
       }
     }
     case "MINE1": {
-      return { ...prevState, mine: true }
+      if (prevState.hand1.some(card => card.name === "Copper" || card.name === "Silver")) {
+        return { ...prevState, mine: true }
+      }
     }
     case "MINE2": {
-      return { ...prevState, mine: true }
+      if (prevState.hand2.some(card => card.name === "Copper" || card.name === "Silver")) {
+        return { ...prevState, mine: true }
+      }
     }
     case "REMODEL1":
       return { ...prevState, remodel: true }

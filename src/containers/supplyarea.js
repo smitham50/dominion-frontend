@@ -43,7 +43,7 @@ class SupplyArea extends React.Component {
                 playerTurn === false && remodel
                 ?
                 <div className="message" >
-                  Trash card and gain card from supply costing up to 2 more
+                  Trash card and gain card from supply worth up to 2 more
                 </div>
                 : 
                   playerTurn === false && remodelGain

@@ -30,7 +30,7 @@ class Card extends React.Component {
       ) {
         if (mine === false && remodel === false) {
           playTreasureCard1(card)
-        } else if (mine === true) {
+        } else if (mine === true ) {
           if (card.name === "Copper") {
             trashTreasure1(card, "silvers")
           } else if (card.name === "Silver") {
@@ -50,7 +50,7 @@ class Card extends React.Component {
       ) {
         if (mine === false && remodel === false) {
           playTreasureCard2(card)
-        } else if (mine === true) {
+        } else if (mine === true ) {
           if (card.name === "Copper") {
             trashTreasure2(card, "silvers")
           } else if (card.name === "Silver") {
@@ -253,11 +253,12 @@ class Card extends React.Component {
   }
 
   render() {
+    console.log("MINE??", this.props.mine, this.props.hand1, this.props.hand1.includes(card => card.name === "Copper"), this.props.hand1.includes(card => card.name === "Silver"))
     return(
       <Fragment>
         {
           this.props.index === 0 
-          ? 
+          ?
           <img src={
             this.props.id === "deck-card" 
             ? 

@@ -22,7 +22,7 @@ class PlayerDeck extends React.Component {
             ?
               <button onClick={() => handleDeal()}>Deal Cards</button>
             :
-              <button onClick={() => handleCycle()}>Cycle Cards</button>
+              null
        }
       </div>
     )
