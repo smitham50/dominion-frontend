@@ -31,14 +31,11 @@ img {
 
 #game-end {
   width: 100%;
-  justify-content: center;
+  text-align: center;
   padding-top: 200px;
-  padding-left: 15%;
   font-size: 5em;
   background: #d3e7e800;
   color: white;
-  border: solid 1px #4c4c4c;
-  border-radius: 3px;
 }
 
 button {
@@ -47,6 +44,17 @@ button {
   font-family: 'Trajan Pro Regular';
   font-size: 1em;
   background: #38add4;
+  color: white;
+  border: solid 1px #4c4c4c;
+  border-radius: 3px;
+}
+
+.cellar-button {
+  width: 100%;
+  height: 100%;
+  font-family: 'Trajan Pro Regular';
+  font-size: 1em;
+  background: #fdb80e;
   color: white;
   border: solid 1px #4c4c4c;
   border-radius: 3px;
@@ -118,21 +126,28 @@ button {
   
 }
 
+/* .player-hand:hover {
+  border: solid 1px #4c4c4c;
+  border-radius: 3px;
+  width: 50%;
+  display: flex;
+
+  overflow: scroll;
+  
+} */
+
 .player-hand img {
   height: 150px;
   margin-left: 0px;
   margin-top: 15px;
 }
 
-/* .player-hand img:hover {
-  transform: scale(1.0)
-} */
-
 .player-hand .rest {
   height: 150px;
   margin-left: -55px;
   margin-top: 15px;
 }
+
 /* END PLAYER HAND STYLING */
 
 /* PLAYER DISCARD STYLING */

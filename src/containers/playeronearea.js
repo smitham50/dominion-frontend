@@ -20,19 +20,19 @@ class PlayerOneArea extends React.Component {
 
 
   render() {
-    const { discard1, deck1, hand1, turns1 } = this.props
+    const { discard1, deck1, hand1, turns1, gameStart1 } = this.props
     return(
       <div id="player-one-area" >
         <PlayerDiscard key="discard1" discard={discard1} />
         <PlayerDeck key="deck1" deck={deck1} handleDeal={this.handleDeal} turns={turns1} handleCycle={this.handleCycle} />
-        <PlayerHand key="hand1" hand={hand1} handleDraw={this.handleDraw} player="player1" turns={turns1} />
+        <PlayerHand key="hand1" hand={hand1} handleDraw={this.handleDraw} player="player1" turns={turns1} gameStart1={gameStart1} />
       </div>
     )
   }
 }
 
 function msp(state) {
-  const { coppers, estates, deck1, discard1, hand1 } = state.supply
+  const { coppers, estates, deck1, discard1, hand1, gameStart1 } = state.supply
   const { turns1 } = state.playerOne
 
   return {
@@ -41,7 +41,8 @@ function msp(state) {
     deck1,
     discard1,
     hand1,
-    turns1
+    turns1,
+    gameStart1
   }
 
 }

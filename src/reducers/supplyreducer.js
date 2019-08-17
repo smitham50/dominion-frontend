@@ -13,6 +13,8 @@ const defaultState = {
   cellar1: false,
   cellar2: false,
   cellarHand: [],
+  gameStart1: false,
+  gameStart2: false,
 
   cellars: [],
   moats: [],
@@ -287,14 +289,14 @@ function supplyReducer(prevState=defaultState, action) {
     }
     case "DRAW1": {
       if (prevState.deck1.length >= 5) {
-        return { ...prevState, hand1: prevState.deck1.slice(-5), deck1: prevState.deck1.slice(0, -5) }
+        return { ...prevState, hand1: prevState.deck1.slice(-5), deck1: prevState.deck1.slice(0, -5), gameStart1: true }
       } else {
         return { ...prevState, deck1: shuffle(prevState.deck1.concat(prevState.discard1)), discard1: [] }
       }
     }
     case "DRAW2":
       if (prevState.deck2.length >= 5) {
-        return { ...prevState, hand2: prevState.deck2.slice(-5), deck2: prevState.deck2.slice(0, -5) }
+        return { ...prevState, hand2: prevState.deck2.slice(-5), deck2: prevState.deck2.slice(0, -5), gameStart2: true }
       } else {
         return { ...prevState, deck2: shuffle(prevState.deck2.concat(prevState.discard2)), discard2: [] }
       }

@@ -17,7 +17,7 @@ class PlayerHand extends React.Component {
           ? 
           this.renderHand() 
           :
-            this.props.turns === 0
+            this.props.turns === 0 && (!this.props.gameStart1 && !this.props.gameStart2)
             ? 
             <button onClick={() => this.props.handleDraw()}>Draw Hand</button>
             :

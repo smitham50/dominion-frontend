@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import ActionCards from './actioncards'
 import TreasureCards from './treasurecards'
 import VictoryCards from './victorycards'
@@ -38,7 +38,7 @@ class SupplyArea extends React.Component {
             {
               cellar1 
               ? 
-              <button onClick={this.handleClick1} >End Discard</button> 
+              <button className="cellar-button" onClick={this.handleClick1} >End Discard</button> 
               : 
                 playerTurn === false && remodel
                 ?
@@ -70,17 +70,13 @@ class SupplyArea extends React.Component {
                           Discard 2 cards or play Moat
                         </div>
                         :
-                          playerTurn === false && !cellar1
+                          playerTurn === false && !cellar1 && !gameEnd
                           ? 
                           <button onClick={endTurn1} >End Turn</button> 
                           : 
                           null
             }
           </div>
-        </div>
-        <div id="tvcard-container">
-          <TreasureCards />
-          <VictoryCards />
         </div>
         {
           gameEnd 
@@ -94,8 +90,14 @@ class SupplyArea extends React.Component {
             "Player 2 Wins!"
             }
           </div>
-          :      
-          <ActionCards />
+          :
+          <Fragment>
+            <div id="tvcard-container">
+              <TreasureCards />
+              <VictoryCards />
+            </div>      
+            <ActionCards />
+          </Fragment>
         }
         <div className="margins" >
           <PlayerTurnInfo 
@@ -111,7 +113,7 @@ class SupplyArea extends React.Component {
             {
               cellar2
                 ?
-                <button onClick={this.handleClick2} >End Discard</button>
+                <button className="cellar-button" onClick={this.handleClick2} >End Discard</button>
                 :
                 playerTurn === true && remodel
                   ?
@@ -143,7 +145,7 @@ class SupplyArea extends React.Component {
                               Discard 2 cards or play Moat
                             </div>
                             :
-                            playerTurn === true && !cellar2
+                            playerTurn === true && !cellar2 && !gameEnd
                               ?
                               <button onClick={endTurn2} >End Turn</button>
                               :

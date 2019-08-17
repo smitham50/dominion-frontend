@@ -253,26 +253,26 @@ class Card extends React.Component {
   }
 
   render() {
-    console.log("MINE??", this.props.mine, this.props.hand1, this.props.hand1.some(card => card.name === "Copper" || card.name === "Silver"), this.props.hand2.some(card => card.name === "Copper" || card.name === "Silver"))
+    const { index, id, card, hand1, hand2, player, playerTurn } = this.props
     return(
       <Fragment>
         {
-          this.props.index === 0 
+          index === 0 
           ?
           <img src={
-            this.props.id === "deck-card" 
+            id === "deck-card" 
             ? 
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnxjXZTHcRqwUrA4nW09UvtRlXPGlhAZdOQC6_-s71LayIknwS" 
             : 
-              this.props.card.picture} alt="oops" onClick={() => this.handleClick()} >
-            </img> 
+              card.picture} alt="oops" onClick={() => this.handleClick()} >
+          </img> 
           : 
           <img src={
-            this.props.id === "deck-card" 
+              id === "deck-card"
             ? 
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnxjXZTHcRqwUrA4nW09UvtRlXPGlhAZdOQC6_-s71LayIknwS" 
             :
-            this.props.card.picture} alt="oops" className="rest" onClick={() => this.handleClick()}>
+            card.picture} alt="oops" className="rest" onClick={() => this.handleClick()}>
           </img> 
           }
       </Fragment>
