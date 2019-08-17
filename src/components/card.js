@@ -253,14 +253,14 @@ class Card extends React.Component {
   }
 
   render() {
-    const { index, id, card, hand1, hand2, player, playerTurn } = this.props
+    const { index, id, card, hand1, hand2, player, playerTurn, className, militia } = this.props
     return(
       <Fragment>
         {
           index === 0 
           ?
           <img src={
-            id === "deck-card" 
+              id === "deck-card" || ((className === "hand-card" && playerTurn === false && player === "player2" && !militia) || (className === "hand-card" && playerTurn === true && player === "player1" && !militia) ) 
             ? 
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnxjXZTHcRqwUrA4nW09UvtRlXPGlhAZdOQC6_-s71LayIknwS" 
             : 
@@ -268,7 +268,7 @@ class Card extends React.Component {
           </img> 
           : 
           <img src={
-              id === "deck-card"
+              id === "deck-card" || ((className === "hand-card" && playerTurn === false && player === "player2" && !militia) || (className === "hand-card" && playerTurn === true && player === "player1" && !militia)) 
             ? 
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnxjXZTHcRqwUrA4nW09UvtRlXPGlhAZdOQC6_-s71LayIknwS" 
             :
