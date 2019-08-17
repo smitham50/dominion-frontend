@@ -20,7 +20,8 @@ class SupplyArea extends React.Component {
       actions1, buys1, wallet1, victoryPoints1, turns1, actions2, 
       buys2, wallet2, victoryPoints2, turns2, playerTurn, endTurn1,
       endTurn2, cellar1, cellar2, gameEnd, militia, remodelGain, 
-      remodelValue, workshop, remodel, militiaDiscardSecond, mine } = this.props
+      remodelValue, workshop, remodel, militiaDiscardSecond, mine,
+      gameStart1, gameStart2 } = this.props
       
     return(
       <div id="supply-area">
@@ -70,7 +71,7 @@ class SupplyArea extends React.Component {
                           Discard 2 cards or play Moat
                         </div>
                         :
-                          playerTurn === false && !cellar1 && !gameEnd
+                          playerTurn === false && !cellar1 && !gameEnd && gameStart1 && gameStart2
                           ? 
                           <button onClick={endTurn1} >End Turn</button> 
                           : 
@@ -145,7 +146,7 @@ class SupplyArea extends React.Component {
                               Discard 2 cards or play Moat
                             </div>
                             :
-                            playerTurn === true && !cellar2 && !gameEnd
+                            playerTurn === true && !cellar2 && !gameEnd && gameStart1 && gameStart2
                               ?
                               <button onClick={endTurn2} >End Turn</button>
                               :
@@ -164,7 +165,7 @@ function msp(state) {
   const { playerTurn } = state.game
   const { cellar1, cellar2, gameEnd, militia, militiaDiscardFirst, 
           militiaDiscardSecond, workshopGain, remodelGain, remodelValue,
-          workshop, remodel, mine } = state.supply
+          workshop, remodel, mine, gameStart1, gameStart2 } = state.supply
 
   return {
     actions1,
@@ -172,12 +173,14 @@ function msp(state) {
     wallet1,
     victoryPoints1,
     turns1,
+    gameStart1,
 
     actions2,
     buys2,
     wallet2,
     victoryPoints2,
     turns2,
+    gameStart2,
 
     playerTurn,
     gameEnd,
