@@ -212,20 +212,10 @@ function supplyReducer(prevState=defaultState, action) {
         }
       }
     }
-    case "ACTION1": {
-      if (action.payload.draw <= prevState.deck1.length) {
+    case "ACTION1": 
         return { ...prevState, discard1: prevState.discard1.concat(action.payload), hand1: prevState.hand1.filter(card => card.id !== action.payload.id) }
-      } else {
-        return { ...prevState }
-      }
-    }
-    case "ACTION2": {
-      if (action.payload.draw <= prevState.deck2.length) {
+    case "ACTION2": 
         return { ...prevState, discard2: prevState.discard2.concat(action.payload), hand2: prevState.hand2.filter(card => card.id !== action.payload.id) }
-      } else {
-        return { ...prevState }
-      }
-    }
     case "TRASH_TREASURE1": {
       let pile = action.treasure
       return { ...prevState, trash: prevState.trash.concat(action.payload), hand1: prevState.hand1.filter(card => card.id !== action.payload.id).concat(prevState[pile].slice(-1)), [pile]: prevState[pile].slice(0, -1), mine: false }  
@@ -359,44 +349,110 @@ function supplyReducer(prevState=defaultState, action) {
     // CARD TRIGGERS
     case "+1CARD1": {
       if (prevState.deck1.length > 0) {
-        return { ...prevState, hand1: prevState.hand1.concat(prevState.deck1.slice(-1)), deck1: prevState.deck1.slice(0, -1) }
+        return { 
+          ...prevState, 
+          hand1: prevState.hand1.concat(prevState.deck1.slice(-1)), 
+          deck1: prevState.deck1.slice(0, -1) 
+        }
       } else {
-        return { ...prevState, deck1: shuffle(prevState.deck1.concat(prevState.discard1)), discard1: [] }
+        let handSnapshot = prevState.hand1
+        let shuffleDeck = shuffle(prevState.discard1)
+        return { 
+          ...prevState,
+          hand1: handSnapshot.concat([...shuffleDeck].slice(-1)), 
+          deck1: [...shuffleDeck].slice(0, -1), 
+          discard1: [] 
+        }
       }
     }
     case "+2CARDS1": {
       if (prevState.deck1.length > 1) {
-        return { ...prevState, hand1: prevState.hand1.concat(prevState.deck1.slice(-2)), deck1: prevState.deck1.slice(0, -2) }
+        return { 
+          ...prevState, 
+          hand1: prevState.hand1.concat(prevState.deck1.slice(-2)), 
+          deck1: prevState.deck1.slice(0, -2) 
+        }
       } else {
-        return { ...prevState, deck1: shuffle(prevState.deck1.concat(prevState.discard1)), discard1: [] }
+        let handSnapshot = prevState.hand1
+        let shuffleDeck = shuffle(prevState.discard1)
+        return {
+          ...prevState,
+          hand1: handSnapshot.concat([...shuffleDeck].slice(-2)),
+          deck1: [...shuffleDeck].slice(0, -2),
+          discard1: []
+        }
       }
     }
     case "+3CARDS1": {
       if (prevState.deck1.length > 2) {
-        return { ...prevState, hand1: prevState.hand1.concat(prevState.deck1.slice(-3)), deck1: prevState.deck1.slice(0, -3) }
+        return { 
+          ...prevState, 
+          hand1: prevState.hand1.concat(prevState.deck1.slice(-3)), 
+          deck1: prevState.deck1.slice(0, -3) 
+        }
       } else {
-        return { ...prevState, deck1: shuffle(prevState.deck1.concat(prevState.discard1)), discard1: [] }
+        let handSnapshot = prevState.hand1
+        let shuffleDeck = shuffle(prevState.discard1)
+        return {
+          ...prevState,
+          hand1: handSnapshot.concat([...shuffleDeck].slice(-3)),
+          deck1: [...shuffleDeck].slice(0, -3),
+          discard1: []
+        }
       }
     }
     case "+1CARD2": {
       if (prevState.deck2.length > 0) {
-        return { ...prevState, hand2: prevState.hand2.concat(prevState.deck2.slice(-1)), deck2: prevState.deck2.slice(0, -1) }
+        return { 
+          ...prevState, 
+          hand2: prevState.hand2.concat(prevState.deck2.slice(-1)), 
+          deck2: prevState.deck2.slice(0, -1) 
+        }
       } else {
-        return { ...prevState, deck2: shuffle(prevState.deck2.concat(prevState.discard2)), discard2: [] }
+        let handSnapshot = prevState.hand2
+        let shuffleDeck = shuffle(prevState.discard2)
+        return {
+          ...prevState,
+          hand2: handSnapshot.concat([...shuffleDeck].slice(-1)),
+          deck2: [...shuffleDeck].slice(0, -1),
+          discard2: []
+        }
       }
     }
     case "+2CARDS2": {
       if (prevState.deck2.length > 1) {
-        return { ...prevState, hand2: prevState.hand2.concat(prevState.deck2.slice(-2)), deck2: prevState.deck2.slice(0, -2) }
+        return { 
+          ...prevState, 
+          hand2: prevState.hand2.concat(prevState.deck2.slice(-2)), 
+          deck2: prevState.deck2.slice(0, -2) 
+        }
       } else {
-        return { ...prevState, deck2: shuffle(prevState.deck2.concat(prevState.discard2)), discard2: [] }
+        let handSnapshot = prevState.hand2
+        let shuffleDeck = shuffle(prevState.discard2)
+        return {
+          ...prevState,
+          hand2: handSnapshot.concat([...shuffleDeck].slice(-2)),
+          deck2: [...shuffleDeck].slice(0, -2),
+          discard2: []
+        }
       }
     }
     case "+3CARDS2": {
       if (prevState.deck2.length > 2) {
-        return { ...prevState, hand2: prevState.hand2.concat(prevState.deck2.slice(-3)), deck2: prevState.deck2.slice(0, -3) }
+        return { 
+          ...prevState, 
+          hand2: prevState.hand2.concat(prevState.deck2.slice(-3)), 
+          deck2: prevState.deck2.slice(0, -3) 
+        }
       } else {
-        return { ...prevState, deck2: shuffle(prevState.deck2.concat(prevState.discard2)), discard2: [] }
+        let handSnapshot = prevState.hand2
+        let shuffleDeck = shuffle(prevState.discard2)
+        return {
+          ...prevState,
+          hand2: handSnapshot.concat([...shuffleDeck].slice(-3)),
+          deck2: [...shuffleDeck].slice(0, -3),
+          discard2: []
+        }
       }
     }
     case "MINE1": {
@@ -417,10 +473,24 @@ function supplyReducer(prevState=defaultState, action) {
         }
       }
     }
-    case "REMODEL1":
-      return { ...prevState, remodel: true }
-    case "REMODEL2":
-      return { ...prevState, remodel: true}
+    case "REMODEL1": {
+      if (prevState.hand1.length > 0) {
+        return { ...prevState, remodel: true }
+      } else {
+        return {
+          ...prevState
+        }
+      }
+    }
+    case "REMODEL2": {
+      if (prevState.hand2.length > 0) {
+        return { ...prevState, remodel: true}
+      } else {
+        return {
+          ...prevState
+        }
+      }
+    }
     case "WORKSHOP1":
       return { ...prevState, workshop: true }
     case "WORKSHOP2":

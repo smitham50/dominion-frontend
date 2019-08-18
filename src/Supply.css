@@ -46,6 +46,7 @@
 
 .message {
   padding-left: 5px;
+  padding-right: 5px;
   background: #fdb80e;
   color: white;
   border: solid 1px #4c4c4c;

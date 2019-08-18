@@ -20,13 +20,8 @@ function playerOneReducer(prevState = defaultState, action) {
     }
     case "TURN1":
       return { ...prevState, actions1: 1, buys1: 1, wallet1: 0, turns1: prevState.turns1 + 1 }
-    case "ACTION1": {
-      if (action.payload.draw <= action.deck.length) {
+    case "ACTION1": 
         return { ...prevState, actions1: prevState.actions1 - 1 }
-      } else {
-        return { ...prevState }
-      }
-    }
     case "+1ACTION1":
       return { ...prevState, actions1: prevState.actions1 + 1 }
     case "+2ACTIONS1":

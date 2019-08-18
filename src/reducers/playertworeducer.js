@@ -21,13 +21,8 @@ function playerTwoReducer(prevState=defaultState, action) {
     }
     case "TURN2":
       return { ...prevState, actions2: 1, buys2: 1, wallet2: 0, turns2: prevState.turns2 + 1 }
-    case "ACTION2": {
-      if (action.payload.draw <= action.deck.length) {
-        return { ...prevState, actions2: prevState.actions2 - 1 }
-      } else {
-        return { ...prevState }
-      }
-    }
+    case "ACTION2": 
+        return { ...prevState, actions2: prevState.actions2 - 1 }    
     case "+1ACTION2":
       return { ...prevState, actions2: prevState.actions2 + 1 }
     case "+2ACTIONS2":
