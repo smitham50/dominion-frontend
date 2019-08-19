@@ -88,6 +88,11 @@ button {
   width: 14%;
 }
 
+#card-info {
+  width: 14%;
+  color: white;
+}
+
 #player-two-area {
   width: 43%;
   display: flex;
@@ -100,7 +105,7 @@ button {
   width: 25%;
   display: flex;
   overflow: scroll;
-  
+  padding-left: 2px;
 }
 
 .player-deck img {
@@ -123,18 +128,8 @@ button {
   width: 50%;
   display: flex;
   overflow: scroll;
-  
+  padding-left: 2px;
 }
-
-/* .player-hand:hover {
-  border: solid 1px #4c4c4c;
-  border-radius: 3px;
-  width: 50%;
-  display: flex;
-
-  overflow: scroll;
-  
-} */
 
 .player-hand img {
   height: 150px;
