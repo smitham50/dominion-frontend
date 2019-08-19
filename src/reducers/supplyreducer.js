@@ -300,13 +300,13 @@ function supplyReducer(prevState=defaultState, action) {
             deck1: prevState.deck1.slice(0, -1) 
           }
         } else {
-            let discardCard = action.payload
-            let cycleDiscard = [...prevState.discard1.concat(discardCard)]
-            let shuffleDeck = shuffle([...prevState.deck1.concat(cycleDiscard)])
+            let cycleHand = prevState.hand1.filter(card => card.id !== action.payload.id)
+            let cycleDiscard = prevState.discard1.concat(action.payload)
+            let shuffleDeck = shuffle(cycleDiscard)
             return {
               ...prevState,
-              hand1: prevState.hand1.concat([...shuffleDeck.slice(-1)]),
-              deck1: [...shuffleDeck.slice(0, -1)],
+              hand1: cycleHand.concat(shuffleDeck.slice(-1)),
+              deck1: shuffleDeck.slice(0, -1),
               discard1: []
           }
         }
@@ -326,13 +326,13 @@ function supplyReducer(prevState=defaultState, action) {
             deck2: prevState.deck2.slice(0, -1) 
           }
         } else {
-            let discardCard = action.payload
-            let cycleDiscard = [...prevState.discard2.concat(discardCard)]
-            let shuffleDeck = shuffle([...prevState.deck2.concat(cycleDiscard)]) 
+            let cycleHand = prevState.hand2.filter(card => card.id !== action.payload.id)
+            let cycleDiscard = prevState.discard2.concat(action.payload)
+            let shuffleDeck = shuffle(cycleDiscard) 
             return {
               ...prevState,
-              hand2: prevState.hand2.concat([...shuffleDeck.slice(-1)]),
-              deck2: [...shuffleDeck.slice(0, -1)],
+              hand2: cycleHand.concat(shuffleDeck.slice(-1)),
+              deck2: shuffleDeck.slice(0, -1),
               discard2: []
           }
         }
@@ -355,12 +355,11 @@ function supplyReducer(prevState=defaultState, action) {
           deck1: prevState.deck1.slice(0, -1) 
         }
       } else {
-        let handSnapshot = prevState.hand1
         let shuffleDeck = shuffle(prevState.discard1)
         return { 
           ...prevState,
-          hand1: handSnapshot.concat([...shuffleDeck].slice(-1)), 
-          deck1: [...shuffleDeck].slice(0, -1), 
+          hand1: prevState.hand1.concat(shuffleDeck.slice(-1)), 
+          deck1: shuffleDeck.slice(0, -1), 
           discard1: [] 
         }
       }
@@ -373,12 +372,11 @@ function supplyReducer(prevState=defaultState, action) {
           deck1: prevState.deck1.slice(0, -2) 
         }
       } else {
-        let handSnapshot = prevState.hand1
         let shuffleDeck = shuffle(prevState.discard1)
         return {
           ...prevState,
-          hand1: handSnapshot.concat([...shuffleDeck].slice(-2)),
-          deck1: [...shuffleDeck].slice(0, -2),
+          hand1: prevState.hand1.concat(shuffleDeck.slice(-2)),
+          deck1: shuffleDeck.slice(0, -2),
           discard1: []
         }
       }
@@ -391,12 +389,11 @@ function supplyReducer(prevState=defaultState, action) {
           deck1: prevState.deck1.slice(0, -3) 
         }
       } else {
-        let handSnapshot = prevState.hand1
         let shuffleDeck = shuffle(prevState.discard1)
         return {
           ...prevState,
-          hand1: handSnapshot.concat([...shuffleDeck].slice(-3)),
-          deck1: [...shuffleDeck].slice(0, -3),
+          hand1: prevState.hand1.concat(shuffleDeck.slice(-3)),
+          deck1: shuffleDeck.slice(0, -3),
           discard1: []
         }
       }
@@ -409,12 +406,11 @@ function supplyReducer(prevState=defaultState, action) {
           deck2: prevState.deck2.slice(0, -1) 
         }
       } else {
-        let handSnapshot = prevState.hand2
         let shuffleDeck = shuffle(prevState.discard2)
         return {
           ...prevState,
-          hand2: handSnapshot.concat([...shuffleDeck].slice(-1)),
-          deck2: [...shuffleDeck].slice(0, -1),
+          hand2: prevState.hand2.concat(shuffleDeck.slice(-1)),
+          deck2: shuffleDeck.slice(0, -1),
           discard2: []
         }
       }
@@ -427,12 +423,11 @@ function supplyReducer(prevState=defaultState, action) {
           deck2: prevState.deck2.slice(0, -2) 
         }
       } else {
-        let handSnapshot = prevState.hand2
         let shuffleDeck = shuffle(prevState.discard2)
         return {
           ...prevState,
-          hand2: handSnapshot.concat([...shuffleDeck].slice(-2)),
-          deck2: [...shuffleDeck].slice(0, -2),
+          hand2: prevState.hand2.concat(shuffleDeck.slice(-2)),
+          deck2: shuffleDeck.slice(0, -2),
           discard2: []
         }
       }
@@ -445,12 +440,11 @@ function supplyReducer(prevState=defaultState, action) {
           deck2: prevState.deck2.slice(0, -3) 
         }
       } else {
-        let handSnapshot = prevState.hand2
         let shuffleDeck = shuffle(prevState.discard2)
         return {
           ...prevState,
-          hand2: handSnapshot.concat([...shuffleDeck].slice(-3)),
-          deck2: [...shuffleDeck].slice(0, -3),
+          hand2: prevState.hand2.concat(shuffleDeck.slice(-3)),
+          deck2: shuffleDeck.slice(0, -3),
           discard2: []
         }
       }
