@@ -144,9 +144,15 @@ button {
 
 .player-hand .rest {
   height: 150px;
-  margin-left: -55px;
+  margin-left: -47px;
   margin-top: 15px;
 }
+
+/* .player-hand .rest:hover {
+  height: 150px;
+  margin-left: -30px;
+  margin-top: 15px;
+} */
 
 /* END PLAYER HAND STYLING */
 
