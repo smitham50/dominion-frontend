@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 class Card extends React.Component {
 
   componentWillUnmount = () => {  
-    if (this.props.card.name !== "Trash") {
+    if (!this.props.trash.includes(this.props.card)) {
       this.props.hoverOff() 
     }
   }
@@ -310,7 +310,7 @@ function msp(state) {
   const { 
     playerTurn, deck1, deck2, hand1, hand2, mine, remodel, remodelGain, 
     remodelValue, workshop, militia, militiaDiscardFirst, militiaDiscardSecond,
-    cellar1, cellar2, isHovered
+    cellar1, cellar2, isHovered, trash
   } = state.supply
   const { wallet1, buys1, turns1, actions1 } = state.playerOne
   const { wallet2, buys2, turns2, actions2 } = state.playerTwo
@@ -329,6 +329,7 @@ function msp(state) {
     militiaDiscardSecond,
     cellar1,
     cellar2,
+    trash,
 
 
     wallet1,
