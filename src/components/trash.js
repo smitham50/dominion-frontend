@@ -5,13 +5,15 @@ import { connect } from 'react-redux'
 class Trash extends React.Component {
 
   componentDidMount() {
-    fetch('http://localhost:3000/api/v1/cards')
-      .then(resp => resp.json())
-      .then(cards => {
-        this.props.setTrash(cards.filter(card => {
-          return card.name === "Trash"
-        }))
-      })
+    if (this.props.trash.length === 0) {
+      fetch('http://localhost:3000/api/v1/cards')
+        .then(resp => resp.json())
+        .then(cards => {
+          this.props.setTrash(cards.filter(card => {
+            return card.name === "Trash"
+          }))
+        })
+    }
   }
 
   renderTrash = () => {
@@ -21,6 +23,7 @@ class Trash extends React.Component {
   }
 
   render() {
+    console.log("TRASH", this.props.trash)
     return(
       <div id="trash" >
         {this.renderTrash()}

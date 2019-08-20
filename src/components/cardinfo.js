@@ -4,8 +4,12 @@ import { connect } from 'react-redux'
 class CardInfo extends React.Component {
 
   render() {
+    const { card } = this.props.hoverCard.props
     return (
       <div id="card-info" >
+        <h3>{ card.name }</h3>
+        <p>{ card.description }</p>
+        <p>Cost: { card.cost }</p>
       </div>
     )
   }
@@ -13,18 +17,13 @@ class CardInfo extends React.Component {
 
 function msp(state) {
 
-  const {  } = state.supply
+  const { hoverCard } = state.supply
 
   return {
-    
+    hoverCard
   }
 
 }
 
-function mdp(dispatch) {
-  return {
-    
-  }
-}
 
-export default connect(msp, mdp)(CardInfo)
+export default connect(msp, null)(CardInfo)

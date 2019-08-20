@@ -1,5 +1,7 @@
 const defaultState = {
 // PLAYER 1 TURN ON FALSE, PLAYER 2 TURN ON TRUE
+  isHovered: false,
+  hoverCard: null,
   playerTurn: false,
   mine: false,
   remodel: false,
@@ -83,8 +85,10 @@ function supplyReducer(prevState=defaultState, action) {
       return { ...prevState, duchys: action.payload }
     case "PROVINCES":
       return { ...prevState, provinces: action.payload }
-    case "TRASH":
+    case "TRASH": {
+      console.log("PAYLOAD",)
       return { ...prevState, trash: prevState.trash.concat(action.payload) }
+    }
     // PLAYER ACTIONS  
     case "TURN1": {
       let endHand = [...prevState.hand1]
@@ -497,6 +501,10 @@ function supplyReducer(prevState=defaultState, action) {
       return { ...prevState, cellar1: true, cellarHand: [...prevState.hand1] }
     case "CELLAR2":
       return { ...prevState, cellar2: true, cellarHand: [...prevState.hand2] }
+    case "HOVER_ON":
+      return { ...prevState, isHovered: true, hoverCard: action.payload }
+    case "HOVER_OFF":
+      return { ...prevState, isHovered: false, hoverCard: action.payload }
     default:
       return prevState
   }

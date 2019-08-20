@@ -3,6 +3,8 @@ import PlayerOneArea from './playeronearea'
 import PlayerTwoArea from './playertwoarea'
 import SupplyArea from './supplyarea'
 import Trash from '../components/trash'
+import CardInfo from '../components/cardinfo'
+import { connect } from 'react-redux'
 
 class PlayTable extends React.Component {
 
@@ -12,7 +14,7 @@ class PlayTable extends React.Component {
         <SupplyArea />
         <div id="player-area-container">
           <PlayerOneArea />
-          <Trash />
+          { this.props.isHovered ? <CardInfo key="card-info" /> : <Trash />}
           <PlayerTwoArea />
         </div>
       </div>
@@ -20,4 +22,14 @@ class PlayTable extends React.Component {
   }
 }
 
-export default PlayTable
+function msp(state) {
+
+  const { isHovered } = state.supply
+
+  return {
+    isHovered
+  }
+
+}
+
+export default connect(msp, null)(PlayTable)

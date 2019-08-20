@@ -247,11 +247,9 @@ class Card extends React.Component {
       (card.card_type === "Action" || card.card_type === "Victory")
     ) {
       trashRemodel2(card)
-    } 
-    // REMODEL VICTORY CARD
-    
+    }   
   }
-
+  
   render() {
     const { index, id, card, hand1, hand2, player, playerTurn, className, militia, militiaDiscardSecond } = this.props
     return(
@@ -264,7 +262,7 @@ class Card extends React.Component {
             ? 
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnxjXZTHcRqwUrA4nW09UvtRlXPGlhAZdOQC6_-s71LayIknwS" 
             : 
-              card.picture} alt="oops" onClick={() => this.handleClick()} >
+              card.picture} alt="oops" onClick={() => this.handleClick()} onMouseEnter={className === "supply-card" ? () => this.props.hoverOn(this) : null} onMouseLeave={this.props.hoverOff} >
           </img> 
           : 
           <img src={
@@ -272,7 +270,7 @@ class Card extends React.Component {
             ? 
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnxjXZTHcRqwUrA4nW09UvtRlXPGlhAZdOQC6_-s71LayIknwS" 
             :
-            card.picture} alt="oops" className="rest" onClick={() => this.handleClick()}>
+            card.picture} alt="oops" className="rest" onClick={() => this.handleClick()} onMouseEnter={className === "supply-card" ? () => this.props.hoverOn(this) : null} onMouseLeave={this.props.hoverOff}>
           </img> 
           }
       </Fragment>
@@ -286,13 +284,14 @@ function msp(state) {
   const { 
     playerTurn, deck1, deck2, hand1, hand2, mine, remodel, remodelGain, 
     remodelValue, workshop, militia, militiaDiscardFirst, militiaDiscardSecond,
-    cellar1, cellar2
+    cellar1, cellar2, isHovered
   } = state.supply
   const { wallet1, buys1, turns1, actions1 } = state.playerOne
   const { wallet2, buys2, turns2, actions2 } = state.playerTwo
 
   return {
 
+    isHovered,
     playerTurn,
     mine,
     remodel,
@@ -406,6 +405,12 @@ function mdp(dispatch) {
     },
     cellarDiscard2: (card) => {
       dispatch({ type: "CELLAR_DISCARD2", payload: card })
+    },
+    hoverOn: (card) => {
+      dispatch({ type: "HOVER_ON", payload: card })
+    },
+    hoverOff: () => {
+      dispatch({ type: "HOVER_OFF" })
     }
   }
 
