@@ -88,13 +88,17 @@ button {
   width: 14%;
 }
 
-#card-info {
+.card-info {
   width: 14%;
-  height: 100%;
+  height: 170px;
+  background: #00000033;
   /* padding-left: 5px;
   padding-right: 5px; */
   color: white;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
 #player-two-area {

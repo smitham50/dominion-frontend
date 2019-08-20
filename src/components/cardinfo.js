@@ -6,8 +6,8 @@ class CardInfo extends React.Component {
   render() {
     const { card } = this.props.hoverCard.props
     return (
-      <div id="card-info" >
-        <h3>{ card.name }</h3>
+      <div className="card-info" >
+        <h4>{ card.name }</h4>
         <p>{ card.description }</p>
         <p>Cost: { card.cost }</p>
       </div>
