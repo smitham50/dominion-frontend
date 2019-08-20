@@ -3,6 +3,12 @@ import { connect } from 'react-redux'
 
 class Card extends React.Component {
 
+  componentWillUnmount = () => {  
+    if (this.props.card.name !== "Trash") {
+      this.props.hoverOff() 
+    }
+  }
+
   handleClick = () => {
 
     const { 
@@ -262,7 +268,17 @@ class Card extends React.Component {
             ? 
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnxjXZTHcRqwUrA4nW09UvtRlXPGlhAZdOQC6_-s71LayIknwS" 
             : 
-              card.picture} alt="oops" onClick={() => this.handleClick()} onMouseEnter={className === "supply-card" ? () => this.props.hoverOn(this) : null} onMouseLeave={this.props.hoverOff} >
+              card.picture} alt="oops" onClick={() => this.handleClick()} 
+              onMouseEnter={
+                className === "supply-card" 
+                || ((className === "hand-card" && playerTurn === false && player === "player1" && !militia && !militiaDiscardSecond) 
+                || (className === "hand-card" && playerTurn === true && player === "player2" && !militia && !militiaDiscardSecond))
+                ? 
+                  () => this.props.hoverOn(this) 
+                : 
+                  null
+              } 
+              onMouseLeave={this.props.hoverOff} >
           </img> 
           : 
           <img src={
@@ -270,7 +286,17 @@ class Card extends React.Component {
             ? 
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnxjXZTHcRqwUrA4nW09UvtRlXPGlhAZdOQC6_-s71LayIknwS" 
             :
-            card.picture} alt="oops" className="rest" onClick={() => this.handleClick()} onMouseEnter={className === "supply-card" ? () => this.props.hoverOn(this) : null} onMouseLeave={this.props.hoverOff}>
+            card.picture} alt="oops" className="rest" onClick={() => this.handleClick()} 
+            onMouseEnter={
+              className === "supply-card" 
+              || ((className === "hand-card" && playerTurn === false && player === "player1" && !militia && !militiaDiscardSecond) 
+              || (className === "hand-card" && playerTurn === true && player === "player2" && !militia && !militiaDiscardSecond))
+              ? 
+                () => this.props.hoverOn(this) 
+              : 
+                null
+            } 
+            onMouseLeave={this.props.hoverOff}>
           </img> 
           }
       </Fragment>
