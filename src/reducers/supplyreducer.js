@@ -493,10 +493,20 @@ function supplyReducer(prevState=defaultState, action) {
       return { ...prevState, workshop: true }
     case "WORKSHOP2":
       return { ...prevState, workshop: true }
-    case "ATTACK1":
-      return { ...prevState, militia: true, militiaDiscardFirst: true }
-    case "ATTACK2":
-      return { ...prevState, militia: true, militiaDiscardFirst: true }
+    case "ATTACK1": {
+      if (prevState.hand2.length > 3) {
+        return { ...prevState, militia: true, militiaDiscardFirst: true }
+      } else {
+        return { ...prevState }
+      }
+    }
+    case "ATTACK2": {
+      if (prevState.hand1.length > 3) {
+        return { ...prevState, militia: true, militiaDiscardFirst: true }
+      } else {
+        return { ...prevState }
+      }
+      }
     case "CELLAR1":
       return { ...prevState, cellar1: true, cellarHand: [...prevState.hand1] }
     case "CELLAR2":
