@@ -50,6 +50,7 @@ const defaultState = {
 }
 
 function supplyReducer(prevState=defaultState, action) {
+  console.log("EMPTY PILES", prevState.emptyPiles)
   let shuffle = require('shuffle-array')
   switch (action.type) {
     // INITIAL SUPPLY RENDER
@@ -185,7 +186,7 @@ function supplyReducer(prevState=defaultState, action) {
       if (prevState[pile].length > 1 && pile !== "provinces") {
         return { ...prevState, discard1: prevState.discard1.concat(action.payload), [pile]: prevState[pile].filter(card => card.id !== action.payload.id) }
       } else if (prevState[pile].length === 1 && pile !== "provinces") {
-        if (prevState.emptyPiles < 3) {
+        if (prevState.emptyPiles < 2) {
           return { ...prevState, discard1: prevState.discard1.concat(action.payload), [pile]: prevState[pile].filter(card => card.id !== action.payload.id), emptyPiles: prevState.emptyPiles + 1 }
         } else {
           return { ...prevState, discard1: prevState.discard1.concat(action.payload), [pile]: prevState[pile].filter(card => card.id !== action.payload.id), gameEnd: true }
