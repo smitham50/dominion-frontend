@@ -4,7 +4,7 @@ function PlayerTurnInfo(props) {
 
   return(
     <div className="player-turn-info" >
-      <div className="player-tag">{props.player}</div>
+      <div className="player-tag"><h3>{props.player}</h3></div>
       <div className="player-actions">{`Actions: ${props.actions}`}</div>
       <div className="player-buys">{`Buys: ${props.buys}`}</div>
       <div className="player-wallet">{`Wallet: ${props.wallet}`}</div>

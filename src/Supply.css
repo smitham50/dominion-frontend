@@ -44,6 +44,26 @@
   height: 75%;
 }
 
+.player-tag {
+  height: 9%;
+}
+
+.player-actions {
+  height: 7%;
+}
+
+.player-buys {
+  height: 7%;
+}
+
+.player-wallet {
+  height: 7%;
+}
+
+.player-vps {
+  height: 7%;
+}
+
 .message {
   padding-left: 5px;
   padding-right: 5px;
