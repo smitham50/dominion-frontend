@@ -71,7 +71,7 @@ class SupplyArea extends React.Component {
                           Discard 2 cards or play Moat
                         </div>
                         :
-                          playerTurn === false && !cellar1 && !gameEnd && gameStart1 && gameStart2
+                          playerTurn === false && !cellar1 && !gameEnd && gameStart1 && gameStart2 && (!militia && !militiaDiscardSecond)
                           ? 
                           <button onClick={endTurn1} >End Turn</button> 
                           : 
@@ -146,7 +146,7 @@ class SupplyArea extends React.Component {
                               Discard 2 cards or play Moat
                             </div>
                             :
-                            playerTurn === true && !cellar2 && !gameEnd && gameStart1 && gameStart2
+                            playerTurn === true && !cellar2 && !gameEnd && gameStart1 && gameStart2 && (!militia && !militiaDiscardSecond)
                               ?
                               <button onClick={endTurn2} >End Turn</button>
                               :
