@@ -1,0 +1,13 @@
+#menu {
+  justify-content: center;
+  display: flex;
+  padding-top: 20%;
+}
+
+#menu-list {
+  background: #d3e7e800;
+  border: solid 1px #4c4c4c;
+  color: white;
+  display: flex;
+  flex-direction: column;
+}

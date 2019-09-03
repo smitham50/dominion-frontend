@@ -257,7 +257,7 @@ class Card extends React.Component {
   }
   
   render() {
-    const { index, id, card, hand1, hand2, player, playerTurn, className, militia, militiaDiscardSecond } = this.props
+    const { index, id, card, player, playerTurn, className, militia, militiaDiscardSecond } = this.props
     return(
       <Fragment>
         {

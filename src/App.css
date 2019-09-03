@@ -9,12 +9,13 @@ html {
   height: 100vh;
 }
 
-body {
+html body {
   font-family: 'Trajan Pro Regular';
   background-image: url("https://cdna.artstation.com/p/assets/images/images/009/330/096/large/tomasz-jedruszek-asdominion-2nd.jpg?1518377966");
-  background-repeat: no-repeat;
+  background-repeat: no-repeat center center fixed;
   background-size: cover;
-  background-position-y: 20%;
+  /* background-position-y: 20%; */
+  background-position-y: 42%;
   height: 100vh;
 }
 
