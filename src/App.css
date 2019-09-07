@@ -5,17 +5,21 @@
   src: local('Trajan Pro Regular'), local('Trajan Pro Regular'),
 }
 
-html {
+/* html {
   height: 100vh;
-}
+} */
 
-html body {
+html, body {
   font-family: 'Trajan Pro Regular';
-  background-image: url("https://cdna.artstation.com/p/assets/images/images/009/330/096/large/tomasz-jedruszek-asdominion-2nd.jpg?1518377966");
-  background-repeat: no-repeat center center fixed;
+  background: url("https://cdna.artstation.com/p/assets/images/images/009/330/096/large/tomasz-jedruszek-asdominion-2nd.jpg?1518377966") no-repeat center center fixed;
+  /* background-repeat: no-repeat center center fixed; */
   background-size: cover;
   /* background-position-y: 20%; */
   background-position-y: 42%;
+  height: 100vh;
+}
+
+#root {
   height: 100vh;
 }
 
@@ -27,7 +31,7 @@ img {
   border: solid 1px #4c4c4c;
   border-radius: 3px;
   width: 100%;
-  height: 100%;
+  height: 100vh;
 }
 
 #game-end {
@@ -62,10 +66,10 @@ button {
 }
 
 #play-table {
- border: solid 1px #4c4c4c;
- border-radius: 3px;
+  border: solid 1px #4c4c4c;
+  border-radius: 3px;
   width: 100%;
-  height: 100%;
+  height: 90%;
   display: flex;
   flex-direction: column;
 }
@@ -75,7 +79,7 @@ button {
   border: solid 1px #4c4c4c;
   border-radius: 3px;
   width: 100%;
-  height: 100%;
+  height: 25%;
   background: #0000002b;
   display: flex;
 }
