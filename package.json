@@ -2,6 +2,7 @@
   "name": "dominion-frontend",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://smitham50.github.io/",
   "dependencies": {
     "boardgame.io": "^0.32.1",
     "gh-pages": "^2.1.1",
@@ -14,6 +15,8 @@
     "shuffle-array": "^1.0.1"
   },
   "scripts": {
+    "predeploy": "yarn run build",
+    "deploy": "gh-pages -b master -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
