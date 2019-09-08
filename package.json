@@ -2,7 +2,7 @@
   "name": "dominion-frontend",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://smitham50.github.io/",
+  "homepage": "https://smitham50.github.io/dominion-frontend",
   "dependencies": {
     "boardgame.io": "^0.32.1",
     "gh-pages": "^2.1.1",
