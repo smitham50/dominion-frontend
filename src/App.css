@@ -181,7 +181,7 @@ button {
   height: 100%;
   display: flex;
   overflow: scroll;
-  
+  padding-left: 2px;
 }
 
 .player-discard img {
