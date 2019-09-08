@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 class ActionCards extends React.Component {
 
   componentDidMount() {
-    fetch('http://localhost:3000/api/v1/cards')
+    fetch('https://blooming-sierra-89816.herokuapp.com/api/v1/cards')
       .then(resp => resp.json())
       .then(cards => {
         this.props.setCellars(cards.filter(card => {

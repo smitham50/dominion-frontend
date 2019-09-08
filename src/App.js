@@ -9,14 +9,6 @@ import { Route, Switch, Link } from "react-router-dom"
 
 class App extends React.Component {
 
-  componentDidMount() {
-    fetch('http://localhost:3000/api/v1/cards')
-    .then(resp => resp.json())
-    .then(cards => {
-      this.props.setCards(cards)
-    })
-  }
-
   render() {
     return (
       <div className="App">
@@ -28,7 +20,7 @@ class App extends React.Component {
           }
           />
           <Route 
-            path="/playgame"
+            path="/"
             render={() =>
               <PlayTable />
             }
@@ -39,19 +31,5 @@ class App extends React.Component {
   }
 } // end of App component
 
-function msp(state) {
 
-  return {
-
-  }
-}
-
-function mdp(dispatch) {
-  return {
-    setCards: (cards) => {
-      dispatch({type: "CARDS", payload: cards})
-    }
-  }
-}
-
-export default connect(msp, mdp)(App)
+export default App
