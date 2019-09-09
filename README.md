@@ -34,7 +34,7 @@ Action cards expand the possibilities of what you can accomplish in a turn. Each
 #### Supply Area:
 ![Image of Supply Area](https://user-images.githubusercontent.com/48811326/64527070-fcef0a00-d2d2-11e9-81b4-5486edf26eb2.png) <br>
 
-This are the cards you can purchase during your turn if you have any remaining buys and enough money in your wallet. Each card you buy will be added to your discard pile and ultimately reshuffled into your deck when you run out of cards to draw. The card costs are on the bottom left corner of each card, but you can also see them in the information area if you hover the mouse over a card.
+These are the cards you can purchase during your turn if you have any remaining buys and enough money in your wallet. Each card you buy will be added to your discard pile and ultimately reshuffled into your deck when you run out of cards to draw. The card costs are on the bottom left corner of each card, but you can also see them in the information area if you hover the mouse over a card.
 
 #### Player Areas:
 ![Image of Player Area](https://user-images.githubusercontent.com/48811326/64528490-a1268000-d2d6-11e9-9fa6-2f4a7bbc122b.png) <br>
