@@ -51,10 +51,9 @@ At the left and right sides of the screen you can see information about each pla
 
 Two cards in the game, the Remodel and Mine, will allow you to permanently remove cards from your deck to acquire better cards in their place. Cards removed in this fashion are added to the trash pile, where they'll remain for the rest of the game.
 
+### Beginning the game
 
-
-
-
+When both players' decks and hands have been dealt, the game will begin, and you'll see an End Turn button appear in Player 1's info area. Player 1 may begin playing his or her turn.
 
 ### Playing the Game
 
