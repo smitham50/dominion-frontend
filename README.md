@@ -44,7 +44,7 @@ Each player has their own area containing their deck, discard and hand. Your han
 #### Player Info:
 ![Image of Player Info](https://user-images.githubusercontent.com/48811326/64528564-c7e4b680-d2d6-11e9-8a1a-248df08c6c85.png) <br>
 
-At the left and right sides of the screen you can see information about each player, including the number of actions, buys, and the amount of money in their wallet they have on their turn. These numbers can change during your turn but reset to 1 action, 1 buy and 0 wallet when you end your turn. The player info area also has a button to end your turn, and will occasionally display prompts to player further action is required.
+At the left and right sides of the screen you can see information about each player, including the number of actions, buys, the amount of money they have in their wallet on their turn, and their total victory points (VPs). These numbers can change during your turn but reset to 1 action, 1 buy and 0 wallet when you end your turn. The player info area also has a button to end your turn, and will occasionally display prompts to player further action is required.
 
 
 
