@@ -18,7 +18,13 @@ The player with the most victory points in his Deck at game end wins.
 ### Card Types
 
 Treasure cards: <br>
-![Image of Treasure Cards](https://user-images.githubusercontent.com/48811326/64527112-13956100-d2d3-11e9-9dc5-e7a9b5970d80.png)
+![Image of Treasure Cards](https://user-images.githubusercontent.com/48811326/64527112-13956100-d2d3-11e9-9dc5-e7a9b5970d80.png) <br>
+
+With each treasure card you play from your hand, your wallet will be updated according to the treasure card's value. Treasure cards cannot be saved between turns, your wallet will reset to 0 at the end of your turn and any unused treasure cards will be discarded.
+
+Victory cards: <br>
+![Image of Victory Cards](https://user-images.githubusercontent.com/48811326/64527146-29a32180-d2d3-11e9-8201-d87c95e3d0d2.png) <br>
+
 
 ### Playing the Game
 
