@@ -49,6 +49,8 @@ At the left and right sides of the screen you can see information about each pla
 #### Trash Area:
 ![Image of Trash](https://user-images.githubusercontent.com/48811326/64540539-616b9280-d2ee-11e9-9f71-d9b4fb8726e1.png) <br>
 
+Two cards in the game, the Remodel and Mine, will allow you to permanently remove cards from your deck to acquire better cards in their place. Cards removed in this fashion are added to the trash pile, where they'll remain for the rest of the game.
+
 
 
 
