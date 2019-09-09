@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "45c5f4e544d9c20ab90efebf193ee823",
+    "revision": "559710bfc8f41b572491ac9b8cec66f2",
     "url": "/dominion-frontend/index.html"
   },
   {
-    "revision": "a5ca3345e22651ba5751",
+    "revision": "10b4dd3c4cc20ffb211d",
     "url": "/dominion-frontend/static/css/main.99448a8d.chunk.css"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/dominion-frontend/static/js/2.aad0064c.chunk.js"
   },
   {
-    "revision": "a5ca3345e22651ba5751",
-    "url": "/dominion-frontend/static/js/main.d5e2baff.chunk.js"
+    "revision": "10b4dd3c4cc20ffb211d",
+    "url": "/dominion-frontend/static/js/main.a393de97.chunk.js"
   },
   {
     "revision": "bf4bbc032043f28ea449",
