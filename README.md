@@ -31,6 +31,22 @@ Victory cards only serve one purpose, to give you victory points. You want as ma
 Action cards expand the possibilities of what you can accomplish in a turn. Each card has its own unique abilities. They can make it possible to play further action cards, draw additional cards into your hand, or buy more cards per turn. They can also add money to your wallet, attack your opponent, defend against your opponent, or permanently remove unwanted cards from your deck.
 
 ### Play Areas
+#### Supply Area:
+![Image of Supply Area](https://user-images.githubusercontent.com/48811326/64527070-fcef0a00-d2d2-11e9-81b4-5486edf26eb2.png) <br>
+
+This are the cards you can purchase during your turn if you have any remaining buys and enough money in your wallet. Each card you buy will be added to your discard pile and ultimately reshuffled into your deck when you run out of cards to draw. The card costs are on the bottom left corner of each card, but you can also see them in the information area if you hover the mouse over a card.
+
+#### Player Areas:
+![Image of Player Area](https://user-images.githubusercontent.com/48811326/64528490-a1268000-d2d6-11e9-9fa6-2f4a7bbc122b.png) <br>
+
+Each player has their own area containing their deck, discard and hand. Your hand cards will be exposed during your turn and hidden during your opponent's.
+
+#### Player Info:
+![Image of Player Info](https://user-images.githubusercontent.com/48811326/64528564-c7e4b680-d2d6-11e9-8a1a-248df08c6c85.png) <br>
+
+At the left and right sides of the screen you can see information about each player, including the number of actions, buys, and the amount of money in their wallet they have on their turn. These numbers can change during your turn but reset to 1 action, 1 buy and 0 wallet when you end your turn. The player info area also has a button to end your turn, and will occasionally display prompts to player further action is required.
+
+
 
 
 
