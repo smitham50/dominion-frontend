@@ -68,3 +68,7 @@ During your turn, you may: <br>
 -Use a buy and the money in your wallet to purchase a card from the supply area <br>
 
 Playing an action card may grant you further actions, extra buys, or allow you to draw more cards into your hand.
+
+### Game End
+
+The game ends when all of the Province cards have been bought or when any 3 supply piles are empty. The player with the most victory points at the end of the game wins.
