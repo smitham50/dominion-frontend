@@ -6,7 +6,7 @@ class Trash extends React.Component {
 
   componentDidMount() {
     if (this.props.trash.length === 0) {
-      fetch('http://localhost:3000/api/v1/cards')
+      fetch('https://blooming-sierra-89816.herokuapp.com/api/v1/cards')
         .then(resp => resp.json())
         .then(cards => {
           this.props.setTrash(cards.filter(card => {
