@@ -72,3 +72,7 @@ Playing an action card may grant you further actions, extra buys, or allow you t
 ### Game End
 
 The game ends when all of the Province cards have been bought or when any 3 supply piles are empty. The player with the most victory points at the end of the game wins.
+
+### Game Reset
+
+You can reset the game at any time by refreshing the browser.
