@@ -24,7 +24,7 @@ On each turn you begin with: <br>
 
 During your turn, you may: <br>
 -Use an action to play an action card from your hand <br>
--Play as many treasure cards as you like to fill your wallet <br>
+-Play treasure cards from your hand to fill your wallet <br>
 -Use a buy and the money in your wallet to purchase a card from the supply area <br>
 
 Playing an action card may grant you further actions, extra buys, or allow you to draw more cards into your hand.
