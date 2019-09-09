@@ -17,14 +17,14 @@ The player with the most victory points in his Deck at game end wins.
 
 ### Playing the Game
 
-On each turn you begin with:
--1 Action
--1 Buy
--0 Wallet
+On each turn you begin with: <br>
+-1 Action <br>
+-1 Buy <br>
+-0 Wallet <br>
 
-During your turn, you may:
--Use an action to play an action card from your hand
--Play as many treasure cards as you like to fill your wallet
--Use a buy and the money in your wallet to purchase a card from the supply area
+During your turn, you may: <br>
+-Use an action to play an action card from your hand <br>
+-Play as many treasure cards as you like to fill your wallet <br>
+-Use a buy and the money in your wallet to purchase a card from the supply area <br>
 
 Playing an action card may grant you further actions, extra buys, or allow you to draw more cards into your hand.
