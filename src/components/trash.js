@@ -23,7 +23,6 @@ class Trash extends React.Component {
   }
 
   render() {
-    console.log("TRASH", this.props.trash)
     return(
       <div id="trash" >
         {this.renderTrash()}

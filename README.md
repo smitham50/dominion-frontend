@@ -15,6 +15,11 @@ But wait! It must be something in the air; several other monarchs have had the e
 This is a game of building a deck of cards. The deck is your Dominion. It contains your resources, victory points, and the things you can do. It starts out a small sad collection of Estates and Coppers, but you hope by the end of the game it will be brimming with Gold, Provinces, and the inhabitants and structures of your castle and kingdom.
 The player with the most victory points in his Deck at game end wins.
 
+### Card Types
+
+Treasure cards: <br>
+![Image of Treasure Cards](https://user-images.githubusercontent.com/48811326/64527112-13956100-d2d3-11e9-9dc5-e7a9b5970d80.png)
+
 ### Playing the Game
 
 On each turn you begin with: <br>
