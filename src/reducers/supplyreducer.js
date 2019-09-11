@@ -50,7 +50,6 @@ const defaultState = {
 }
 
 function supplyReducer(prevState=defaultState, action) {
-  console.log("EMPTY PILES", prevState.emptyPiles)
   let shuffle = require('shuffle-array')
   switch (action.type) {
     // INITIAL SUPPLY RENDER
@@ -87,7 +86,6 @@ function supplyReducer(prevState=defaultState, action) {
     case "PROVINCES":
       return { ...prevState, provinces: action.payload }
     case "TRASH": {
-      console.log("PAYLOAD",)
       return { ...prevState, trash: prevState.trash.concat(action.payload) }
     }
     // PLAYER ACTIONS  
