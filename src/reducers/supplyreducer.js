@@ -18,6 +18,7 @@ const defaultState = {
   gameStart1: false,
   gameStart2: false,
 
+  //CARD PILES
   cellars: [],
   moats: [],
   workshops: [],
@@ -35,6 +36,7 @@ const defaultState = {
   duchys: [],
   provinces: [],
   trash: [],
+
   emptyPiles: 0,
   gameEnd: false,
 
@@ -88,7 +90,10 @@ function supplyReducer(prevState=defaultState, action) {
     case "TRASH": {
       return { ...prevState, trash: prevState.trash.concat(action.payload) }
     }
-    // PLAYER ACTIONS  
+
+    // PLAYER ACTIONS
+    
+    //PLAYER 1 ENDS TURN
     case "TURN1": {
       let endHand = [...prevState.hand1]
       if (prevState.deck1.length >= 5) {
@@ -109,7 +114,9 @@ function supplyReducer(prevState=defaultState, action) {
           militiaDiscardSecond: false, 
           cellar1: false 
         }
-      } else if (prevState.deck1.length < 5) {
+      }
+      //DISCARD SHUFFLED INTO DECK IF NOT ENOUGH CARDS TO DRAW HAND 
+      else if (prevState.deck1.length < 5) {
         let endDiscard = [...prevState.discard1.concat(endHand)]
         let shuffleDeck = shuffle([...prevState.deck1.concat(endDiscard)])
         return {
@@ -131,6 +138,7 @@ function supplyReducer(prevState=defaultState, action) {
         }
       }
     }
+    //PLAYER 2 ENDS TURN
     case "TURN2": {
       let endHand = [...prevState.hand2]
       if (prevState.deck2.length >= 5) {
@@ -152,7 +160,9 @@ function supplyReducer(prevState=defaultState, action) {
           cellar2: false,
           cellarHand: [] 
         }
-      } else if (prevState.deck2.length < 5) {
+      } 
+      //DISCARD SHUFFLED INTO DECK IF NOT ENOUGH CARDS TO DRAW HAND
+      else if (prevState.deck2.length < 5) {
         let endDiscard = [...prevState.discard2.concat(endHand)]
         let shuffleDeck = shuffle([...prevState.deck2.concat(endDiscard)])
         return {
@@ -175,12 +185,16 @@ function supplyReducer(prevState=defaultState, action) {
         }
       }
     }
+
+    //PLAYER 1 CLICKS TREASURE CARD IN HAND TO PLAY
     case "PLAY_TREASURE1":
       return {
         ...prevState, 
         discard1: prevState.discard1.concat(action.payload), 
         hand1: prevState.hand1.filter(card => card.id !== action.payload.id) 
       }
+
+    //PLAYER 2 CLICKS TREASURE CARD IN HAND TO PLAY
     case "PLAY_TREASURE2":
       return { 
         ...prevState, 
