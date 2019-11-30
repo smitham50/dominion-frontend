@@ -96,93 +96,48 @@ function supplyReducer(prevState=defaultState, action) {
     //PLAYER 1 ENDS TURN
     case "TURN1": {
       let endHand = [...prevState.hand1]
-      if (prevState.deck1.length >= 5) {
-        return { 
-          ...prevState, 
-          playerTurn: !prevState.playerTurn, 
-          discard1: prevState.discard1.concat(endHand), 
-          hand1: [...prevState.deck1.slice(-5)], 
-          deck1: [...prevState.deck1.slice(0, -5)],
-          mine: false, 
-          remodel: false, 
-          remodelGain: false, 
-          workshop: false, 
-          workshopGain: false, 
-          militia: false, 
-          militiaDefend: false, 
-          militiaDiscardFirst: false, 
-          militiaDiscardSecond: false, 
-          cellar1: false 
-        }
-      }
-      //DISCARD SHUFFLED INTO DECK IF NOT ENOUGH CARDS TO DRAW HAND 
-      else if (prevState.deck1.length < 5) {
-        let endDiscard = [...prevState.discard1.concat(endHand)]
-        let shuffleDeck = shuffle([...prevState.deck1.concat(endDiscard)])
-        return {
-          ...prevState,
-          playerTurn: !prevState.playerTurn,
-          discard1: [],
-          hand1: [...shuffleDeck.slice(-5)],
-          deck1: [...shuffleDeck.slice(0, -5)],
-          mine: false,
-          remodel: false,
-          remodelGain: false,
-          workshop: false,
-          workshopGain: false,
-          militia: false,
-          militiaDefend: false,
-          militiaDiscardFirst: false,
-          militiaDiscardSecond: false,
-          cellar1: false 
-        }
+      let endDiscard = [...prevState.discard1.concat(endHand)]
+      let shuffleDeck = shuffle([...prevState.deck1.concat(endDiscard)])
+      return { 
+        ...prevState, 
+        playerTurn: !prevState.playerTurn, 
+        discard1: prevState.deck1.length >= 5 ? prevState.discard1.concat(endHand) : [], 
+        hand1: prevState.deck1.length >= 5 ? [...prevState.deck1.slice(-5)] : [...shuffleDeck.slice(-5)], 
+        deck1: prevState.deck1.length >= 5 ? [...prevState.deck1.slice(0, -5)] : [...shuffleDeck.slice(0, -5)],
+        mine: false, 
+        remodel: false, 
+        remodelGain: false, 
+        workshop: false, 
+        workshopGain: false, 
+        militia: false, 
+        militiaDefend: false, 
+        militiaDiscardFirst: false, 
+        militiaDiscardSecond: false, 
+        cellar1: false 
       }
     }
     //PLAYER 2 ENDS TURN
     case "TURN2": {
       let endHand = [...prevState.hand2]
-      if (prevState.deck2.length >= 5) {
-        return { 
-          ...prevState, 
-          playerTurn: !prevState.playerTurn, 
-          discard2: prevState.discard2.concat(endHand), 
-          hand2: [...prevState.deck2.slice(-5)], 
-          deck2: [...prevState.deck2.slice(0, -5)],
-          mine: false, 
-          remodel: false, 
-          remodelGain: false, 
-          workshop: false, 
-          workshopGain: false, 
-          militia: false, 
-          militiaDefend: false, 
-          militiaDiscardFirst: false, 
-          militiaDiscardSecond: false, 
-          cellar2: false,
-          cellarHand: [] 
-        }
-      } 
-      //DISCARD SHUFFLED INTO DECK IF NOT ENOUGH CARDS TO DRAW HAND
-      else if (prevState.deck2.length < 5) {
-        let endDiscard = [...prevState.discard2.concat(endHand)]
-        let shuffleDeck = shuffle([...prevState.deck2.concat(endDiscard)])
-        return {
-          ...prevState,
-          playerTurn: !prevState.playerTurn,
-          discard2: [],
-          hand2: [...shuffleDeck.slice(-5)],
-          deck2: [...shuffleDeck.slice(0, -5)],
-          mine: false,
-          remodel: false,
-          remodelGain: false,
-          workshop: false,
-          workshopGain: false,
-          militia: false,
-          militiaDefend: false,
-          militiaDiscardFirst: false,
-          militiaDiscardSecond: false,
-          cellar2: false,
-          cellarHand: [] 
-        }
+      let endDiscard = [...prevState.discard2.concat(endHand)]
+      let shuffleDeck = shuffle([...prevState.deck2.concat(endDiscard)])
+      return { 
+        ...prevState, 
+        playerTurn: !prevState.playerTurn, 
+        discard2: prevState.deck2.length >= 5 ? prevState.discard2.concat(endHand) : [], 
+        hand2: prevState.deck2.length >= 5 ? [...prevState.deck2.slice(-5)] : [...shuffleDeck.slice(-5)], 
+        deck2: prevState.deck2.length >= 5 ? [...prevState.deck2.slice(0, -5)] : [...shuffleDeck.slice(0, -5)],
+        mine: false, 
+        remodel: false, 
+        remodelGain: false, 
+        workshop: false, 
+        workshopGain: false, 
+        militia: false, 
+        militiaDefend: false, 
+        militiaDiscardFirst: false, 
+        militiaDiscardSecond: false, 
+        cellar2: false,
+        cellarHand: [] 
       }
     }
 
