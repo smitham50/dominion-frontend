@@ -156,15 +156,20 @@ function supplyReducer(prevState=defaultState, action) {
         discard2: prevState.discard2.concat(action.payload), 
         hand2: prevState.hand2.filter(card => card.id !== action.payload.id) 
       }
+    //PLAYER 1 BUYS CARD FROM SUPPLY
     case "BUY1": {
       let pile = Object.keys(prevState).find(key => key == `${action.payload.name.toLowerCase()}s`)
+      //IF CARD CLICKED IS PROVINCE, ADD PROVINCE TO PLAYER 1 DISCARD
       if (prevState[pile].length > 1 && pile !== "provinces") {
         return { 
           ...prevState, 
           discard1: prevState.discard1.concat(action.payload), 
           [pile]: prevState[pile].filter(card => card.id !== action.payload.id) 
         }
-      } else if (prevState[pile].length === 1 && pile !== "provinces") {
+      }
+      //IF CARD CLICKED IS LAST IN PILE AND PILE IS NOT PROVINCE PILE... 
+      else if (prevState[pile].length === 1 && pile !== "provinces") {
+        //IF NUM OF EMPTY PILES LESS THAN 2, ADD CARD TO P1 DISCARD AND INCREMENT NUMBER OF EMPTY PILES
         if (prevState.emptyPiles < 2) {
           return { 
             ...prevState, 
@@ -172,7 +177,9 @@ function supplyReducer(prevState=defaultState, action) {
             [pile]: prevState[pile].filter(card => card.id !== action.payload.id), 
             emptyPiles: prevState.emptyPiles + 1 
           }
-        } else {
+        } 
+        //IF PILE IS THIRD EMPTY PILE, TRIGGER GAME END
+        else {
           return { 
             ...prevState, 
             discard1: prevState.discard1.concat(action.payload), 
@@ -180,14 +187,19 @@ function supplyReducer(prevState=defaultState, action) {
             gameEnd: true 
           }
         }
-      } else if (pile === "provinces") {
+      } 
+      //IF PILE IS PROVINCES...
+      else if (pile === "provinces") {
+        //IF MORE THAN ONE PROVINCE LEFT IN PILE, ADD PROVINCE TO PLAYER 1 DISCARD
         if (prevState[pile].length > 1) {
           return { 
             ...prevState, 
             discard1: prevState.discard1.concat(action.payload), 
             [pile]: prevState[pile].filter(card => card.id !== action.payload.id) 
           }
-        } else {
+        } 
+        //IF LAST PROVINCE, TRIGGER GAME END
+        else {
             return { 
               ...prevState, 
               discard1: prevState.discard1.concat(action.payload), 
@@ -197,15 +209,20 @@ function supplyReducer(prevState=defaultState, action) {
           }
       } 
     }
+    //PLAYER 2 BUYS CARD FROM SUPPLY
     case "BUY2": {
       let pile = Object.keys(prevState).find(key => key == `${action.payload.name.toLowerCase()}s`)
+      //IF CARD CLICKED IS PROVINCE, ADD PROVINCE TO PLAYER 2 DISCARD
       if (prevState[pile].length > 1 && pile !== "provinces") {
         return { 
           ...prevState, 
           discard2: prevState.discard2.concat(action.payload), 
           [pile]: prevState[pile].filter(card => card.id !== action.payload.id)
         }   
-      } else if (prevState[pile].length === 1 && pile !== "provinces") {
+      } 
+      //IF CARD CLICKED IS LAST IN PILE AND PILE IS NOT PROVINCE PILE... 
+      else if (prevState[pile].length === 1 && pile !== "provinces") {
+        //IF NUM OF EMPTY PILES LESS THAN 2, ADD CARD TO P2 DISCARD AND INCREMENT NUMBER OF EMPTY PILES
         if (prevState.emptyPiles < 3) {
           return { 
             ...prevState, 
@@ -213,7 +230,9 @@ function supplyReducer(prevState=defaultState, action) {
             [pile]: prevState[pile].filter(card => card.id !== action.payload.id), 
             emptyPiles: prevState.emptyPiles + 1 
           }   
-        } else {
+        } 
+        //IF PILE IS THIRD EMPTY PILE, TRIGGER GAME END
+        else {
           return { 
             ...prevState, 
             discard2: prevState.discard2.concat(action.payload), 
@@ -221,14 +240,19 @@ function supplyReducer(prevState=defaultState, action) {
             gameEnd: true 
           }   
         }
-      } else if (pile === "provinces") {
+      } 
+      //IF PILE IS PROVINCES...
+      else if (pile === "provinces") {
+        //IF MORE THAN ONE PROVINCE LEFT IN PILE, ADD PROVINCE TO PLAYER 2 DISCARD
         if (prevState[pile].length > 1) {
           return { 
             ...prevState, 
             discard2: prevState.discard2.concat(action.payload), 
             [pile]: prevState[pile].filter(card => card.id !== action.payload.id) 
           }   
-        } else {
+        } 
+        //IF LAST PROVINCE, TRIGGER GAME END
+        else {
           return { 
             ...prevState, 
             discard2: prevState.discard2.concat(action.payload), 
@@ -238,18 +262,21 @@ function supplyReducer(prevState=defaultState, action) {
         }
       }
     }
+    //PLAYER 1 CLICKS ACTION CARD IN HAND TO PLAY IT, CARD MOVED FROM HAND TO DISCARD
     case "ACTION1": 
         return { 
           ...prevState, 
           discard1: prevState.discard1.concat(action.payload), 
           hand1: prevState.hand1.filter(card => card.id !== action.payload.id) 
         }
+    //PLAYER 2 CLICKS ACTION CARD IN HAND TO PLAY IT, CARD MOVED FROM HAND TO DISCARD
     case "ACTION2": 
         return { 
           ...prevState, 
           discard2: prevState.discard2.concat(action.payload), 
           hand2: prevState.hand2.filter(card => card.id !== action.payload.id) 
         }
+    //AFTER PLAYER 1 PLAYS MINE CARD, PLAYER CLICKS TREASURE CARD IN HAND TO TRASH AND SWAP FOR HIGHER VALUE TREASURE CARD, MINE SWITCHED BACK TO FALSE
     case "TRASH_TREASURE1": {
       let pile = action.treasure
       return { 
@@ -260,6 +287,7 @@ function supplyReducer(prevState=defaultState, action) {
         mine: false 
       }  
     }
+    //AFTER PLAYER 2 PLAYS MINE CARD, PLAYER CLICKS TREASURE CARD IN HAND TO TRASH AND SWAP FOR HIGHER VALUE TREASURE CARD, MINE SWITCHED BACK TO FALSE
     case "TRASH_TREASURE2": {
       let pile = action.treasure
       return { 
@@ -270,6 +298,7 @@ function supplyReducer(prevState=defaultState, action) {
         mine: false 
       }  
     }
+    //AFTER PLAYER 1 PLAYS REMODEL CARD, PLAYER CLICKS CARD IN HAND TO TRASH AND SWAP FOR SUPPLY CARD WORTH TWO MORE
     case "TRASH_REMODEL1": {
       return { 
         ...prevState, 
@@ -280,6 +309,7 @@ function supplyReducer(prevState=defaultState, action) {
         remodelValue: action.payload.cost + 2  
       }
     }
+    //AFTER PLAYER 2 PLAYS REMODEL CARD, PLAYER CLICKS CARD IN HAND TO TRASH AND SWAP FOR SUPPLY CARD WORTH TWO MORE
     case "TRASH_REMODEL2": {
       return { 
         ...prevState, 
