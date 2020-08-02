@@ -1,8 +1,8 @@
 const defaultState = {
 // PLAYER 1 TURN ON FALSE, PLAYER 2 TURN ON TRUE
+  playerTurn: false,
   isHovered: false,
   hoverCard: null,
-  playerTurn: false,
   mine: false,
   remodel: false,
   remodelGain: false,

@@ -264,7 +264,9 @@ class Card extends React.Component {
           index === 0 
           ?
           <img src={
-              id === "deck-card" || ((className === "hand-card" && playerTurn === false && player === "player2" && !militia && !militiaDiscardSecond) || (className === "hand-card" && playerTurn === true && player === "player1" && !militia && !militiaDiscardSecond) ) 
+              id === "deck-card" 
+              || ((className === "hand-card" && playerTurn === false && player === "player2" && !militia && !militiaDiscardSecond) 
+              || (className === "hand-card" && playerTurn === true && player === "player1" && !militia && !militiaDiscardSecond) ) 
             ? 
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnxjXZTHcRqwUrA4nW09UvtRlXPGlhAZdOQC6_-s71LayIknwS" 
             : 
@@ -282,7 +284,9 @@ class Card extends React.Component {
           </img> 
           : 
           <img src={
-              id === "deck-card" || ((className === "hand-card" && playerTurn === false && player === "player2" && !militia && !militiaDiscardSecond) || (className === "hand-card" && playerTurn === true && player === "player1" && !militia && !militiaDiscardSecond)) 
+              id === "deck-card" 
+              || ((className === "hand-card" && playerTurn === false && player === "player2" && !militia && !militiaDiscardSecond) 
+              || (className === "hand-card" && playerTurn === true && player === "player1" && !militia && !militiaDiscardSecond)) 
             ? 
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnxjXZTHcRqwUrA4nW09UvtRlXPGlhAZdOQC6_-s71LayIknwS" 
             :
