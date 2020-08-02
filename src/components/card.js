@@ -27,16 +27,15 @@ class Card extends React.Component {
     // PLAY TREASURE CARD OR TRASH TREASURE CARD IF MINE OR REMODEL PLAYED
     if (
       className === "hand-card" && 
-      player === "player1" && 
       cellar1 === false &&
       cellar2 === false &&
       militia === false &&
-      card.card_type === "Treasure" && 
-      playerTurn === false
+      card.card_type === "Treasure"
       ) {
+      if (player === "player1" && playerTurn === false) {
         if (mine === false && remodel === false) {
           playTreasureCard1(card)
-        } else if (mine === true ) {
+        } else if (mine === true) {
           if (card.name === "Copper") {
             trashTreasure1(card, "silvers")
           } else if (card.name === "Silver") {
@@ -45,18 +44,11 @@ class Card extends React.Component {
         } else if (remodel === true) {
           trashRemodel1(card)
         }
-    } else if (
-      className === "hand-card" && 
-      player === "player2" && 
-      cellar1 === false &&
-      cellar2 === false &&
-      militia === false &&
-      card.card_type === "Treasure" && 
-      playerTurn === true
-      ) {
+      }
+      else if (player === "player2" && playerTurn === true) {
         if (mine === false && remodel === false) {
           playTreasureCard2(card)
-        } else if (mine === true ) {
+        } else if (mine === true) {
           if (card.name === "Copper") {
             trashTreasure2(card, "silvers")
           } else if (card.name === "Silver") {
@@ -65,27 +57,29 @@ class Card extends React.Component {
         } else if (remodel === true) {
           trashRemodel2(card)
         }
-    } 
+      }  
+    }
     // BUY SUPPLY CARD
     else if (
       className === "supply-card" && 
-      playerTurn === false && 
       remodelGain === false &&
-      workshop === false &&
-      card.cost <= wallet1 && 
-      buys1 > 0 
+      workshop === false
       ) {
-      buyCard1(card)
-    } else if (
-      className === "supply-card" && 
-      playerTurn === true && 
-      remodelGain === false &&
-      workshop === false &&
-      card.cost <= wallet2 && 
-      buys2 > 0 
-      ) {
-      buyCard2(card)
-    } 
+      if (
+        playerTurn === false && 
+        buys1 > 0 && 
+        card.cost <= wallet1
+        ) {
+        buyCard1(card)
+      } else if (
+        playerTurn === true && 
+        buys2 > 0 && 
+        card.cost <= wallet2
+        ) {
+        buyCard2(card)
+      }
+      
+    }
     // WORKSHOP GAIN CARD
     else if (
       className === "supply-card" &&
