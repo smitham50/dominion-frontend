@@ -122,38 +122,25 @@ class Card extends React.Component {
     // PLAY ACTION CARD
     else if (
       className === "hand-card" && 
-      player ==="player1" &&
       card.card_type === "Action" &&
       militia === false &&
       militiaDiscardFirst === false &&
       militiaDiscardSecond === false &&
       remodel === false &&
       cellar1 === false && 
-      cellar2 === false &&
-      playerTurn === false && 
-      actions1 > 0 
+      cellar2 === false
       ) {
-      playAction1(card, deck1)
-      card.triggers.forEach(trigger => {
-        triggerDispatch1(`${trigger}1`)
-      })
-    } else if (
-      className === "hand-card" && 
-      player === "player2" &&
-      card.card_type === "Action" &&
-      militia === false &&
-      militiaDiscardFirst === false &&
-      militiaDiscardSecond === false &&
-      remodel === false &&
-      cellar1 === false &&
-      cellar2 === false &&
-      playerTurn === true && 
-      actions2 > 0
-      ) {
-      playAction2(card, deck2)
-      card.triggers.forEach(trigger => {
-        triggerDispatch2(`${trigger}2`)
-      })
+      if (player === "player1" && playerTurn === false && actions1 > 0 ) {
+        playAction1(card, deck1)
+        card.triggers.forEach(trigger => {
+          triggerDispatch1(`${trigger}1`)
+        })
+      } else if (player === "player2" && playerTurn === true && actions2 > 0) {
+        playAction2(card, deck2)
+        card.triggers.forEach(trigger => {
+          triggerDispatch2(`${trigger}2`)
+        })
+      } 
     }
     // CELLAR
     else if (cellar1 === true ) {
