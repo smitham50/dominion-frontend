@@ -24,184 +24,180 @@ class Card extends React.Component {
       militiaDiscardSecond1, militiaDiscardSecond2, militiaBreak, cellar1, cellar2,
       cellarDiscard1, cellarDiscard2
     } = this.props
-    // PLAY TREASURE CARD OR TRASH TREASURE CARD IF MINE OR REMODEL PLAYED
-    if (
-      className === "hand-card" && 
-      cellar1 === false &&
-      cellar2 === false &&
-      militia === false &&
-      card.card_type === "Treasure"
+
+    //HAND CARD LOGIC
+    if (className === "hand-card") {
+      // PLAY TREASURE CARD OR TRASH TREASURE CARD IF MINE OR REMODEL PLAYED
+      if (
+        cellar1 === false &&
+        cellar2 === false &&
+        militia === false &&
+        card.card_type === "Treasure"
       ) {
-      if (player === "player1" && playerTurn === false) {
-        if (mine === false && remodel === false) {
-          playTreasureCard1(card)
-        } else if (mine === true) {
-          if (card.name === "Copper") {
-            trashTreasure1(card, "silvers")
-          } else if (card.name === "Silver") {
-            trashTreasure1(card, "golds")
+        if (player === "player1" && playerTurn === false) {
+          if (mine === false && remodel === false) {
+            playTreasureCard1(card)
+          } else if (mine === true) {
+            if (card.name === "Copper") {
+              trashTreasure1(card, "silvers")
+            } else if (card.name === "Silver") {
+              trashTreasure1(card, "golds")
+            }
+          } else if (remodel === true) {
+            trashRemodel1(card)
           }
-        } else if (remodel === true) {
-          trashRemodel1(card)
+        }
+        else if (player === "player2" && playerTurn === true) {
+          if (mine === false && remodel === false) {
+            playTreasureCard2(card)
+          } else if (mine === true) {
+            if (card.name === "Copper") {
+              trashTreasure2(card, "silvers")
+            } else if (card.name === "Silver") {
+              trashTreasure2(card, "golds")
+            }
+          } else if (remodel === true) {
+            trashRemodel2(card)
+          }
         }
       }
-      else if (player === "player2" && playerTurn === true) {
-        if (mine === false && remodel === false) {
-          playTreasureCard2(card)
-        } else if (mine === true) {
-          if (card.name === "Copper") {
-            trashTreasure2(card, "silvers")
-          } else if (card.name === "Silver") {
-            trashTreasure2(card, "golds")
-          }
-        } else if (remodel === true) {
-          trashRemodel2(card)
+      // PLAY ACTION CARD
+      else if (
+        card.card_type === "Action" &&
+        militia === false &&
+        militiaDiscardFirst === false &&
+        militiaDiscardSecond === false &&
+        remodel === false &&
+        cellar1 === false &&
+        cellar2 === false
+      ) {
+        if (player === "player1" && playerTurn === false && actions1 > 0) {
+          playAction1(card, deck1)
+          card.triggers.forEach(trigger => {
+            triggerDispatch1(`${trigger}1`)
+          })
+        } else if (player === "player2" && playerTurn === true && actions2 > 0) {
+          playAction2(card, deck2)
+          card.triggers.forEach(trigger => {
+            triggerDispatch2(`${trigger}2`)
+          })
         }
-      }  
-    }
-    // BUY SUPPLY CARD
-    else if (
-      className === "supply-card" && 
-      remodelGain === false &&
-      workshop === false
-      ) {
-      if (
-        playerTurn === false && 
-        buys1 > 0 && 
-        card.cost <= wallet1
-        ) {
-        buyCard1(card)
-      } else if (
-        playerTurn === true && 
-        buys2 > 0 && 
-        card.cost <= wallet2
-        ) {
-        buyCard2(card)
       }
-      
-    }
-    // WORKSHOP GAIN CARD
-    else if (
-      className === "supply-card" &&
-      workshop === true &&
-      card.cost <= 4
-    ) {
-      if (playerTurn === false) {
-        gainWorkshop1(card)
-      } else if (playerTurn === true) {
-        gainWorkshop2(card)
-      } 
-    }
-    // REMODEL GAIN CARD
-    else if (
-      className === "supply-card" &&
-      remodelGain === true &&
-      card.cost <= remodelValue
-    ) {
-      if (playerTurn === false) {
-        gainRemodel1(card)
-      } else if (playerTurn === true) {
-        gainRemodel2(card)
-      } 
-    }
-    // PLAY ACTION CARD
-    else if (
-      className === "hand-card" && 
-      card.card_type === "Action" &&
-      militia === false &&
-      militiaDiscardFirst === false &&
-      militiaDiscardSecond === false &&
-      remodel === false &&
-      cellar1 === false && 
-      cellar2 === false
+      // CELLAR
+      else if (
+        militia === false &&
+        remodel === false &&
+        militiaDiscardFirst === false &&
+        militiaDiscardSecond === false
       ) {
-      if (player === "player1" && playerTurn === false && actions1 > 0 ) {
-        playAction1(card, deck1)
-        card.triggers.forEach(trigger => {
-          triggerDispatch1(`${trigger}1`)
-        })
-      } else if (player === "player2" && playerTurn === true && actions2 > 0) {
-        playAction2(card, deck2)
-        card.triggers.forEach(trigger => {
-          triggerDispatch2(`${trigger}2`)
-        })
-      } 
-    }
-    // CELLAR
-    else if (
-      className === "hand-card" &&
-      militia === false &&
-      remodel === false &&
-      militiaDiscardFirst === false &&
-      militiaDiscardSecond === false
-    ) {
-      if (
-        cellar1 === true &&
-        player === "player1" &&
-        playerTurn === false
+        if (
+          cellar1 === true &&
+          player === "player1" &&
+          playerTurn === false
         ) {
-        cellarDiscard1(card)
-      } else if (
-        cellar2 === true &&
-        player === "player2" &&
-        playerTurn === true
-      ) {
-        cellarDiscard2(card)
+          cellarDiscard1(card)
+        } else if (
+          cellar2 === true &&
+          player === "player2" &&
+          playerTurn === true
+        ) {
+          cellarDiscard2(card)
+        }
       }
-    }
-    // MILITIA RESPONSES
+      // MILITIA RESPONSES
       // MOAT OR MILITIA DISCARD FIRST
-    else if (militia === true && militiaDiscardFirst === true) {
-      if ( 
-        className === "hand-card" &&
-        hand2.length > 3
-      ) {
-        if (playerTurn === false && player === "player2") {
-          if (card.name !== "Moat") {
-            militiaDiscardFirst1(card)
-          } else if (card.name === "Moat") {
-            militiaDefend1(card)
-          }
-        } else if (playerTurn === true && player === "player1") {
-          if (card.name !== "Moat") {
-            militiaDiscardFirst2(card)
-          } else if (card.name === "Moat") {
-            militiaDefend2(card)
+      else if (militia === true && militiaDiscardFirst === true) {
+        if (
+          hand2.length > 3
+        ) {
+          if (playerTurn === false && player === "player2") {
+            if (card.name !== "Moat") {
+              militiaDiscardFirst1(card)
+            } else if (card.name === "Moat") {
+              militiaDefend1(card)
+            }
+          } else if (playerTurn === true && player === "player1") {
+            if (card.name !== "Moat") {
+              militiaDiscardFirst2(card)
+            } else if (card.name === "Moat") {
+              militiaDefend2(card)
+            }
           }
         }
       }
-    }
       // MILITIA DISCARD SECOND
       else if (militiaDiscardSecond === true) {
-        if (className === "hand-card") {
           if (
-            playerTurn === false && 
+            playerTurn === false &&
             player === "player2" &&
             hand2.length > 3
-            ) {
-              militiaDiscardSecond1(card)
+          ) {
+            militiaDiscardSecond1(card)
           } else if (
-            playerTurn === true && 
+            playerTurn === true &&
             player === "player1" &&
             hand1.length > 3
-            ) {
-              militiaDiscardSecond2(card)
+          ) {
+            militiaDiscardSecond2(card)
           } else if (hand1.length <= 3 || hand2.length <= 3) {
             militiaBreak()
-          } 
+          }
+      }
+      // REMODEL ACTION OR VICTORY CARD
+      else if (
+        remodel === true &&
+        (card.card_type === "Action" || card.card_type === "Victory")
+      ) {
+        if (player === "player1" && playerTurn === false) {
+          trashRemodel1(card)
+        } else if (player === "player2" && playerTurn === true) {
+          trashRemodel2(card)
         }
       }
-    // REMODEL ACTION OR VICTORY CARD
-    else if (
-      className === "hand-card" &&
-      remodel === true &&
-      (card.card_type === "Action" || card.card_type === "Victory")
-    ) {
-      if (player === "player1" && playerTurn === false) {
-        trashRemodel1(card)
-      } else if (player === "player2" && playerTurn === true) {
-        trashRemodel2(card)
-      } 
+    } 
+    //SUPPLY CARD LOGIC
+    else if (className === "supply-card") {
+      // BUY SUPPLY CARD
+      if (
+        remodelGain === false &&
+        workshop === false
+      ) {
+        if (
+          playerTurn === false &&
+          buys1 > 0 &&
+          card.cost <= wallet1
+        ) {
+          buyCard1(card)
+        } else if (
+          playerTurn === true &&
+          buys2 > 0 &&
+          card.cost <= wallet2
+        ) {
+          buyCard2(card)
+        }
+      }
+      // WORKSHOP GAIN CARD
+      else if (
+        workshop === true &&
+        card.cost <= 4
+      ) {
+        if (playerTurn === false) {
+          gainWorkshop1(card)
+        } else if (playerTurn === true) {
+          gainWorkshop2(card)
+        }
+      }
+      // REMODEL GAIN CARD
+      else if (
+        remodelGain === true &&
+        card.cost <= remodelValue
+      ) {
+        if (playerTurn === false) {
+          gainRemodel1(card)
+        } else if (playerTurn === true) {
+          gainRemodel2(card)
+        }
+      }
     }
   }
   
