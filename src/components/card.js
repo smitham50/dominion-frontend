@@ -207,21 +207,15 @@ class Card extends React.Component {
     // REMODEL ACTION OR VICTORY CARD
     else if (
       className === "hand-card" &&
-      player === "player1" &&
-      playerTurn === false &&
       remodel === true &&
       (card.card_type === "Action" || card.card_type === "Victory")
     ) {
-      trashRemodel1(card)
-    } else if (
-      className === "hand-card" &&
-      player === "player2" &&
-      playerTurn === true &&
-      remodel === true &&
-      (card.card_type === "Action" || card.card_type === "Victory")
-    ) {
-      trashRemodel2(card)
-    }   
+      if (player === "player1" && playerTurn === false) {
+        trashRemodel1(card)
+      } else if (player === "player2" && playerTurn === true) {
+        trashRemodel2(card)
+      } 
+    }
   }
   
   render() {
