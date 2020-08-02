@@ -152,56 +152,43 @@ class Card extends React.Component {
     // MILITIA RESPONSES
       // MOAT OR MILITIA DISCARD FIRST
     else if (militia === true && militiaDiscardFirst === true) {
-      if (
-        playerTurn === false &&
+      if ( 
         className === "hand-card" &&
-        player === "player2" &&
         hand2.length > 3
       ) {
-        if (card.name !== "Moat"){
-          militiaDiscardFirst1(card)
-        } else if (card.name === "Moat") {
-          militiaDefend1(card)
-        } else {
-          militiaBreak()
-        }
-      } else if (
-        playerTurn === true &&
-        className === "hand-card" &&
-        player === "player1" &&
-        hand1.length > 3
-      ) {
-        if (card.name !== "Moat"){
-          militiaDiscardFirst2(card)
-        } else if (card.name === "Moat") {
-          militiaDefend2(card)
-        } else {
-          militiaBreak()
+        if (playerTurn === false && player === "player2") {
+          if (card.name !== "Moat") {
+            militiaDiscardFirst1(card)
+          } else if (card.name === "Moat") {
+            militiaDefend1(card)
+          }
+        } else if (playerTurn === true && player === "player1") {
+          if (card.name !== "Moat") {
+            militiaDiscardFirst2(card)
+          } else if (card.name === "Moat") {
+            militiaDefend2(card)
+          }
         }
       }
     }
       // MILITIA DISCARD SECOND
       else if (militiaDiscardSecond === true) {
-        if (
-          playerTurn === false &&
-          className === "hand-card" &&
-          player === "player2"
-        ) {
-          if (hand2.length > 3) {
-            militiaDiscardSecond1(card)
-          } else {
+        if (className === "hand-card") {
+          if (
+            playerTurn === false && 
+            player === "player2" &&
+            hand2.length > 3
+            ) {
+              militiaDiscardSecond1(card)
+          } else if (
+            playerTurn === true && 
+            player === "player1" &&
+            hand1.length > 3
+            ) {
+              militiaDiscardSecond2(card)
+          } else if (hand1.length <= 3 || hand2.length <= 3) {
             militiaBreak()
-          }
-        } else if (
-          playerTurn === true &&
-          className === "hand-card" &&
-          player === "player1"
-        ) {
-          if (hand1.length > 3) {
-            militiaDiscardSecond2(card)
-          } else {
-            militiaBreak()
-          }
+          } 
         }
       }
     // REMODEL ACTION OR VICTORY CARD
