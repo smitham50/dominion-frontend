@@ -205,17 +205,19 @@ class Card extends React.Component {
           index === 0 
           ?
           <img src={
-              id === "deck-card" 
-              || ((className === "hand-card" && playerTurn === false && player === "player2" && !militia && !militiaDiscardSecond) 
-              || (className === "hand-card" && playerTurn === true && player === "player1" && !militia && !militiaDiscardSecond) ) 
+            id === "deck-card" || 
+            (className === "hand-card" && !militia && !militiaDiscardSecond && 
+            ((playerTurn === false && player === "player2") ||
+            (playerTurn === true && player === "player1"))) 
             ? 
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnxjXZTHcRqwUrA4nW09UvtRlXPGlhAZdOQC6_-s71LayIknwS" 
             : 
               card.picture} alt="oops" onClick={() => this.handleClick()} 
               onMouseEnter={
-                className === "supply-card" 
-                || ((className === "hand-card" && playerTurn === false && player === "player1" && !militia && !militiaDiscardSecond) 
-                || (className === "hand-card" && playerTurn === true && player === "player2" && !militia && !militiaDiscardSecond))
+                className === "supply-card" ||
+                (className === "hand-card" && !militia && !militiaDiscardSecond &&
+                ((playerTurn === false && player === "player1") ||
+                (playerTurn === true && player === "player2")))
                 ? 
                   () => this.props.hoverOn(this) 
                 : 
