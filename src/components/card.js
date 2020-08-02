@@ -107,9 +107,6 @@ class Card extends React.Component {
       // MILITIA RESPONSES
       // MOAT OR MILITIA DISCARD FIRST
       else if (militia === true && militiaDiscardFirst === true) {
-        if (
-          hand2.length > 3
-        ) {
           if (playerTurn === false && player === "player2") {
             if (card.name !== "Moat") {
               militiaDiscardFirst1(card)
@@ -123,7 +120,6 @@ class Card extends React.Component {
               militiaDefend2(card)
             }
           }
-        }
       }
       // MILITIA DISCARD SECOND
       else if (militiaDiscardSecond === true) {
