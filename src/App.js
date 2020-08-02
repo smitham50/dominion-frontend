@@ -4,8 +4,7 @@ import './Supply.css'
 import './Menu.css'
 import PlayTable from './containers/playtable'
 import Menu from './containers/menu'
-import { connect } from 'react-redux'
-import { Route, Switch, Link } from "react-router-dom"
+import { Route, Switch } from "react-router-dom"
 
 class App extends React.Component {
 
