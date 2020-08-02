@@ -128,31 +128,27 @@ class Card extends React.Component {
       } 
     }
     // CELLAR
-    else if (cellar1 === true ) {
+    else if (
+      className === "hand-card" &&
+      militia === false &&
+      remodel === false &&
+      militiaDiscardFirst === false &&
+      militiaDiscardSecond === false
+    ) {
       if (
-        className === "hand-card" &&
+        cellar1 === true &&
         player === "player1" &&
-        playerTurn === false &&
-        militia === false &&
-        remodel === false &&
-        militiaDiscardFirst === false &&
-        militiaDiscardSecond === false
-      ) {
+        playerTurn === false
+        ) {
         cellarDiscard1(card)
-      }
-    } else if (cellar2 === true) {
-      if (
-        className === "hand-card" &&
+      } else if (
+        cellar2 === true &&
         player === "player2" &&
-        playerTurn === true &&
-        militia === false &&
-        remodel === false &&
-        militiaDiscardFirst === false &&
-        militiaDiscardSecond === false
+        playerTurn === true
       ) {
         cellarDiscard2(card)
       }
-    } 
+    }
     // MILITIA RESPONSES
       // MOAT OR MILITIA DISCARD FIRST
     else if (militia === true && militiaDiscardFirst === true) {
