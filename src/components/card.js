@@ -83,35 +83,26 @@ class Card extends React.Component {
     // WORKSHOP GAIN CARD
     else if (
       className === "supply-card" &&
-      playerTurn === false &&
       workshop === true &&
       card.cost <= 4
     ) {
-      gainWorkshop1(card)
-    } else if (
-      className === "supply-card" &&
-      playerTurn === true &&
-      workshop === true &&
-      card.cost <= 4
-    ) {
-      gainWorkshop2(card)
+      if (playerTurn === false) {
+        gainWorkshop1(card)
+      } else if (playerTurn === true) {
+        gainWorkshop2(card)
+      } 
     }
     // REMODEL GAIN CARD
     else if (
       className === "supply-card" &&
-      playerTurn === false &&
       remodelGain === true &&
       card.cost <= remodelValue
     ) {
-      gainRemodel1(card)
-    }
-    else if (
-      className === "supply-card" &&
-      playerTurn === true &&
-      remodelGain === true &&
-      card.cost <= remodelValue
-    ) {
-      gainRemodel2(card)
+      if (playerTurn === false) {
+        gainRemodel1(card)
+      } else if (playerTurn === true) {
+        gainRemodel2(card)
+      } 
     }
     // PLAY ACTION CARD
     else if (
