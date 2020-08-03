@@ -32,6 +32,7 @@ class Card extends React.Component {
         !cellar1 &&
         !cellar2 &&
         !militia &&
+        !militiaDiscardSecond &&
         card.card_type === "Treasure"
       ) {
         if (player === "player1" && !playerTurn) {
