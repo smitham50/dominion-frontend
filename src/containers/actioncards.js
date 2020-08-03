@@ -105,34 +105,34 @@ class ActionCards extends React.Component {
   render() {
     return(
       <div id="action-card-area" >
-        <div id="cellars">
+        <div id="cellars" className="card-container">
           {this.renderCellars()}
         </div>
-        <div id="moats">
+        <div id="moats" className="card-container">
           {this.renderMoats()}
         </div>
-        <div id="workshops">
+        <div id="workshops" className="card-container">
           {this.renderWorkshops()}
         </div>
-        <div id="woodcutters">
+        <div id="woodcutters" className="card-container">
           {this.renderWoodcutters()}
         </div>
-        <div id="villages">
+        <div id="villages" className="card-container">
           {this.renderVillages()}
         </div>
-        <div id="smithys">
+        <div id="smithys" className="card-container">
           {this.renderSmithys()}
         </div>
-        <div id="militias">
+        <div id="militias" className="card-container">
           {this.renderMilitias()}
         </div>
-        <div id="remodels">
+        <div id="remodels" className="card-container">
           {this.renderRemodels()}
         </div>
-        <div id="markets">
+        <div id="markets" className="card-container">
           {this.renderMarkets()}
         </div>
-        <div id="mines">
+        <div id="mines" className="card-container">
           {this.renderMines()}
         </div>
       </div>

@@ -1,0 +1,150 @@
+/* MARGINS STYLING */
+.margins {
+  width: 7.5%;
+  border: solid 1px #4c4c4c;
+  border-radius: 3px;
+}
+
+.player-turn-info {
+  display: flex;
+  justify-content: space-around;
+  background: #0000002b;
+  color: white;
+  padding-left: 5%;
+  flex-direction: column;
+  height: 75%;
+}
+
+.player-tag {
+  height: 9%;
+}
+
+.player-actions {
+  height: 7%;
+}
+
+.player-buys {
+  height: 7%;
+}
+
+.player-wallet {
+  height: 7%;
+}
+
+.player-vps {
+  height: 7%;
+}
+
+.message {
+  padding-left: 3%;
+  padding-right: 3%;
+  background: #fdb80e;
+  color: white;
+  border: solid 1px #4c4c4c;
+  height: 100%;
+  text-align: center;
+}
+
+.end-turn {
+  height: 25%;
+  background: #0000002b;
+}
+/* END MARGINS STYLING */
+
+/* SUPPLY AREA STYLING */
+#supply-area {
+  width: 100%;
+  height: 75%;
+  display: flex;
+}
+
+#tvcard-container {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+}
+
+#treasure-card-area {
+  display: inline-grid;
+  grid-template-columns: auto auto auto auto;
+  column-gap: 1%;
+  overflow: auto;
+  height: 100%;
+  width: 100%;
+}
+
+#victory-card-area {
+  display: inline-grid;
+  grid-template-columns: auto auto auto auto;
+  column-gap: 1%;
+  overflow: auto;
+  border-radius: 3px;
+  width: 100%;
+  height: 100%;
+}
+
+/* ACTION CARD STYLING */
+#action-card-container {
+  height: 100%;
+  width: 60%;
+}
+
+#action-card-area {
+  /* border: solid 1px #4c4c4c; */
+  border-radius: 3px;
+  display: grid;
+  grid-template-columns: auto auto auto auto auto;
+  grid-template-rows: 45% 45%;
+  justify-content: space-evenly;
+  column-gap: 1%;
+  row-gap: 1%;
+  width: 100%;
+  padding-right: 1%;
+}
+/* END ACTION CARD STYLING */
+
+/* CARD DIVS */
+.card-container {
+  height: 100%;
+  width: 100%;
+  padding: 10%;
+  overflow: auto;
+}
+
+.tv-card-container {
+  height: 100%;
+  width: 20%;
+  overflow: auto;
+}
+/* END CARD DIVS */
+
+/* IMG STYLING */
+#supply-area img {
+  height: 90%;
+  margin-left: 0%;
+}
+
+#supply-area .rest {
+  height: 90%;
+  margin-left: -69%;
+}
+
+#supply-area .rest:last-of-type:hover {
+  transform: scale(1.3)
+}
+
+#treasure-card-area img {
+  height: 3%;
+  margin-left: 0%;
+}
+
+#treasure-card-area .rest {
+  height: 5%;
+  margin-left: -90%;
+}
+
+#treasure-card-area .rest:last-of-type:hover {
+  transform: scale(1.3)
+}
+
+/* END IMG STYLING */

@@ -1,6 +1,6 @@
 import React from 'react'
 import './App.css'
-import './Supply.css'
+import './supply2.css'
 import './Menu.css'
 import PlayTable from './containers/playtable'
 import Menu from './containers/menu'

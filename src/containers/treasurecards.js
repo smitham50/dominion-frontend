@@ -41,13 +41,13 @@ class TreasureCards extends React.Component {
   render() {
     return(
       <div id="treasure-card-area">
-        <div id="coppers">
+        <div id="coppers" className="tv-card-container">
           {this.renderCoppers()}
         </div>
-        <div id="silvers">
+        <div id="silvers" className="tv-card-container">
           {this.renderSilvers()}
         </div>
-        <div id="golds">
+        <div id="golds" className="tv-card-container">
           {this.renderGolds()}
         </div>
       </div>
