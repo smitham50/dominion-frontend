@@ -1,7 +1,5 @@
 import React, { Fragment } from 'react'
-import ActionCards from './actioncards'
-import TreasureCards from './treasurecards'
-import VictoryCards from './victorycards'
+import SupplyCards from './supplycards'
 import PlayerTurnInfo from '../components/playerturninfo'
 import { connect } from 'react-redux'
 
@@ -93,11 +91,7 @@ class SupplyArea extends React.Component {
           </div>
           :
           <Fragment>
-            <div id="tvcard-container">
-              <TreasureCards />
-              <VictoryCards />
-            </div>      
-            <ActionCards />
+            <SupplyCards/>
           </Fragment>
         }
         <div className="margins" >
