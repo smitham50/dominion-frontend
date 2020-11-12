@@ -1,5 +1,6 @@
-import React, { Fragment } from 'react'
-import { connect } from 'react-redux'
+import React, { Fragment } from 'react';
+import { connect } from 'react-redux';
+import handleHandCard from '../logic/handCardLogic';
 
 class Card extends React.Component {
 
@@ -25,7 +26,7 @@ class Card extends React.Component {
       cellarDiscard1, cellarDiscard2
     } = this.props
 
-    //NEW HAND CARD LOGIC
+    //HAND CARD LOGIC
     if (className === "hand-card") {
       if (
         !militia &&
