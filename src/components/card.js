@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
-import handleHandCard from '../logic/handCardLogic';
+import handleHandCard from '../logic/handleHandCard';
 
 class Card extends React.Component {
 
@@ -13,137 +13,14 @@ class Card extends React.Component {
   handleClick = () => {
 
     const {
-      className, card, player, playerTurn, playTreasureCard1,
-      playTreasureCard2, buyCard1, buyCard2, playAction1,
-      playAction2, wallet1, wallet2, buys1, buys2, actions1,
-      actions2, triggerDispatch1, triggerDispatch2, deck1, deck2,
-      mine, hand1, hand2, trashTreasure1, trashTreasure2,
-      trashRemodel1, trashRemodel2, gainRemodel1, gainRemodel2,
-      remodel, remodelGain, remodelValue, workshop, gainWorkshop1,
-      gainWorkshop2, militia, militiaDefend1, militiaDefend2,
-      militiaDiscardFirst, militiaDiscardSecond, militiaDiscardFirst1, militiaDiscardFirst2,
-      militiaDiscardSecond1, militiaDiscardSecond2, militiaBreak, cellar1, cellar2,
-      cellarDiscard1, cellarDiscard2
+      className, card,  playerTurn, buyCard1, buyCard2, wallet1, wallet2, 
+      buys1, buys2, gainRemodel1, gainRemodel2, remodelGain, remodelValue, 
+      workshop, gainWorkshop1, gainWorkshop2
     } = this.props
 
     //HAND CARD LOGIC
     if (className === "hand-card") {
-      if (
-        !militia &&
-        !militiaDiscardSecond
-      ) {
-        // PLAY TREASURE CARD OR TRASH TREASURE CARD IF MINE OR REMODEL PLAYED
-        if (
-          !cellar1 &&
-          !cellar2
-        ) {
-          if (card.card_type === "Treasure") {
-            if (player === "player1" && !playerTurn) {
-              if (!mine && !remodel) {
-                playTreasureCard1(card)
-              } else if (mine) {
-                if (card.name === "Copper") {
-                  trashTreasure1(card, "silvers")
-                } else if (card.name === "Silver") {
-                  trashTreasure1(card, "golds")
-                }
-              } else if (remodel) {
-                trashRemodel1(card)
-              }
-            }
-            else if (player === "player2" && playerTurn) {
-              if (!mine && !remodel) {
-                playTreasureCard2(card)
-              } else if (mine) {
-                if (card.name === "Copper") {
-                  trashTreasure2(card, "silvers")
-                } else if (card.name === "Silver") {
-                  trashTreasure2(card, "golds")
-                }
-              } else if (remodel) {
-                trashRemodel2(card)
-              }
-            }
-          }
-          // PLAY ACTION CARD
-          else if (
-            card.card_type === "Action" &&
-            !remodel
-          ) {
-            if (player === "player1" && !playerTurn && actions1 > 0) {
-              playAction1(card, deck1)
-              card.triggers.forEach(trigger => {
-                triggerDispatch1(`${trigger}1`)
-              })
-            } else if (player === "player2" && playerTurn && actions2 > 0) {
-              playAction2(card, deck2)
-              card.triggers.forEach(trigger => {
-                triggerDispatch2(`${trigger}2`)
-              })
-            }
-          }
-          // REMODEL ACTION OR VICTORY CARD
-          else if (
-            remodel &&
-            (card.card_type === "Action" || card.card_type === "Victory")
-          ) {
-            if (player === "player1" && !playerTurn) {
-              trashRemodel1(card)
-            } else if (player === "player2" && playerTurn) {
-              trashRemodel2(card)
-            }
-          }
-        }
-        // CELLAR
-        else if (
-          cellar1 &&
-          player === "player1" &&
-          !playerTurn
-        ) {
-            cellarDiscard1(card)
-        } else if (
-          cellar2 &&
-          player === "player2" &&
-          playerTurn
-        ) {
-          cellarDiscard2(card)
-        }
-      }
-      // MILITIA RESPONSES
-      // MOAT OR MILITIA DISCARD FIRST
-      else if (militia && militiaDiscardFirst) {
-        if (!playerTurn && player === "player2") {
-          if (card.name !== "Moat") {
-            militiaDiscardFirst1(card)
-          } else {
-            militiaDefend1(card)
-          }
-        } else if (playerTurn && player === "player1") {
-          if (card.name !== "Moat") {
-            militiaDiscardFirst2(card)
-          } else {
-            militiaDefend2(card)
-          }
-        }
-      }
-      // MILITIA DISCARD SECOND
-      else if (militiaDiscardSecond) {
-        if (
-          !playerTurn &&
-          player === "player2" &&
-          hand2.length > 3
-        ) {
-          militiaDiscardSecond1(card)
-        } else if (
-          playerTurn &&
-          player === "player1" &&
-          hand1.length > 3
-        ) {
-          militiaDiscardSecond2(card)
-        } else if (hand1.length <= 3 || hand2.length <= 3) {
-          militiaBreak()
-        }
-      }
+      handleHandCard(this.props)
     }
     //SUPPLY CARD LOGIC
     else if (className === "supply-card") {
