@@ -35,13 +35,13 @@ export default function handleHandCard(props) {
             player === "player1" &&
             !playerTurn
         ) {
-            cellarDiscard1(card)
+            cellarDiscard1(card);
         } else if (
             cellar2 &&
             player === "player2" &&
             playerTurn
         ) {
-            cellarDiscard2(card)
+            cellarDiscard2(card);
         }
     }
     // MILITIA RESPONSES

@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 import handleHandCard from '../logic/handleHandCard';
+import handleSupplyCard from '../logic/handleSupplyCard';
 
 class Card extends React.Component {
 
@@ -8,68 +9,25 @@ class Card extends React.Component {
     if (!this.props.trash.includes(this.props.card)) {
       this.props.hoverOff() 
     }
-  }
+  };
 
   handleClick = () => {
+    const { className } = this.props
 
-    const {
-      className, card,  playerTurn, buyCard1, buyCard2, wallet1, wallet2, 
-      buys1, buys2, gainRemodel1, gainRemodel2, remodelGain, remodelValue, 
-      workshop, gainWorkshop1, gainWorkshop2
-    } = this.props
-
-    //HAND CARD LOGIC
     if (className === "hand-card") {
-      handleHandCard(this.props)
+      handleHandCard(this.props);
+    } else if (className === "supply-card") {
+      handleSupplyCard(this.props);
     }
-    //SUPPLY CARD LOGIC
-    else if (className === "supply-card") {
-      // BUY SUPPLY CARD
-      if (
-        !remodelGain &&
-        !workshop
-      ) {
-        if (
-          !playerTurn &&
-          buys1 > 0 &&
-          card.cost <= wallet1
-        ) {
-          buyCard1(card)
-        } else if (
-          playerTurn &&
-          buys2 > 0 &&
-          card.cost <= wallet2
-        ) {
-          buyCard2(card)
-        }
-      }
-      // WORKSHOP GAIN CARD
-      else if (
-        workshop &&
-        card.cost <= 4
-      ) {
-        if (!playerTurn) {
-          gainWorkshop1(card)
-        } else if (playerTurn) {
-          gainWorkshop2(card)
-        }
-      }
-      // REMODEL GAIN CARD
-      else if (
-        remodelGain &&
-        card.cost <= remodelValue
-      ) {
-        if (!playerTurn) {
-          gainRemodel1(card)
-        } else if (playerTurn) {
-          gainRemodel2(card)
-        }
-      }
-    }
-  }
+
+  };
   
   render() {
-    const { index, id, card, player, playerTurn, className, militia, militiaDiscardSecond } = this.props
+    const { 
+      index, id, card, player, playerTurn, 
+      className, militia, militiaDiscardSecond 
+    } = this.props
+    
     return(
       <Fragment>
         {
@@ -121,9 +79,9 @@ class Card extends React.Component {
           }
       </Fragment>
     )
-  }
+  };
 
-}
+};
 
 function msp(state) {
 
@@ -131,9 +89,9 @@ function msp(state) {
     playerTurn, deck1, deck2, hand1, hand2, mine, remodel, remodelGain, 
     remodelValue, workshop, militia, militiaDiscardFirst, militiaDiscardSecond,
     cellar1, cellar2, isHovered, trash
-  } = state.supply
-  const { wallet1, buys1, turns1, actions1 } = state.playerOne
-  const { wallet2, buys2, turns2, actions2 } = state.playerTwo
+  } = state.supply;
+  const { wallet1, buys1, turns1, actions1 } = state.playerOne;
+  const { wallet2, buys2, turns2, actions2 } = state.playerTwo;
 
   return {
 
@@ -166,9 +124,9 @@ function msp(state) {
     deck2,
     hand2
 
-  }
+  };
 
-}
+};
 
 function mdp(dispatch) {
   return {
@@ -259,8 +217,8 @@ function mdp(dispatch) {
     hoverOff: () => {
       dispatch({ type: "HOVER_OFF" })
     }
-  }
+  };
 
-}
+};
 
-export default connect(msp, mdp)(Card)
+export default connect(msp, mdp)(Card);
