@@ -1,5 +1,7 @@
-import React, { Fragment } from 'react'
-import { connect } from 'react-redux'
+import React, { Fragment } from 'react';
+import { connect } from 'react-redux';
+import handleHandCard from '../logic/handleHandCard';
+import handleSupplyCard from '../logic/handleSupplyCard';
 
 class Card extends React.Component {
 
@@ -7,272 +9,44 @@ class Card extends React.Component {
     if (!this.props.trash.includes(this.props.card)) {
       this.props.hoverOff() 
     }
-  }
+  };
 
   handleClick = () => {
+    const { className } = this.props
 
-    const { 
-      className, card, player, playerTurn, playTreasureCard1, 
-      playTreasureCard2, buyCard1, buyCard2, playAction1,
-      playAction2, wallet1, wallet2, buys1, buys2, actions1, 
-      actions2, triggerDispatch1, triggerDispatch2, deck1, deck2,
-      mine, hand1, hand2, trashTreasure1, trashTreasure2,
-      trashRemodel1, trashRemodel2, gainRemodel1, gainRemodel2,
-      remodel, remodelGain, remodelValue, workshop, gainWorkshop1,
-      gainWorkshop2, militia, militiaDefend1, militiaDefend2,
-      militiaDiscardFirst,militiaDiscardSecond, militiaDiscardFirst1, militiaDiscardFirst2,
-      militiaDiscardSecond1, militiaDiscardSecond2, militiaBreak, cellar1, cellar2,
-      cellarDiscard1, cellarDiscard2
-    } = this.props
-    // PLAY TREASURE CARD OR TRASH TREASURE CARD IF MINE OR REMODEL PLAYED
-    if (
-      className === "hand-card" && 
-      player === "player1" && 
-      cellar1 === false &&
-      cellar2 === false &&
-      militia === false &&
-      card.card_type === "Treasure" && 
-      playerTurn === false
-      ) {
-        if (mine === false && remodel === false) {
-          playTreasureCard1(card)
-        } else if (mine === true ) {
-          if (card.name === "Copper") {
-            trashTreasure1(card, "silvers")
-          } else if (card.name === "Silver") {
-            trashTreasure1(card, "golds")
-          }
-        } else if (remodel === true) {
-          trashRemodel1(card)
-        }
-    } else if (
-      className === "hand-card" && 
-      player === "player2" && 
-      cellar1 === false &&
-      cellar2 === false &&
-      militia === false &&
-      card.card_type === "Treasure" && 
-      playerTurn === true
-      ) {
-        if (mine === false && remodel === false) {
-          playTreasureCard2(card)
-        } else if (mine === true ) {
-          if (card.name === "Copper") {
-            trashTreasure2(card, "silvers")
-          } else if (card.name === "Silver") {
-            trashTreasure2(card, "golds")
-          }
-        } else if (remodel === true) {
-          trashRemodel2(card)
-        }
-    } 
-    // BUY SUPPLY CARD
-    else if (
-      className === "supply-card" && 
-      playerTurn === false && 
-      remodelGain === false &&
-      workshop === false &&
-      card.cost <= wallet1 && 
-      buys1 > 0 
-      ) {
-      buyCard1(card)
-    } else if (
-      className === "supply-card" && 
-      playerTurn === true && 
-      remodelGain === false &&
-      workshop === false &&
-      card.cost <= wallet2 && 
-      buys2 > 0 
-      ) {
-      buyCard2(card)
-    } 
-    // WORKSHOP GAIN CARD
-    else if (
-      className === "supply-card" &&
-      playerTurn === false &&
-      workshop === true &&
-      card.cost <= 4
-    ) {
-      gainWorkshop1(card)
-    } else if (
-      className === "supply-card" &&
-      playerTurn === true &&
-      workshop === true &&
-      card.cost <= 4
-    ) {
-      gainWorkshop2(card)
+    if (className === "hand-card") {
+      handleHandCard(this.props);
+    } else if (className === "supply-card") {
+      handleSupplyCard(this.props);
     }
-    // REMODEL GAIN CARD
-    else if (
-      className === "supply-card" &&
-      playerTurn === false &&
-      remodelGain === true &&
-      card.cost <= remodelValue
-    ) {
-      gainRemodel1(card)
-    }
-    else if (
-      className === "supply-card" &&
-      playerTurn === true &&
-      remodelGain === true &&
-      card.cost <= remodelValue
-    ) {
-      gainRemodel2(card)
-    }
-    // PLAY ACTION CARD
-    else if (
-      className === "hand-card" && 
-      player ==="player1" &&
-      card.card_type === "Action" &&
-      militia === false &&
-      militiaDiscardFirst === false &&
-      militiaDiscardSecond === false &&
-      remodel === false &&
-      cellar1 === false && 
-      cellar2 === false &&
-      playerTurn === false && 
-      actions1 > 0 
-      ) {
-      playAction1(card, deck1)
-      card.triggers.forEach(trigger => {
-        triggerDispatch1(`${trigger}1`)
-      })
-    } else if (
-      className === "hand-card" && 
-      player === "player2" &&
-      card.card_type === "Action" &&
-      militia === false &&
-      militiaDiscardFirst === false &&
-      militiaDiscardSecond === false &&
-      remodel === false &&
-      cellar1 === false &&
-      cellar2 === false &&
-      playerTurn === true && 
-      actions2 > 0
-      ) {
-      playAction2(card, deck2)
-      card.triggers.forEach(trigger => {
-        triggerDispatch2(`${trigger}2`)
-      })
-    }
-    // CELLAR
-    else if (cellar1 === true ) {
-      if (
-        className === "hand-card" &&
-        player === "player1" &&
-        playerTurn === false &&
-        militia === false &&
-        remodel === false &&
-        militiaDiscardFirst === false &&
-        militiaDiscardSecond === false
-      ) {
-        cellarDiscard1(card)
-      }
-    } else if (cellar2 === true) {
-      if (
-        className === "hand-card" &&
-        player === "player2" &&
-        playerTurn === true &&
-        militia === false &&
-        remodel === false &&
-        militiaDiscardFirst === false &&
-        militiaDiscardSecond === false
-      ) {
-        cellarDiscard2(card)
-      }
-    } 
-    // MILITIA RESPONSES
-      // MOAT OR MILITIA DISCARD FIRST
-    else if (militia === true && militiaDiscardFirst === true) {
-      if (
-        playerTurn === false &&
-        className === "hand-card" &&
-        player === "player2" &&
-        hand2.length > 3
-      ) {
-        if (card.name !== "Moat"){
-          militiaDiscardFirst1(card)
-        } else if (card.name === "Moat") {
-          militiaDefend1(card)
-        } else {
-          militiaBreak()
-        }
-      } else if (
-        playerTurn === true &&
-        className === "hand-card" &&
-        player === "player1" &&
-        hand1.length > 3
-      ) {
-        if (card.name !== "Moat"){
-          militiaDiscardFirst2(card)
-        } else if (card.name === "Moat") {
-          militiaDefend2(card)
-        } else {
-          militiaBreak()
-        }
-      }
-    }
-      // MILITIA DISCARD SECOND
-      else if (militiaDiscardSecond === true) {
-        if (
-          playerTurn === false &&
-          className === "hand-card" &&
-          player === "player2"
-        ) {
-          if (hand2.length > 3) {
-            militiaDiscardSecond1(card)
-          } else {
-            militiaBreak()
-          }
-        } else if (
-          playerTurn === true &&
-          className === "hand-card" &&
-          player === "player1"
-        ) {
-          if (hand1.length > 3) {
-            militiaDiscardSecond2(card)
-          } else {
-            militiaBreak()
-          }
-        }
-      }
-    // REMODEL ACTION OR VICTORY CARD
-    else if (
-      className === "hand-card" &&
-      player === "player1" &&
-      playerTurn === false &&
-      remodel === true &&
-      (card.card_type === "Action" || card.card_type === "Victory")
-    ) {
-      trashRemodel1(card)
-    } else if (
-      className === "hand-card" &&
-      player === "player2" &&
-      playerTurn === true &&
-      remodel === true &&
-      (card.card_type === "Action" || card.card_type === "Victory")
-    ) {
-      trashRemodel2(card)
-    }   
-  }
+
+  };
   
   render() {
-    const { index, id, card, player, playerTurn, className, militia, militiaDiscardSecond } = this.props
+    const { 
+      index, id, card, player, playerTurn, 
+      className, militia, militiaDiscardSecond 
+    } = this.props
+    
     return(
       <Fragment>
         {
           index === 0 
           ?
           <img src={
-              id === "deck-card" || ((className === "hand-card" && playerTurn === false && player === "player2" && !militia && !militiaDiscardSecond) || (className === "hand-card" && playerTurn === true && player === "player1" && !militia && !militiaDiscardSecond) ) 
+            id === "deck-card" || 
+            (className === "hand-card" && !militia && !militiaDiscardSecond && 
+            ((!playerTurn && player === "player2") ||
+            (playerTurn && player === "player1"))) 
             ? 
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnxjXZTHcRqwUrA4nW09UvtRlXPGlhAZdOQC6_-s71LayIknwS" 
+              process.env.PUBLIC_URL + "/card-images/cardback.jpg" 
             : 
-              card.picture} alt="oops" onClick={() => this.handleClick()} 
+              process.env.PUBLIC_URL + card.picture} alt="oops" onClick={() => this.handleClick()} 
               onMouseEnter={
-                className === "supply-card" 
-                || ((className === "hand-card" && playerTurn === false && player === "player1" && !militia && !militiaDiscardSecond) 
-                || (className === "hand-card" && playerTurn === true && player === "player2" && !militia && !militiaDiscardSecond))
+                className === "supply-card" ||
+                (className === "hand-card" && !militia && !militiaDiscardSecond &&
+                ((!playerTurn && player === "player1") ||
+                (playerTurn && player === "player2")))
                 ? 
                   () => this.props.hoverOn(this) 
                 : 
@@ -282,15 +56,19 @@ class Card extends React.Component {
           </img> 
           : 
           <img src={
-              id === "deck-card" || ((className === "hand-card" && playerTurn === false && player === "player2" && !militia && !militiaDiscardSecond) || (className === "hand-card" && playerTurn === true && player === "player1" && !militia && !militiaDiscardSecond)) 
+              id === "deck-card" ||
+              (className === "hand-card" && !militia && !militiaDiscardSecond &&
+              ((!playerTurn && player === "player2") ||
+              (playerTurn && player === "player1"))) 
             ? 
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnxjXZTHcRqwUrA4nW09UvtRlXPGlhAZdOQC6_-s71LayIknwS" 
+              process.env.PUBLIC_URL + "/card-images/cardback.jpg" 
             :
-            card.picture} alt="oops" className="rest" onClick={() => this.handleClick()} 
+            process.env.PUBLIC_URL + card.picture} alt="oops" className="rest" onClick={() => this.handleClick()} 
             onMouseEnter={
-              className === "supply-card" 
-              || ((className === "hand-card" && playerTurn === false && player === "player1" && !militia && !militiaDiscardSecond) 
-              || (className === "hand-card" && playerTurn === true && player === "player2" && !militia && !militiaDiscardSecond))
+              className === "supply-card" || 
+              (className === "hand-card" && !militia && !militiaDiscardSecond &&
+              ((!playerTurn && player === "player1") ||
+              (playerTurn && player === "player2")))
               ? 
                 () => this.props.hoverOn(this) 
               : 
@@ -301,9 +79,9 @@ class Card extends React.Component {
           }
       </Fragment>
     )
-  }
+  };
 
-}
+};
 
 function msp(state) {
 
@@ -311,9 +89,9 @@ function msp(state) {
     playerTurn, deck1, deck2, hand1, hand2, mine, remodel, remodelGain, 
     remodelValue, workshop, militia, militiaDiscardFirst, militiaDiscardSecond,
     cellar1, cellar2, isHovered, trash
-  } = state.supply
-  const { wallet1, buys1, turns1, actions1 } = state.playerOne
-  const { wallet2, buys2, turns2, actions2 } = state.playerTwo
+  } = state.supply;
+  const { wallet1, buys1, turns1, actions1 } = state.playerOne;
+  const { wallet2, buys2, turns2, actions2 } = state.playerTwo;
 
   return {
 
@@ -346,9 +124,9 @@ function msp(state) {
     deck2,
     hand2
 
-  }
+  };
 
-}
+};
 
 function mdp(dispatch) {
   return {
@@ -439,8 +217,8 @@ function mdp(dispatch) {
     hoverOff: () => {
       dispatch({ type: "HOVER_OFF" })
     }
-  }
+  };
 
-}
+};
 
-export default connect(msp, mdp)(Card)
+export default connect(msp, mdp)(Card);

@@ -1,8 +1,8 @@
 const defaultState = {
 // PLAYER 1 TURN ON FALSE, PLAYER 2 TURN ON TRUE
+  playerTurn: false,
   isHovered: false,
   hoverCard: null,
-  playerTurn: false,
   mine: false,
   remodel: false,
   remodelGain: false,
@@ -18,6 +18,7 @@ const defaultState = {
   gameStart1: false,
   gameStart2: false,
 
+  //CARD PILES
   cellars: [],
   moats: [],
   workshops: [],
@@ -35,6 +36,7 @@ const defaultState = {
   duchys: [],
   provinces: [],
   trash: [],
+
   emptyPiles: 0,
   gameEnd: false,
 
@@ -50,7 +52,6 @@ const defaultState = {
 }
 
 function supplyReducer(prevState=defaultState, action) {
-  console.log("EMPTY PILES", prevState.emptyPiles)
   let shuffle = require('shuffle-array')
   switch (action.type) {
     // INITIAL SUPPLY RENDER
@@ -87,213 +88,396 @@ function supplyReducer(prevState=defaultState, action) {
     case "PROVINCES":
       return { ...prevState, provinces: action.payload }
     case "TRASH": {
-      console.log("PAYLOAD",)
       return { ...prevState, trash: prevState.trash.concat(action.payload) }
     }
-    // PLAYER ACTIONS  
+
+    // PLAYER ACTIONS
+    
+    //PLAYER 1 ENDS TURN
     case "TURN1": {
       let endHand = [...prevState.hand1]
-      if (prevState.deck1.length >= 5) {
-        return { 
-          ...prevState, 
-          playerTurn: !prevState.playerTurn, 
-          discard1: prevState.discard1.concat(endHand), 
-          hand1: [...prevState.deck1.slice(-5)], 
-          deck1: [...prevState.deck1.slice(0, -5)],
-          mine: false, 
-          remodel: false, 
-          remodelGain: false, 
-          workshop: false, 
-          workshopGain: false, 
-          militia: false, 
-          militiaDefend: false, 
-          militiaDiscardFirst: false, 
-          militiaDiscardSecond: false, 
-          cellar1: false 
-        }
-      } else if (prevState.deck1.length < 5) {
-        let endDiscard = [...prevState.discard1.concat(endHand)]
-        let shuffleDeck = shuffle([...prevState.deck1.concat(endDiscard)])
-        return {
-          ...prevState,
-          playerTurn: !prevState.playerTurn,
-          discard1: [],
-          hand1: [...shuffleDeck.slice(-5)],
-          deck1: [...shuffleDeck.slice(0, -5)],
-          mine: false,
-          remodel: false,
-          remodelGain: false,
-          workshop: false,
-          workshopGain: false,
-          militia: false,
-          militiaDefend: false,
-          militiaDiscardFirst: false,
-          militiaDiscardSecond: false,
-          cellar1: false 
-        }
+      let endDiscard = [...prevState.discard1.concat(endHand)]
+      let shuffleDeck = shuffle([...prevState.deck1.concat(endDiscard)])
+      return { 
+        ...prevState, 
+        playerTurn: !prevState.playerTurn, 
+        discard1: prevState.deck1.length >= 5 ? prevState.discard1.concat(endHand) : [], 
+        hand1: prevState.deck1.length >= 5 ? [...prevState.deck1.slice(-5)] : [...shuffleDeck.slice(-5)], 
+        deck1: prevState.deck1.length >= 5 ? [...prevState.deck1.slice(0, -5)] : [...shuffleDeck.slice(0, -5)],
+        mine: false, 
+        remodel: false, 
+        remodelGain: false, 
+        workshop: false, 
+        workshopGain: false, 
+        militia: false, 
+        militiaDefend: false, 
+        militiaDiscardFirst: false, 
+        militiaDiscardSecond: false, 
+        cellar1: false 
       }
     }
+    //PLAYER 2 ENDS TURN
     case "TURN2": {
       let endHand = [...prevState.hand2]
-      if (prevState.deck2.length >= 5) {
-        return { 
-          ...prevState, 
-          playerTurn: !prevState.playerTurn, 
-          discard2: prevState.discard2.concat(endHand), 
-          hand2: [...prevState.deck2.slice(-5)], 
-          deck2: [...prevState.deck2.slice(0, -5)],
-          mine: false, 
-          remodel: false, 
-          remodelGain: false, 
-          workshop: false, 
-          workshopGain: false, 
-          militia: false, 
-          militiaDefend: false, 
-          militiaDiscardFirst: false, 
-          militiaDiscardSecond: false, 
-          cellar2: false,
-          cellarHand: [] 
-        }
-      } else if (prevState.deck2.length < 5) {
-        let endDiscard = [...prevState.discard2.concat(endHand)]
-        let shuffleDeck = shuffle([...prevState.deck2.concat(endDiscard)])
-        return {
-          ...prevState,
-          playerTurn: !prevState.playerTurn,
-          discard2: [],
-          hand2: [...shuffleDeck.slice(-5)],
-          deck2: [...shuffleDeck.slice(0, -5)],
-          mine: false,
-          remodel: false,
-          remodelGain: false,
-          workshop: false,
-          workshopGain: false,
-          militia: false,
-          militiaDefend: false,
-          militiaDiscardFirst: false,
-          militiaDiscardSecond: false,
-          cellar2: false,
-          cellarHand: [] 
-        }
+      let endDiscard = [...prevState.discard2.concat(endHand)]
+      let shuffleDeck = shuffle([...prevState.deck2.concat(endDiscard)])
+      return { 
+        ...prevState, 
+        playerTurn: !prevState.playerTurn, 
+        discard2: prevState.deck2.length >= 5 ? prevState.discard2.concat(endHand) : [], 
+        hand2: prevState.deck2.length >= 5 ? [...prevState.deck2.slice(-5)] : [...shuffleDeck.slice(-5)], 
+        deck2: prevState.deck2.length >= 5 ? [...prevState.deck2.slice(0, -5)] : [...shuffleDeck.slice(0, -5)],
+        mine: false, 
+        remodel: false, 
+        remodelGain: false, 
+        workshop: false, 
+        workshopGain: false, 
+        militia: false, 
+        militiaDefend: false, 
+        militiaDiscardFirst: false, 
+        militiaDiscardSecond: false, 
+        cellar2: false,
+        cellarHand: [] 
       }
     }
+
+    //PLAYER 1 CLICKS TREASURE CARD IN HAND TO PLAY
     case "PLAY_TREASURE1":
-      return {...prevState, discard1: prevState.discard1.concat(action.payload), hand1: prevState.hand1.filter(card => card.id !== action.payload.id) }
+      return {
+        ...prevState, 
+        discard1: prevState.discard1.concat(action.payload), 
+        hand1: prevState.hand1.filter(card => card.id !== action.payload.id) 
+      }
+
+    //PLAYER 2 CLICKS TREASURE CARD IN HAND TO PLAY
     case "PLAY_TREASURE2":
-      return { ...prevState, discard2: prevState.discard2.concat(action.payload), hand2: prevState.hand2.filter(card => card.id !== action.payload.id) }
+      return { 
+        ...prevState, 
+        discard2: prevState.discard2.concat(action.payload), 
+        hand2: prevState.hand2.filter(card => card.id !== action.payload.id) 
+      }
+    //PLAYER 1 BUYS CARD FROM SUPPLY
     case "BUY1": {
       let pile = Object.keys(prevState).find(key => key == `${action.payload.name.toLowerCase()}s`)
+      //IF CARD CLICKED IS PROVINCE, ADD PROVINCE TO PLAYER 1 DISCARD
       if (prevState[pile].length > 1 && pile !== "provinces") {
-        return { ...prevState, discard1: prevState.discard1.concat(action.payload), [pile]: prevState[pile].filter(card => card.id !== action.payload.id) }
-      } else if (prevState[pile].length === 1 && pile !== "provinces") {
-        if (prevState.emptyPiles < 2) {
-          return { ...prevState, discard1: prevState.discard1.concat(action.payload), [pile]: prevState[pile].filter(card => card.id !== action.payload.id), emptyPiles: prevState.emptyPiles + 1 }
-        } else {
-          return { ...prevState, discard1: prevState.discard1.concat(action.payload), [pile]: prevState[pile].filter(card => card.id !== action.payload.id), gameEnd: true }
+        return { 
+          ...prevState, 
+          discard1: prevState.discard1.concat(action.payload), 
+          [pile]: prevState[pile].filter(card => card.id !== action.payload.id) 
         }
-      } else if (pile === "provinces") {
+      }
+      //IF CARD CLICKED IS LAST IN PILE AND PILE IS NOT PROVINCE PILE... 
+      else if (prevState[pile].length === 1 && pile !== "provinces") {
+        //IF NUM OF EMPTY PILES LESS THAN 2, ADD CARD TO P1 DISCARD AND INCREMENT NUMBER OF EMPTY PILES
+        if (prevState.emptyPiles < 2) {
+          return { 
+            ...prevState, 
+            discard1: prevState.discard1.concat(action.payload), 
+            [pile]: prevState[pile].filter(card => card.id !== action.payload.id), 
+            emptyPiles: prevState.emptyPiles + 1 
+          }
+        } 
+        //IF PILE IS THIRD EMPTY PILE, TRIGGER GAME END
+        else {
+          return { 
+            ...prevState, 
+            discard1: prevState.discard1.concat(action.payload), 
+            [pile]: prevState[pile].filter(card => card.id !== action.payload.id), 
+            gameEnd: true 
+          }
+        }
+      } 
+      //IF PILE IS PROVINCES...
+      else if (pile === "provinces") {
+        //IF MORE THAN ONE PROVINCE LEFT IN PILE, ADD PROVINCE TO PLAYER 1 DISCARD
         if (prevState[pile].length > 1) {
-          return { ...prevState, discard1: prevState.discard1.concat(action.payload), [pile]: prevState[pile].filter(card => card.id !== action.payload.id) }
-        } else {
-            return { ...prevState, discard1: prevState.discard1.concat(action.payload), [pile]: prevState[pile].filter(card => card.id !== action.payload.id), gameEnd: true }
+          return { 
+            ...prevState, 
+            discard1: prevState.discard1.concat(action.payload), 
+            [pile]: prevState[pile].filter(card => card.id !== action.payload.id) 
+          }
+        } 
+        //IF LAST PROVINCE, TRIGGER GAME END
+        else {
+            return { 
+              ...prevState, 
+              discard1: prevState.discard1.concat(action.payload), 
+              [pile]: prevState[pile].filter(card => card.id !== action.payload.id), 
+              gameEnd: true 
+            }
           }
       } 
     }
+    //PLAYER 2 BUYS CARD FROM SUPPLY
     case "BUY2": {
       let pile = Object.keys(prevState).find(key => key == `${action.payload.name.toLowerCase()}s`)
+      //IF CARD CLICKED IS PROVINCE, ADD PROVINCE TO PLAYER 2 DISCARD
       if (prevState[pile].length > 1 && pile !== "provinces") {
-        return { ...prevState, discard2: prevState.discard2.concat(action.payload), [pile]: prevState[pile].filter(card => card.id !== action.payload.id) }   
-      } else if (prevState[pile].length === 1 && pile !== "provinces") {
+        return { 
+          ...prevState, 
+          discard2: prevState.discard2.concat(action.payload), 
+          [pile]: prevState[pile].filter(card => card.id !== action.payload.id)
+        }   
+      } 
+      //IF CARD CLICKED IS LAST IN PILE AND PILE IS NOT PROVINCE PILE... 
+      else if (prevState[pile].length === 1 && pile !== "provinces") {
+        //IF NUM OF EMPTY PILES LESS THAN 2, ADD CARD TO P2 DISCARD AND INCREMENT NUMBER OF EMPTY PILES
         if (prevState.emptyPiles < 3) {
-          return { ...prevState, discard2: prevState.discard2.concat(action.payload), [pile]: prevState[pile].filter(card => card.id !== action.payload.id), emptyPiles: prevState.emptyPiles + 1 }   
-        } else {
-          return { ...prevState, discard2: prevState.discard2.concat(action.payload), [pile]: prevState[pile].filter(card => card.id !== action.payload.id), gameEnd: true }   
+          return { 
+            ...prevState, 
+            discard2: prevState.discard2.concat(action.payload), 
+            [pile]: prevState[pile].filter(card => card.id !== action.payload.id), 
+            emptyPiles: prevState.emptyPiles + 1 
+          }   
+        } 
+        //IF PILE IS THIRD EMPTY PILE, TRIGGER GAME END
+        else {
+          return { 
+            ...prevState, 
+            discard2: prevState.discard2.concat(action.payload), 
+            [pile]: prevState[pile].filter(card => card.id !== action.payload.id), 
+            gameEnd: true 
+          }   
         }
-      } else if (pile === "provinces") {
+      } 
+      //IF PILE IS PROVINCES...
+      else if (pile === "provinces") {
+        //IF MORE THAN ONE PROVINCE LEFT IN PILE, ADD PROVINCE TO PLAYER 2 DISCARD
         if (prevState[pile].length > 1) {
-          return { ...prevState, discard2: prevState.discard2.concat(action.payload), [pile]: prevState[pile].filter(card => card.id !== action.payload.id) }   
-        } else {
-          return { ...prevState, discard2: prevState.discard2.concat(action.payload), [pile]: prevState[pile].filter(card => card.id !== action.payload.id), gameEnd: true }   
+          return { 
+            ...prevState, 
+            discard2: prevState.discard2.concat(action.payload), 
+            [pile]: prevState[pile].filter(card => card.id !== action.payload.id) 
+          }   
+        } 
+        //IF LAST PROVINCE, TRIGGER GAME END
+        else {
+          return { 
+            ...prevState, 
+            discard2: prevState.discard2.concat(action.payload), 
+            [pile]: prevState[pile].filter(card => card.id !== action.payload.id), 
+            gameEnd: true 
+          }   
         }
       }
     }
+    //PLAYER 1 CLICKS ACTION CARD IN HAND TO PLAY IT, CARD MOVED FROM HAND TO DISCARD
     case "ACTION1": 
-        return { ...prevState, discard1: prevState.discard1.concat(action.payload), hand1: prevState.hand1.filter(card => card.id !== action.payload.id) }
+        return { 
+          ...prevState, 
+          discard1: prevState.discard1.concat(action.payload), 
+          hand1: prevState.hand1.filter(card => card.id !== action.payload.id) 
+        }
+    //PLAYER 2 CLICKS ACTION CARD IN HAND TO PLAY IT, CARD MOVED FROM HAND TO DISCARD
     case "ACTION2": 
-        return { ...prevState, discard2: prevState.discard2.concat(action.payload), hand2: prevState.hand2.filter(card => card.id !== action.payload.id) }
+        return { 
+          ...prevState, 
+          discard2: prevState.discard2.concat(action.payload), 
+          hand2: prevState.hand2.filter(card => card.id !== action.payload.id) 
+        }
+    //AFTER PLAYER 1 PLAYS MINE CARD, PLAYER CLICKS TREASURE CARD IN HAND TO TRASH AND SWAP FOR HIGHER VALUE TREASURE CARD, MINE SWITCHED BACK TO FALSE
     case "TRASH_TREASURE1": {
       let pile = action.treasure
-      return { ...prevState, trash: prevState.trash.concat(action.payload), hand1: prevState.hand1.filter(card => card.id !== action.payload.id).concat(prevState[pile].slice(-1)), [pile]: prevState[pile].slice(0, -1), mine: false }  
+      return { 
+        ...prevState, 
+        trash: prevState.trash.concat(action.payload), 
+        hand1: prevState.hand1.filter(card => card.id !== action.payload.id).concat(prevState[pile].slice(-1)), 
+        [pile]: prevState[pile].slice(0, -1), 
+        mine: false 
+      }  
     }
+    //AFTER PLAYER 2 PLAYS MINE CARD, PLAYER CLICKS TREASURE CARD IN HAND TO TRASH AND SWAP FOR HIGHER VALUE TREASURE CARD, MINE SWITCHED BACK TO FALSE
     case "TRASH_TREASURE2": {
       let pile = action.treasure
-      return { ...prevState, trash: prevState.trash.concat(action.payload), hand2: prevState.hand2.filter(card => card.id !== action.payload.id).concat(prevState[pile].slice(-1)), [pile]: prevState[pile].slice(0, -1), mine: false }  
+      return { 
+        ...prevState, 
+        trash: prevState.trash.concat(action.payload), 
+        hand2: prevState.hand2.filter(card => card.id !== action.payload.id).concat(prevState[pile].slice(-1)), 
+        [pile]: prevState[pile].slice(0, -1), 
+        mine: false 
+      }  
     }
+    //AFTER PLAYER 1 PLAYS REMODEL CARD, PLAYER CLICKS CARD IN HAND TO TRASH AND SWAP FOR SUPPLY CARD WORTH TWO MORE
     case "TRASH_REMODEL1": {
-      return { ...prevState, remodel: false, remodelGain: true, trash: prevState.trash.concat(action.payload), hand1: prevState.hand1.filter(card => card.id !== action.payload.id), remodelValue: action.payload.cost + 2  }
+      return { 
+        ...prevState, 
+        remodel: false, 
+        remodelGain: true, 
+        trash: prevState.trash.concat(action.payload), 
+        hand1: prevState.hand1.filter(card => card.id !== action.payload.id), 
+        remodelValue: action.payload.cost + 2  
+      }
     }
+    //AFTER PLAYER 2 PLAYS REMODEL CARD, PLAYER CLICKS CARD IN HAND TO TRASH AND SWAP FOR SUPPLY CARD WORTH TWO MORE
     case "TRASH_REMODEL2": {
-      return { ...prevState, remodel: false, remodelGain: true, trash: prevState.trash.concat(action.payload), hand2: prevState.hand2.filter(card => card.id !== action.payload.id), remodelValue: action.payload.cost + 2 }
+      return { 
+        ...prevState, 
+        remodel: false, 
+        remodelGain: true, 
+        trash: prevState.trash.concat(action.payload), 
+        hand2: prevState.hand2.filter(card => card.id !== action.payload.id), 
+        remodelValue: action.payload.cost + 2 
+      }
     }
     case "GAIN_REMODEL1": {
       let pile = `${action.payload.name.toLowerCase()}s`
-      return { ...prevState, remodelGain: false, [pile]: prevState[pile].slice(0, -1), discard1: prevState.discard1.concat(prevState[pile].slice(-1)) }
+      return { 
+        ...prevState, 
+        remodelGain: false, 
+        [pile]: prevState[pile].slice(0, -1), 
+        discard1: prevState.discard1.concat(prevState[pile].slice(-1)) 
+      }
     }
     case "GAIN_REMODEL2": {
       let pile = `${action.payload.name.toLowerCase()}s`
-      return { ...prevState, remodelGain: false, [pile]: prevState[pile].slice(0, -1), discard2: prevState.discard2.concat(prevState[pile].slice(-1)) }
+      return { 
+        ...prevState, 
+        remodelGain: false, 
+        [pile]: prevState[pile].slice(0, -1), 
+        discard2: prevState.discard2.concat(prevState[pile].slice(-1)) 
+      }
     }
     case "GAIN_WORKSHOP1": {
       let pile = `${action.payload.name.toLowerCase()}s`
-      return { ...prevState, workshop: false, [pile]: prevState[pile].slice(0, -1), discard1: prevState.discard1.concat(prevState[pile].slice(-1)) }
+      return { 
+        ...prevState, 
+        workshop: false, 
+        [pile]: prevState[pile].slice(0, -1), 
+        discard1: prevState.discard1.concat(prevState[pile].slice(-1)) 
+      }
     }
     case "GAIN_WORKSHOP2": {
       let pile = `${action.payload.name.toLowerCase()}s`
-      return { ...prevState, workshop: false, [pile]: prevState[pile].slice(0, -1), discard2: prevState.discard2.concat(prevState[pile].slice(-1)) }
+      return { 
+        ...prevState, 
+        workshop: false, 
+        [pile]: prevState[pile].slice(0, -1), 
+        discard2: prevState.discard2.concat(prevState[pile].slice(-1)) 
+      }
     }
     case "MILITIA_DISCARD_FIRST1": {
-      return { ...prevState, militia: false, militiaDiscardFirst: false, militiaDiscardSecond: true, hand2: prevState.hand2.filter(card => card.id !== action.payload.id), discard2: prevState.discard2.concat(action.payload) }
+      return { 
+        ...prevState, 
+        militia: false, 
+        militiaDiscardFirst: false, 
+        militiaDiscardSecond: true, 
+        hand2: prevState.hand2.filter(card => card.id !== action.payload.id), 
+        discard2: prevState.discard2.concat(action.payload) 
+      }
     }
     case "MILITIA_DISCARD_FIRST2": {
-      return { ...prevState, militia: false, militiaDiscardFirst: false, militiaDiscardSecond: true, hand1: prevState.hand1.filter(card => card.id !== action.payload.id), discard1: prevState.discard1.concat(action.payload) }
+      return { 
+        ...prevState, 
+        militia: false, 
+        militiaDiscardFirst: false, 
+        militiaDiscardSecond: true, 
+        hand1: prevState.hand1.filter(card => card.id !== action.payload.id), 
+        discard1: prevState.discard1.concat(action.payload) 
+      }
     }
     case "MILITIA_DISCARD_SECOND1": {
-      return { ...prevState, militiaDiscardSecond: false, hand2: prevState.hand2.filter(card => card.id !== action.payload.id), discard2: prevState.discard2.concat(action.payload) }
+      return { 
+        ...prevState, 
+        militiaDiscardSecond: false, 
+        hand2: prevState.hand2.filter(card => card.id !== action.payload.id), 
+        discard2: prevState.discard2.concat(action.payload) 
+      }
     }
     case "MILITIA_DISCARD_SECOND2": {
-      return { ...prevState, militiaDiscardSecond: false, hand1: prevState.hand1.filter(card => card.id !== action.payload.id), discard1: prevState.discard1.concat(action.payload) }
+      return { 
+        ...prevState, 
+        militiaDiscardSecond: false, 
+        hand1: prevState.hand1.filter(card => card.id !== action.payload.id), 
+        discard1: prevState.discard1.concat(action.payload) 
+      }
     }
     case "MILITIA_DEFEND1": {
-      return { ...prevState, militia: false, militiaDiscardFirst: false, militiaDiscardSecond: false, hand2: prevState.hand2.filter(card => card.id !== action.payload.id), discard2: prevState.discard2.concat(action.payload) }
+      return { 
+        ...prevState, 
+        militia: false, 
+        militiaDiscardFirst: false, 
+        militiaDiscardSecond: false, 
+        hand2: prevState.hand2.filter(card => card.id !== action.payload.id), 
+        discard2: prevState.discard2.concat(action.payload) 
+      }
     }
     case "MILITIA_DEFEND2": {
-      return { ...prevState, militia: false, militiaDiscardFirst: false, militiaDiscardSecond: false, hand1: prevState.hand1.filter(card => card.id !== action.payload.id), discard1: prevState.discard1.concat(action.payload) }
+      return { 
+        ...prevState, 
+        militia: false, 
+        militiaDiscardFirst: false, 
+        militiaDiscardSecond: false, 
+        hand1: prevState.hand1.filter(card => card.id !== action.payload.id), 
+        discard1: prevState.discard1.concat(action.payload) 
+      }
     }
     case "MILITIA_BREAK": {
-      return { ...prevState, militia: false, militiaDiscardFirst: false, militiaDiscardSecond: false }
+      return { 
+        ...prevState, 
+        militia: false, 
+        militiaDiscardFirst: false, 
+        militiaDiscardSecond: false 
+      }
     }
     case "DEAL1":
-      return { ...prevState, deck1: shuffle(prevState.estates.slice(-3).concat(prevState.coppers.slice(-7))), estates: prevState.estates.slice(0, -3), coppers: prevState.coppers.slice(0, -7) }
+      return { 
+        ...prevState, 
+        deck1: shuffle(prevState.estates.slice(-3).concat(prevState.coppers.slice(-7))), 
+        estates: prevState.estates.slice(0, -3), 
+        coppers: prevState.coppers.slice(0, -7) 
+      }
     case "DEAL2":
-      return { ...prevState, deck2: shuffle(prevState.estates.slice(-3).concat(prevState.coppers.slice(-7))), estates: prevState.estates.slice(0, -3), coppers: prevState.coppers.slice(0, -7) }
+      return { 
+        ...prevState, 
+        deck2: shuffle(prevState.estates.slice(-3).concat(prevState.coppers.slice(-7))), 
+        estates: prevState.estates.slice(0, -3), 
+        coppers: prevState.coppers.slice(0, -7) 
+      }
     case "CYCLE1": {
-        return { ...prevState, deck1: shuffle(prevState.discard1), discard1: [] }
+      return { 
+        ...prevState, 
+        deck1: shuffle(prevState.discard1), 
+        discard1: [] 
+      }
     }
     case "CYCLE2": {
-        return { ...prevState, deck2: shuffle(prevState.discard2), discard2: [] }
+      return { 
+        ...prevState, 
+        deck2: shuffle(prevState.discard2), 
+        discard2: [] 
+      }
     }
     case "DRAW1": {
       if (prevState.deck1.length >= 5) {
-        return { ...prevState, hand1: prevState.deck1.slice(-5), deck1: prevState.deck1.slice(0, -5), gameStart1: true }
+        return { 
+          ...prevState, 
+          hand1: prevState.deck1.slice(-5), 
+          deck1: prevState.deck1.slice(0, -5), 
+          gameStart1: true 
+        }
       } else {
-        return { ...prevState, deck1: shuffle(prevState.deck1.concat(prevState.discard1)), discard1: [] }
+        return { 
+          ...prevState, 
+          deck1: shuffle(prevState.deck1.concat(prevState.discard1)), 
+          discard1: [] 
+        }
       }
     }
     case "DRAW2":
       if (prevState.deck2.length >= 5) {
-        return { ...prevState, hand2: prevState.deck2.slice(-5), deck2: prevState.deck2.slice(0, -5), gameStart2: true }
+        return { 
+          ...prevState, 
+          hand2: prevState.deck2.slice(-5), 
+          deck2: prevState.deck2.slice(0, -5), 
+          gameStart2: true 
+        }
       } else {
-        return { ...prevState, deck2: shuffle(prevState.deck2.concat(prevState.discard2)), discard2: [] }
+        return { 
+          ...prevState, 
+          deck2: shuffle(prevState.deck2.concat(prevState.discard2)), 
+          discard2: [] 
+        }
       }
     case "CELLAR_DISCARD1": {
       if (prevState.cellarHand.includes(action.payload)) {
@@ -456,7 +640,10 @@ function supplyReducer(prevState=defaultState, action) {
     }
     case "MINE1": {
       if (prevState.hand1.some(card => card.name === "Copper" || card.name === "Silver")) {
-        return { ...prevState, mine: true }
+        return { 
+          ...prevState, 
+          mine: true 
+        }
       } else {
         return {
           ...prevState
@@ -465,7 +652,10 @@ function supplyReducer(prevState=defaultState, action) {
     }
     case "MINE2": {
       if (prevState.hand2.some(card => card.name === "Copper" || card.name === "Silver")) {
-        return { ...prevState, mine: true }
+        return { 
+          ...prevState, 
+          mine: true 
+        }
       } else {
         return {
           ...prevState
@@ -474,7 +664,10 @@ function supplyReducer(prevState=defaultState, action) {
     }
     case "REMODEL1": {
       if (prevState.hand1.length > 0) {
-        return { ...prevState, remodel: true }
+        return { 
+          ...prevState, 
+          remodel: true 
+        }
       } else {
         return {
           ...prevState
@@ -483,7 +676,10 @@ function supplyReducer(prevState=defaultState, action) {
     }
     case "REMODEL2": {
       if (prevState.hand2.length > 0) {
-        return { ...prevState, remodel: true}
+        return { 
+          ...prevState, 
+          remodel: true
+        }
       } else {
         return {
           ...prevState
@@ -491,31 +687,65 @@ function supplyReducer(prevState=defaultState, action) {
       }
     }
     case "WORKSHOP1":
-      return { ...prevState, workshop: true }
+      return { 
+        ...prevState, 
+        workshop: true 
+      }
     case "WORKSHOP2":
-      return { ...prevState, workshop: true }
+      return { 
+        ...prevState, 
+        workshop: true 
+      }
     case "ATTACK1": {
       if (prevState.hand2.length > 3) {
-        return { ...prevState, militia: true, militiaDiscardFirst: true }
+        return { 
+          ...prevState, 
+          militia: true, 
+          militiaDiscardFirst: true 
+        }
       } else {
-        return { ...prevState }
+        return { 
+          ...prevState 
+        }
       }
     }
     case "ATTACK2": {
       if (prevState.hand1.length > 3) {
-        return { ...prevState, militia: true, militiaDiscardFirst: true }
+        return { 
+          ...prevState, 
+          militia: true, 
+          militiaDiscardFirst: true 
+        }
       } else {
-        return { ...prevState }
+        return { 
+          ...prevState 
+        }
       }
       }
     case "CELLAR1":
-      return { ...prevState, cellar1: true, cellarHand: [...prevState.hand1] }
+      return { 
+        ...prevState, 
+        cellar1: true, 
+        cellarHand: [...prevState.hand1] 
+      }
     case "CELLAR2":
-      return { ...prevState, cellar2: true, cellarHand: [...prevState.hand2] }
+      return { 
+        ...prevState, 
+        cellar2: true, 
+        cellarHand: [...prevState.hand2] 
+      }
     case "HOVER_ON":
-      return { ...prevState, isHovered: true, hoverCard: action.payload }
+      return { 
+        ...prevState, 
+        isHovered: true, 
+        hoverCard: action.payload 
+      }
     case "HOVER_OFF":
-      return { ...prevState, isHovered: false, hoverCard: action.payload }
+      return { 
+        ...prevState, 
+        isHovered: false, 
+        hoverCard: action.payload 
+      }
     default:
       return prevState
   }

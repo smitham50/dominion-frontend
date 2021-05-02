@@ -1,7 +1,5 @@
 import React, { Fragment } from 'react'
-import ActionCards from './actioncards'
-import TreasureCards from './treasurecards'
-import VictoryCards from './victorycards'
+import SupplyCards from './supplycards'
 import PlayerTurnInfo from '../components/playerturninfo'
 import { connect } from 'react-redux'
 
@@ -41,37 +39,37 @@ class SupplyArea extends React.Component {
               ? 
               <button className="cellar-button" onClick={this.handleClick1} >End Discard</button> 
               : 
-                playerTurn === false && remodel
+                !playerTurn && remodel
                 ?
                 <div className="message" >
                   Trash card and gain card from supply worth up to 2 more
                 </div>
                 : 
-                  playerTurn === false && remodelGain
+                  !playerTurn && remodelGain
                   ?
                   <div className="message" >
                     Gain card from supply costing up to {remodelValue}
                   </div>
                   :
-                    playerTurn === false && mine
+                    !playerTurn && mine
                     ?
                     <div className="message">
                       Trash a treasure card for treasure costing up to 3 more
                     </div>
                     :
-                      playerTurn === false && workshop
+                      !playerTurn && workshop
                       ?
                       <div className="message" >
                         Gain card from supply costing up to 4
                       </div>
                       :
-                        playerTurn === true && (militia || militiaDiscardSecond)
+                        playerTurn && (militia || militiaDiscardSecond)
                         ?
                         <div className="message" >
                           Discard 2 cards or play Moat
                         </div>
                         :
-                          playerTurn === false && !cellar1 && !gameEnd && gameStart1 && gameStart2 && (!militia && !militiaDiscardSecond)
+                          !playerTurn && !cellar1 && !gameEnd && gameStart1 && gameStart2 && (!militia && !militiaDiscardSecond)
                           ? 
                           <button onClick={endTurn1} >End Turn</button> 
                           : 
@@ -93,11 +91,7 @@ class SupplyArea extends React.Component {
           </div>
           :
           <Fragment>
-            <div id="tvcard-container">
-              <TreasureCards />
-              <VictoryCards />
-            </div>      
-            <ActionCards />
+            <SupplyCards/>
           </Fragment>
         }
         <div className="margins" >
@@ -116,37 +110,37 @@ class SupplyArea extends React.Component {
                 ?
                 <button className="cellar-button" onClick={this.handleClick2} >End Discard</button>
                 :
-                playerTurn === true && remodel
+                playerTurn && remodel
                   ?
                   <div className="message" >
                     Trash card and gain card from supply costing up to 2 more
                   </div>
                   :
-                  playerTurn === true && remodelGain
+                  playerTurn && remodelGain
                     ?
                     <div className="message" >
                       Gain card from supply costing up to {remodelValue}
                     </div>
                     :
-                      playerTurn === true && mine
+                      playerTurn && mine
                       ?
                       <div className="message">
                         Trash a treasure card for treasure costing up to 3 more
                       </div>
                       :
-                        playerTurn === true && workshop
+                        playerTurn && workshop
                           ?
                           <div className="message" >
                             Gain card from supply costing up to 4
                           </div>
                           :
-                          playerTurn === false && (militia || militiaDiscardSecond)
+                          !playerTurn && (militia || militiaDiscardSecond)
                             ?
                             <div className="message" >
                               Discard 2 cards or play Moat
                             </div>
                             :
-                            playerTurn === true && !cellar2 && !gameEnd && gameStart1 && gameStart2 && (!militia && !militiaDiscardSecond)
+                            playerTurn && !cellar2 && !gameEnd && gameStart1 && gameStart2 && (!militia && !militiaDiscardSecond)
                               ?
                               <button onClick={endTurn2} >End Turn</button>
                               :
