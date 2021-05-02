@@ -39,9 +39,9 @@ class Card extends React.Component {
             ((!playerTurn && player === "player2") ||
             (playerTurn && player === "player1"))) 
             ? 
-              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnxjXZTHcRqwUrA4nW09UvtRlXPGlhAZdOQC6_-s71LayIknwS" 
+              process.env.PUBLIC_URL + "/card-images/cardback.jpg" 
             : 
-              card.picture} alt="oops" onClick={() => this.handleClick()} 
+              process.env.PUBLIC_URL + card.picture} alt="oops" onClick={() => this.handleClick()} 
               onMouseEnter={
                 className === "supply-card" ||
                 (className === "hand-card" && !militia && !militiaDiscardSecond &&
@@ -61,9 +61,9 @@ class Card extends React.Component {
               ((!playerTurn && player === "player2") ||
               (playerTurn && player === "player1"))) 
             ? 
-              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnxjXZTHcRqwUrA4nW09UvtRlXPGlhAZdOQC6_-s71LayIknwS" 
+              process.env.PUBLIC_URL + "/card-images/cardback.jpg" 
             :
-            card.picture} alt="oops" className="rest" onClick={() => this.handleClick()} 
+            process.env.PUBLIC_URL + card.picture} alt="oops" className="rest" onClick={() => this.handleClick()} 
             onMouseEnter={
               className === "supply-card" || 
               (className === "hand-card" && !militia && !militiaDiscardSecond &&
