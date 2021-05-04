@@ -1,6 +1,6 @@
-import React from 'react'
+import React from 'react';
 
-function PlayerTurnInfo(props) {
+const PlayerTurnInfo = (props) => {
 
   return(
     <div className="player-turn-info" >
@@ -10,8 +10,8 @@ function PlayerTurnInfo(props) {
       <div className="player-wallet">{`Wallet: ${props.wallet}`}</div>
       <div className="player-vps">{`VPs: ${props.victoryPoints}`}</div>
     </div>
-  )
-}
+  );
+};
 
 
-export default PlayerTurnInfo
+export default PlayerTurnInfo;

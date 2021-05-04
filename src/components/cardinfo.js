@@ -1,29 +1,24 @@
-import React from 'react'
-import { connect } from 'react-redux'
+import React from 'react';
+import { connect } from 'react-redux';
 
-class CardInfo extends React.Component {
+const CardInfo = (props) => {
+  const { card } = props.hoverCard.props;
 
-  render() {
-    const { card } = this.props.hoverCard.props
-    return (
-      <div className="card-info" >
-        <h4>{ card.name }</h4>
-        <p>{ card.description }</p>
-        <p>Cost: { card.cost }</p>
-      </div>
-    )
-  }
-}
+  return (
+    <div className="card-info" >
+      <h4>{card.name}</h4>
+      <p>{card.description}</p>
+      <p>Cost: {card.cost}</p>
+    </div>
+  );
+};
 
 function msp(state) {
-
-  const { hoverCard } = state.supply
+  const { hoverCard } = state.supply;
 
   return {
     hoverCard
-  }
+  };
+};
 
-}
-
-
-export default connect(msp, null)(CardInfo)
+export default connect(msp, null)(CardInfo);
