@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/dominion-frontend/precache-manifest.b1fbd375d8284c55a4b82279626b3e47.js"
+  "/dominion-frontend/precache-manifest.9338a91efa7d880e3504ac8055a90cbf.js"
 );
 
 self.addEventListener('message', (event) => {
