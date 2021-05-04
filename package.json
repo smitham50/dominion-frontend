@@ -4,7 +4,7 @@
   "private": true,
   "homepage": "https://smitham50.github.io/dominion-frontend",
   "dependencies": {
-    "boardgame.io": "^0.32.1",
+    "axios": "^0.21.1",
     "gh-pages": "^3.1.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
@@ -12,7 +12,8 @@
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.1",
     "redux": "^4.0.4",
-    "shuffle-array": "^1.0.1"
+    "shuffle-array": "^1.0.1",
+    "typescript": "^4.2.4"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -36,5 +37,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@babel/core": "^7.14.0",
+    "@typescript-eslint/eslint-plugin": "^1.6.0"
   }
 }

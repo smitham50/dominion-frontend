@@ -1,7 +1,7 @@
 import React from 'react'
-import './App.css'
-import './Supply.css'
-import './Menu.css'
+import './stylesheets/App.css'
+import './stylesheets/Supply.css'
+import './stylesheets/Menu.css'
 import PlayTable from './containers/playtable'
 import Menu from './containers/menu'
 import { Route, Switch } from "react-router-dom"

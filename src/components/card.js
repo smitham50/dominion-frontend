@@ -33,7 +33,7 @@ class Card extends React.Component {
         {
           index === 0 
           ?
-          <img src={
+          <img id={`${card.name}`}src={
             id === "deck-card" || 
             (className === "hand-card" && !militia && !militiaDiscardSecond && 
             ((!playerTurn && player === "player2") ||
@@ -55,7 +55,7 @@ class Card extends React.Component {
               onMouseLeave={this.props.hoverOff} >
           </img> 
           : 
-          <img src={
+          <img id={`${card.name}`}src={
               id === "deck-card" ||
               (className === "hand-card" && !militia && !militiaDiscardSecond &&
               ((!playerTurn && player === "player2") ||
