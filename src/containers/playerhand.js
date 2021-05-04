@@ -1,31 +1,28 @@
-import React from 'react'
-import Card from '../components/card'
+import React from 'react';
+import Card from '../components/card';
 
-class PlayerHand extends React.Component {
+const PlayerHand = (props) => {
+  const renderHand = () => {
+    return props.hand.map((card, index) => {
+      return <Card key={card.id} card={card} index={index} player={props.player} className="hand-card" />
+    });
+  };
 
-  renderHand = () => {
-    return this.props.hand.map((card, index) => {
-      return <Card key={card.id} card={card} index={index} player={this.props.player} className="hand-card" />
-    })
-  }
-
-  render() {
-    return (
-      <div className="player-hand" >
-        {
-          this.props.hand.length > 0 
-          ? 
-          this.renderHand() 
+  return (
+    <div className="player-hand" >
+      {
+        props.hand.length > 0
+          ?
+          renderHand()
           :
-            this.props.turns === 0 && (!this.props.gameStart1 && !this.props.gameStart2) && this.props.deck.length > 0
-            ? 
-            <button onClick={() => this.props.handleDraw()}>Draw Hand</button>
+          props.turns === 0 && (!props.gameStart1 && !props.gameStart2) && props.deck.length > 0
+            ?
+            <button onClick={() => props.handleDraw()}>Draw Hand</button>
             :
             null
-        }
-      </div>
-    )
-  }
-}
+      }
+    </div>
+  );
+};
 
-export default PlayerHand
+export default PlayerHand;
