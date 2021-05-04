@@ -86,7 +86,7 @@
 
 .card-container .rest {
   height: calc(100% * .90);
-  margin-left: calc(100% * -.63);
+  margin-left: calc(100% * -.682);
 }
 
 /* #supply-area .rest:last-of-type:hover {
