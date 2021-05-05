@@ -9,7 +9,7 @@ function setCards(cards) {
         return card.name === cardName;
     });
 
-    store.dispatch({ type: cardName?.toUpperCase() + 'S', payload: allCardsOfType });
+    store.dispatch({ type: cardName.toUpperCase() + 'S', payload: allCardsOfType });
 
     cards = cards.filter(card => {
         return card.name !== cardName && card.name !== 'Trash';
