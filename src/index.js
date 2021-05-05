@@ -17,5 +17,6 @@ const store = createStore(rootReducer)
 
 ReactDOM.render(<Provider store={store}><Router><Route path="/" component={App} /></Router></Provider>, document.getElementById('root'));
 
+export default store;
 
 serviceWorker.unregister();
