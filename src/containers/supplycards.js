@@ -5,7 +5,6 @@ import setCards from '../utils/setCards';
 import cardNames from '../utils/cardNames';
 
 const SupplyCards = (props) => {
-
     useEffect(() => {
         axios.get('https://blooming-sierra-89816.herokuapp.com/api/v1/cards')
             .then(resp => {

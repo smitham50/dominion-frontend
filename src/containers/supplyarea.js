@@ -1,157 +1,146 @@
-import React, { Fragment } from 'react'
-import SupplyCards from './SupplyCards'
-import PlayerTurnInfo from '../components/PlayerTurnInfo'
-import { connect } from 'react-redux'
+import React, { Fragment } from 'react';
+import SupplyCards from './SupplyCards';
+import PlayerTurnInfo from '../components/PlayerTurnInfo';
+import { connect } from 'react-redux';
 
-class SupplyArea extends React.Component {
+const SupplyArea = (props) => {
+  const {
+    actions1, buys1, wallet1, victoryPoints1, turns1, actions2,
+    buys2, wallet2, victoryPoints2, turns2, playerTurn, endTurn1,
+    endTurn2, cellar1, cellar2, gameEnd, militia, remodelGain,
+    remodelValue, workshop, remodel, militiaDiscardSecond, mine,
+    gameStart1, gameStart2, endCellar1, endCellar2 } = props;
 
-  handleClick1 = () => {
-    this.props.endCellar1()
-  }
-
-  handleClick2 = () => {
-    this.props.endCellar2()
-  }
-
-  render() {
-    const { 
-      actions1, buys1, wallet1, victoryPoints1, turns1, actions2, 
-      buys2, wallet2, victoryPoints2, turns2, playerTurn, endTurn1,
-      endTurn2, cellar1, cellar2, gameEnd, militia, remodelGain, 
-      remodelValue, workshop, remodel, militiaDiscardSecond, mine,
-      gameStart1, gameStart2 } = this.props
-      
-    return(
-      <div id="supply-area">
-        <div className="margins">
-          <PlayerTurnInfo 
-            key="player1"
-            player="Player 1"
-            actions={actions1}
-            buys={buys1}
-            wallet={wallet1}
-            victoryPoints={victoryPoints1}
-            turns={turns1}
-          />
-          <div className="end-turn">
-            {
-              cellar1 
-              ? 
-              <button className="cellar-button" onClick={this.handleClick1} >End Discard</button> 
-              : 
-                !playerTurn && remodel
+  return (
+    <div id="supply-area">
+      <div className="margins">
+        <PlayerTurnInfo
+          key="player1"
+          player="Player 1"
+          actions={actions1}
+          buys={buys1}
+          wallet={wallet1}
+          victoryPoints={victoryPoints1}
+          turns={turns1}
+        />
+        <div className="end-turn">
+          {
+            cellar1
+              ?
+              <button className="cellar-button" onClick={endCellar1} >End Discard</button>
+              :
+              !playerTurn && remodel
                 ?
                 <div className="message" >
                   Trash card and gain card from supply worth up to 2 more
                 </div>
-                : 
-                  !playerTurn && remodelGain
+                :
+                !playerTurn && remodelGain
                   ?
                   <div className="message" >
                     Gain card from supply costing up to {remodelValue}
                   </div>
                   :
-                    !playerTurn && mine
+                  !playerTurn && mine
                     ?
                     <div className="message">
                       Trash a treasure card for treasure costing up to 3 more
                     </div>
                     :
-                      !playerTurn && workshop
+                    !playerTurn && workshop
                       ?
                       <div className="message" >
                         Gain card from supply costing up to 4
                       </div>
                       :
-                        playerTurn && (militia || militiaDiscardSecond)
+                      playerTurn && (militia || militiaDiscardSecond)
                         ?
                         <div className="message" >
                           Discard 2 cards or play Moat
                         </div>
                         :
-                          !playerTurn && !cellar1 && !gameEnd && gameStart1 && gameStart2 && (!militia && !militiaDiscardSecond)
-                          ? 
-                          <button onClick={endTurn1} >End Turn</button> 
-                          : 
+                        !playerTurn && !cellar1 && !gameEnd && gameStart1 && gameStart2 && (!militia && !militiaDiscardSecond)
+                          ?
+                          <button onClick={endTurn1} >End Turn</button>
+                          :
                           null
-            }
-          </div>
+          }
         </div>
-        {
-          gameEnd 
+      </div>
+      {
+        gameEnd
           ?
           <div id="game-end">
             {
-            victoryPoints1 > victoryPoints2
-            ?
-            "Player 1 Wins!"
-            :
-            "Player 2 Wins!"
+              victoryPoints1 > victoryPoints2
+                ?
+                "Player 1 Wins!"
+                :
+                "Player 2 Wins!"
             }
           </div>
           :
           <Fragment>
-            <SupplyCards/>
+            <SupplyCards />
           </Fragment>
-        }
-        <div className="margins" >
-          <PlayerTurnInfo 
-            key="player2"
-            player="Player 2"
-            actions={actions2}
-            buys={buys2}
-            wallet={wallet2}
-            victoryPoints={victoryPoints2}
-            turns={turns2}
-          />
-          <div className="end-turn" >
-            {
-              cellar2
+      }
+      <div className="margins" >
+        <PlayerTurnInfo
+          key="player2"
+          player="Player 2"
+          actions={actions2}
+          buys={buys2}
+          wallet={wallet2}
+          victoryPoints={victoryPoints2}
+          turns={turns2}
+        />
+        <div className="end-turn" >
+          {
+            cellar2
+              ?
+              <button className="cellar-button" onClick={endCellar2} >End Discard</button>
+              :
+              playerTurn && remodel
                 ?
-                <button className="cellar-button" onClick={this.handleClick2} >End Discard</button>
+                <div className="message" >
+                  Trash card and gain card from supply costing up to 2 more
+                  </div>
                 :
-                playerTurn && remodel
+                playerTurn && remodelGain
                   ?
                   <div className="message" >
-                    Trash card and gain card from supply costing up to 2 more
+                    Gain card from supply costing up to {remodelValue}
                   </div>
                   :
-                  playerTurn && remodelGain
+                  playerTurn && mine
                     ?
-                    <div className="message" >
-                      Gain card from supply costing up to {remodelValue}
-                    </div>
-                    :
-                      playerTurn && mine
-                      ?
-                      <div className="message">
-                        Trash a treasure card for treasure costing up to 3 more
+                    <div className="message">
+                      Trash a treasure card for treasure costing up to 3 more
                       </div>
-                      :
-                        playerTurn && workshop
-                          ?
-                          <div className="message" >
-                            Gain card from supply costing up to 4
+                    :
+                    playerTurn && workshop
+                      ?
+                      <div className="message" >
+                        Gain card from supply costing up to 4
                           </div>
-                          :
-                          !playerTurn && (militia || militiaDiscardSecond)
-                            ?
-                            <div className="message" >
-                              Discard 2 cards or play Moat
+                      :
+                      !playerTurn && (militia || militiaDiscardSecond)
+                        ?
+                        <div className="message" >
+                          Discard 2 cards or play Moat
                             </div>
-                            :
-                            playerTurn && !cellar2 && !gameEnd && gameStart1 && gameStart2 && (!militia && !militiaDiscardSecond)
-                              ?
-                              <button onClick={endTurn2} >End Turn</button>
-                              :
-                              null
-            }
-          </div>
+                        :
+                        playerTurn && !cellar2 && !gameEnd && gameStart1 && gameStart2 && (!militia && !militiaDiscardSecond)
+                          ?
+                          <button onClick={endTurn2} >End Turn</button>
+                          :
+                          null
+          }
         </div>
       </div>
-    )
-  }
-}
+    </div>
+  );
+};
 
 function msp(state) {
   const { actions1, buys1, wallet1, victoryPoints1, turns1 } = state.playerOne
