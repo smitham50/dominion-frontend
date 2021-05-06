@@ -3,6 +3,7 @@ import Card from '../components/Card';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import setCards from '../utils/setCards';
+import cardNames from '../utils/cardNames';
 
 const SupplyCards = (props) => {
 
@@ -14,6 +15,13 @@ const SupplyCards = (props) => {
             });
     }, []);
 
+    const renderCardContainers = () => {
+        return cardNames.map((cardName, index) => {
+            const cardType = cardName.toLowerCase() + 's';
+            return <div key={index} id={cardType} className='card-container'>{renderCards(cardType)}</div>
+        });
+    };
+
     const renderCards = (cardType) => {
         return props[cardType].map((card, index) => {
             return <Card key={card.id} card={card} index={index} className="supply-card" />
@@ -22,54 +30,9 @@ const SupplyCards = (props) => {
 
     return (
         <div id="supply-card-container">
-            <div id="coppers" className="card-container">
-                {renderCards('coppers')}
-            </div>
-            <div id="silvers" className="card-container">
-                {renderCards('silvers')}
-            </div>
-            <div id="golds" className="card-container">
-                {renderCards('golds')}
-            </div>
-            <div id="cellars" className="card-container">
-                {renderCards('cellars')}
-            </div>
-            <div id="moats" className="card-container">
-                {renderCards('moats')}
-            </div>
-            <div id="workshops" className="card-container">
-                {renderCards('workshops')}
-            </div>
-            <div id="woodcutters" className="card-container">
-                {renderCards('woodcutters')}
-            </div>
-            <div id="villages" className="card-container">
-                {renderCards('villages')}
-            </div>
-            <div id="estates" className="card-container">
-                {renderCards('estates')}
-            </div>
-            <div id="duchys" className="card-container">
-                {renderCards('duchys')}
-            </div>
-            <div id="provinces" className="card-container">
-                {renderCards('provinces')}
-            </div>
-            <div id="smithys" className="card-container">
-                {renderCards('smithys')}
-            </div>
-            <div id="militias" className="card-container">
-                {renderCards('militias')}
-            </div>
-            <div id="remodels" className="card-container">
-                {renderCards('remodels')}
-            </div>
-            <div id="markets" className="card-container">
-                {renderCards('markets')}
-            </div>
-            <div id="mines" className="card-container">
-                {renderCards('mines')}
-            </div>
+            { 
+                renderCardContainers()
+            }
         </div>
     );
 };

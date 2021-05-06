@@ -5,12 +5,12 @@ export default function handleActionCard(props) {
         player, playerTurn, card
     } = props;
 
-    if (player === "player1" && !playerTurn && actions1 > 0) {
+    if (player === "1" && !playerTurn && actions1 > 0) {
         playAction1(card, deck1)
         card.triggers.forEach(trigger => {
             triggerDispatch1(`${trigger}1`)
         })
-    } else if (player === "player2" && playerTurn && actions2 > 0) {
+    } else if (player === "2" && playerTurn && actions2 > 0) {
         playAction2(card, deck2)
         card.triggers.forEach(trigger => {
             triggerDispatch2(`${trigger}2`)
