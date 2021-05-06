@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import Card from '../components/Card';
 import axios from 'axios';
+import { connect } from 'react-redux';
 import setCards from '../utils/setCards';
 import cardNames from '../utils/cardNames';
 
@@ -33,4 +34,44 @@ const SupplyCards = (props) => {
     );
 };
 
-export default SupplyCards;
+function msp(state) {
+    const {
+        coppers, 
+        silvers, 
+        golds, 
+        estates, 
+        duchys, 
+        provinces, 
+        cellars,
+        moats, 
+        workshops, 
+        woodcutters, 
+        villages, 
+        militias, 
+        smithys,
+        remodels, 
+        markets, 
+        mines
+    } = state.supply;
+
+    return {
+        coppers,
+        silvers,
+        golds,
+        estates,
+        duchys,
+        provinces,
+        cellars,
+        moats,
+        workshops,
+        woodcutters,
+        villages,
+        militias,
+        smithys,
+        remodels,
+        markets,
+        mines
+    };
+};
+
+export default connect(msp, null)(SupplyCards);
