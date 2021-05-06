@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import Card from '../components/card';
+import Card from '../components/Card';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import setCards from '../utils/setCards';

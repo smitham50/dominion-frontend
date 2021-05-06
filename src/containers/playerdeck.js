@@ -1,14 +1,19 @@
 import React from 'react';
-import Card from '../components/card';
+import Card from '../components/Card';
 
 const PlayerDeck = (props) => {
+  const {
+    deck,
+    player,
+    turns,
+    handleDeal
+  } = props;
+
   const renderDeck = () => {
-    return props.deck.map((card, index) => {
+    return deck.map((card, index) => {
       return <Card key={card.id} card={card} index={index} id="deck-card" />
     });
   };
-
-  const { deck, handleDeal, turns } = props;
 
   return (
     <div className="player-deck" >
@@ -19,7 +24,7 @@ const PlayerDeck = (props) => {
           :
           turns === 0
             ?
-            <button onClick={() => handleDeal()}>Deal Cards</button>
+            <button onClick={() => handleDeal(player)}>Deal Cards</button>
             :
             null
       }

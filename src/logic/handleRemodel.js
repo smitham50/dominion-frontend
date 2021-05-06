@@ -4,9 +4,9 @@ export default function handleRemodel(props) {
         playerTurn, card
     } = props;
 
-    if (player === "player1" && !playerTurn) {
+    if (player === "1" && !playerTurn) {
         trashRemodel1(card);
-    } else if (player === "player2" && playerTurn) {
+    } else if (player === "2" && playerTurn) {
         trashRemodel2(card);
     }
 }

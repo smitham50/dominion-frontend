@@ -2,8 +2,8 @@ import React from 'react';
 import './stylesheets/App.css';
 import './stylesheets/Supply.css';
 import './stylesheets/Menu.css';
-import PlayTable from './containers/playtable';
-import Menu from './containers/menu';
+import PlayTable from './containers/PlayTable';
+import Menu from './containers/Menu';
 import { Route, Switch } from 'react-router-dom';
 
 const App = (props) => {

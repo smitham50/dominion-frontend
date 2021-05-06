@@ -1,16 +1,17 @@
 import React, { useEffect } from 'react';
-import Card from './card';
+import Card from './Card';
 import { connect } from 'react-redux';
 import axios from 'axios';
 
 const Trash = (props) => {
+  const { trash, setTrash } = props;
 
   useEffect(() => {
-    if (props.trash.length === 0) {
+    if (trash.length === 0) {
       axios.get('https://blooming-sierra-89816.herokuapp.com/api/v1/cards')
         .then(resp => {
           const cards = resp.data;
-          props.setTrash(cards.filter(card => {
+          setTrash(cards.filter(card => {
             return card.name === "Trash";
           }));
         });
@@ -18,7 +19,7 @@ const Trash = (props) => {
   }, []);
 
   const renderTrash = () => {
-    return props.trash.map((card, index) => {
+    return trash.map((card, index) => {
       return <Card key={card.id} card={card} index={index} />
     });
   };

@@ -5,8 +5,9 @@ export default function handleTreasureCard(props) {
         trashRemodel2, player, playerTurn
     } = props;
 
-    if (player === "player1" && !playerTurn) {
+    if (player === "1" && !playerTurn) {
         if (!mine && !remodel) {
+            debugger
             playTreasureCard1(card)
         } else if (mine) {
             if (card.name === "Copper") {
@@ -18,7 +19,7 @@ export default function handleTreasureCard(props) {
             trashRemodel1(card)
         }
     }
-    else if (player === "player2" && playerTurn) {
+    else if (player === "2" && playerTurn) {
         if (!mine && !remodel) {
             playTreasureCard2(card)
         } else if (mine) {

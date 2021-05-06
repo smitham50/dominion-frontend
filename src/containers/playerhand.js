@@ -1,23 +1,31 @@
 import React from 'react';
-import Card from '../components/card';
+import Card from '../components/Card';
 
 const PlayerHand = (props) => {
+  const { 
+    player, 
+    deck, 
+    handleDraw, 
+    turns, 
+    hand 
+  } = props;
+
   const renderHand = () => {
-    return props.hand.map((card, index) => {
-      return <Card key={card.id} card={card} index={index} player={props.player} className="hand-card" />
+    return hand.map((card, index) => {
+      return <Card key={card.id} card={card} index={index} player={player} className="hand-card" />
     });
   };
 
   return (
     <div className="player-hand" >
       {
-        props.hand.length > 0
+        hand.length > 0
           ?
           renderHand()
           :
-          props.turns === 0 && (!props.gameStart1 && !props.gameStart2) && props.deck.length > 0
+          turns === 0 && deck.length > 0
             ?
-            <button onClick={() => props.handleDraw()}>Draw Hand</button>
+            <button onClick={() => handleDraw(player)}>Draw Hand</button>
             :
             null
       }

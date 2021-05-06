@@ -32,13 +32,13 @@ export default function handleHandCard(props) {
         // CELLAR
         else if (
             cellar1 &&
-            player === "player1" &&
+            player === "1" &&
             !playerTurn
         ) {
             cellarDiscard1(card);
         } else if (
             cellar2 &&
-            player === "player2" &&
+            player === "2" &&
             playerTurn
         ) {
             cellarDiscard2(card);
@@ -47,13 +47,13 @@ export default function handleHandCard(props) {
     // MILITIA RESPONSES
     // MOAT OR MILITIA DISCARD FIRST
     else if (militia && militiaDiscardFirst) {
-        if (!playerTurn && player === "player2") {
+        if (!playerTurn && player === "2") {
             if (card.name !== "Moat") {
                 militiaDiscardFirst1(card)
             } else {
                 militiaDefend1(card)
             }
-        } else if (playerTurn && player === "player1") {
+        } else if (playerTurn && player === "1") {
             if (card.name !== "Moat") {
                 militiaDiscardFirst2(card)
             } else {
@@ -65,13 +65,13 @@ export default function handleHandCard(props) {
     else if (militiaDiscardSecond) {
         if (
             !playerTurn &&
-            player === "player2" &&
+            player === "2" &&
             hand2.length > 3
         ) {
             militiaDiscardSecond1(card)
         } else if (
             playerTurn &&
-            player === "player1" &&
+            player === "1" &&
             hand1.length > 3
         ) {
             militiaDiscardSecond2(card)

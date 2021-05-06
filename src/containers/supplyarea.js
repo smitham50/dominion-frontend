@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
-import SupplyCards from './supplycards'
-import PlayerTurnInfo from '../components/playerturninfo'
+import SupplyCards from './SupplyCards'
+import PlayerTurnInfo from '../components/PlayerTurnInfo'
 import { connect } from 'react-redux'
 
 class SupplyArea extends React.Component {

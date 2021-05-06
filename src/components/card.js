@@ -13,13 +13,12 @@ class Card extends React.Component {
 
   handleClick = () => {
     const { className } = this.props
-
+    
     if (className === "hand-card") {
       handleHandCard(this.props);
     } else if (className === "supply-card") {
       handleSupplyCard(this.props);
     }
-
   };
   
   render() {
@@ -36,8 +35,8 @@ class Card extends React.Component {
           <img src={
             id === "deck-card" || 
             (className === "hand-card" && !militia && !militiaDiscardSecond && 
-            ((!playerTurn && player === "player2") ||
-            (playerTurn && player === "player1"))) 
+            ((!playerTurn && player === "2") ||
+            (playerTurn && player === "1"))) 
             ? 
               process.env.PUBLIC_URL + "/card-images/cardback.jpg" 
             : 
@@ -45,8 +44,8 @@ class Card extends React.Component {
               onMouseEnter={
                 className === "supply-card" ||
                 (className === "hand-card" && !militia && !militiaDiscardSecond &&
-                ((!playerTurn && player === "player1") ||
-                (playerTurn && player === "player2")))
+                ((!playerTurn && player === "1") ||
+                (playerTurn && player === "2")))
                 ? 
                   () => this.props.hoverOn(this) 
                 : 
@@ -58,8 +57,8 @@ class Card extends React.Component {
           <img src={
               id === "deck-card" ||
               (className === "hand-card" && !militia && !militiaDiscardSecond &&
-              ((!playerTurn && player === "player2") ||
-              (playerTurn && player === "player1"))) 
+              ((!playerTurn && player === "2") ||
+              (playerTurn && player === "1"))) 
             ? 
               process.env.PUBLIC_URL + "/card-images/cardback.jpg" 
             :
@@ -67,8 +66,8 @@ class Card extends React.Component {
             onMouseEnter={
               className === "supply-card" || 
               (className === "hand-card" && !militia && !militiaDiscardSecond &&
-              ((!playerTurn && player === "player1") ||
-              (playerTurn && player === "player2")))
+              ((!playerTurn && player === "1") ||
+              (playerTurn && player === "2")))
               ? 
                 () => this.props.hoverOn(this) 
               : 
