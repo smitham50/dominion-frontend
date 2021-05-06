@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import Card from '../components/Card';
-import { connect } from 'react-redux';
 import axios from 'axios';
 import setCards from '../utils/setCards';
 import cardNames from '../utils/cardNames';
@@ -30,39 +29,9 @@ const SupplyCards = (props) => {
 
     return (
         <div id="supply-card-container">
-            { 
-                renderCardContainers()
-            }
+            { renderCardContainers() }
         </div>
     );
 };
 
-function msp(state) {
-
-    const { 
-        coppers, silvers, golds, estates, duchys, provinces, cellars, 
-        moats, workshops, woodcutters, villages, militias, smithys, 
-        remodels, markets, mines 
-    } = state.supply
-
-    return {
-        coppers,
-        silvers,
-        golds,
-        estates,
-        duchys,
-        provinces,
-        cellars,
-        moats,
-        workshops,
-        woodcutters,
-        villages,
-        militias,
-        smithys,
-        remodels,
-        markets,
-        mines
-    };
-};
-
-export default connect(msp, null)(SupplyCards);
+export default SupplyCards;
