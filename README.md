@@ -4,10 +4,10 @@ To run, visit:
 
 ### https://smitham50.github.io/dominion-frontend/
 
-### Goal
+### Goal (from the Dominion manual)
 
-This is a game of building a deck of cards. The deck is your Dominion. It contains your resources, victory points, and the things you can do. It starts out a small sad collection of Estates and Coppers, but you hope by the end of the game it will be brimming with Gold, Provinces, and the inhabitants and structures of your castle and kingdom.
-The player with the most victory points in his Deck at game end wins.
+"This is a game of building a deck of cards. The deck is your Dominion. It contains your resources, victory points, and the things you can do. It starts out a small sad collection of Estates and Coppers, but you hope by the end of the game it will be brimming with Gold, Provinces, and the inhabitants and structures of your castle and kingdom.
+The player with the most victory points in his Deck at game end wins."
 
 ### Card Types
 
