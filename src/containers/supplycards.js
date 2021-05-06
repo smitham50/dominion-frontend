@@ -3,7 +3,6 @@ import Card from '../components/card';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import setCards from '../utils/setCards';
-import renderCards from '../utils/renderCards';
 
 const SupplyCards = (props) => {
 
