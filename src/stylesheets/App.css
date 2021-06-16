@@ -16,7 +16,3 @@ html, body {
 #root {
   height: 100vh;
 }
-
-img {
-  border-radius: 3px;
-}
