@@ -9,6 +9,41 @@ const PlayerCardsContainer = styled.div`
     width: 43%;
     height: 100%;
     display: flex;
+
+    & > * {
+        border: solid 1px #4c4c4c;
+        border-radius: 3px;
+        height: 100%;
+        display: flex;
+        overflow: auto;
+        padding-left: 2px;
+    }
+
+    & > * img {
+        height: 67%;
+        margin-left: 0%;
+        margin-top: 8%;
+    }
+
+    & > *::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+        -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+        border-radius: 10px;
+        background-color: #0a0a0a47;
+    }
+
+    & > *::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+        background-color: #0a0a0a47;
+    }
+
+    & > *::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+        -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+        background-color: #90909099;
+    }
 `;
 
 const PlayerArea = (props) => {

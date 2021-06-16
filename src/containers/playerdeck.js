@@ -3,19 +3,7 @@ import Card from '../components/Card';
 import styled from 'styled-components';
 
 const PlayerDeckContainer = styled.div`
-  border: solid 1px #4c4c4c;
-  border-radius: 3px;
   width: 25%;
-  height: 100%;
-  display: flex;
-  overflow: auto;
-  padding-left: 0.5%;
-
-  & img {
-    height: 67%;
-    margin-left: 0%;
-    margin-top: 8%;
-  }
 
   & .rest {
     margin-left: -63%;

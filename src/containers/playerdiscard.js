@@ -1,5 +1,14 @@
 import React from 'react';
 import Card from '../components/Card';
+import styled from 'styled-components';
+
+const PlayerDiscardContainer = styled.div`
+  width: 25%;
+
+  & .rest {
+    margin-left: -63%;
+  }
+`;
 
 const PlayerDiscard = (props) => {
   const renderDiscard = () => {
@@ -9,9 +18,11 @@ const PlayerDiscard = (props) => {
   };
 
   return (
-    <div className="player-discard" >
-      {props.discard.length > 0 ? renderDiscard() : null}
-    </div>
+    <PlayerDiscardContainer>
+      {
+        props.discard.length > 0 && renderDiscard()
+      }
+    </PlayerDiscardContainer>
   );
 };
 
