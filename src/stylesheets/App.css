@@ -21,13 +21,6 @@ img {
   border-radius: 3px;
 }
 
-.App {
-  border: solid 1px #4c4c4c;
-  border-radius: 3px;
-  width: 100%;
-  height: 100vh;
-}
-
 #game-end {
   width: 100%;
   text-align: center;
@@ -59,28 +52,6 @@ button {
   border-radius: 3px;
 }
 
-#play-table {
-  border-radius: 3px;
-  width: 100%;
-  height: 90%;
-  display: block;
-}
-
-/* PLAYER AREA STYLING */
-#player-area-container {
-  border-radius: 3px;
-  width: 100%;
-  height: 36%;
-  background: #0000002b;
-  display: flex;
-}
-
-#player-one-area {
-  width: 43%;
-  height: 100%;
-  display: flex;
-}
-
 #trash {
   width: 14%;
   border: solid 1px #4c4c4c;
@@ -98,36 +69,6 @@ button {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-}
-
-#player-two-area {
-  width: 43%;
-  height: 100%;
-  display: flex;
-}
-
-/* PLAYER DECK STYLING */
-.player-deck {
-  border: solid 1px #4c4c4c;
-  border-radius: 3px;
-  width: 25%;
-  height: 100%;
-  display: flex;
-  overflow: auto;
-  padding-left: .5%;
-}
-
-
-.player-deck img {
-  height: 67%;
-  margin-left: 0%;
-  margin-top: 8%;
-}
-
-.player-deck .rest {
-  height: 67%;
-  margin-left: -63%;
-  margin-top: 8%;
 }
 
 .player-deck::-webkit-scrollbar-track {

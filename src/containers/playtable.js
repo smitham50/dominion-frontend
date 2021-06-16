@@ -27,7 +27,11 @@ const PlayTable = (props) => {
       <SupplyArea />
       <PlayerAreaContainer>
         <PlayerArea key="1" player="1" />
-          {props.isHovered ? <CardInfo key="card-info" /> : <Trash />}
+          {
+            props.isHovered 
+              ? <CardInfo key="card-info" /> 
+              : <Trash />
+          }
         <PlayerArea key="2" player="2" />
       </PlayerAreaContainer>
     </PlayTableContainer>

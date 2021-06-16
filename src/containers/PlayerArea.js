@@ -1,11 +1,17 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PlayerDeck from './PlayerDeck';
 import PlayerDiscard from './PlayerDiscard';
 import PlayerHand from './PlayerHand';
 import { connect } from 'react-redux';
+import styled from 'styled-components';
+
+const PlayerCardsContainer = styled.div`
+    width: 43%;
+    height: 100%;
+    display: flex;
+`;
 
 const PlayerArea = (props) => {
-
     const {
         deck1,
         deck2,
@@ -22,11 +28,11 @@ const PlayerArea = (props) => {
     } = props;
 
     return (
-        <div id={player === "1" ? "player-one-area" : "player-two-area"} >
+        <PlayerCardsContainer>
             {
                 player === "1" 
                 ?
-                <Fragment>
+                <>
                     <PlayerDiscard
                         key={player === "1" ? "discard1" : "discard2"}
                         discard={player === "1" ? discard1 : discard2}
@@ -48,9 +54,9 @@ const PlayerArea = (props) => {
                         turns={player === "1" ? turns1 : turns2}
                         deck={player === "1" ? deck1 : deck2}
                     />
-                </Fragment>
+                </>
                 :
-                <Fragment>
+                <>
                     <PlayerHand
                         key={player === "1" ? "hand1" : "hand2"}
                         hand={player === "1" ? hand1 : hand2}
@@ -72,9 +78,9 @@ const PlayerArea = (props) => {
                         discard={player === "1" ? discard1 : discard2}
                         player={player}
                     />
-                </Fragment>
+                </>
             }
-        </div>
+        </PlayerCardsContainer>
     );
 };
 
