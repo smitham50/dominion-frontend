@@ -1,7 +1,12 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import handleHandCard from '../logic/handleHandCard';
 import handleSupplyCard from '../logic/handleSupplyCard';
+import styled from 'styled-components';
+
+const CardImage = styled.img`
+  height: 90%;
+`;
 
 class Card extends React.Component {
 
@@ -28,11 +33,11 @@ class Card extends React.Component {
     } = this.props
     
     return(
-      <Fragment>
+      <>
         {
           index === 0 
           ?
-          <img src={
+          <CardImage src={
             id === "deck-card" || 
             (className === "hand-card" && !militia && !militiaDiscardSecond && 
             ((!playerTurn && player === "2") ||
@@ -40,7 +45,7 @@ class Card extends React.Component {
             ? 
               process.env.PUBLIC_URL + "/card-images/cardback.jpg" 
             : 
-              process.env.PUBLIC_URL + card.picture} alt="oops" onClick={() => this.handleClick()} 
+              process.env.PUBLIC_URL + card.picture} alt="" onClick={() => this.handleClick()} 
               onMouseEnter={
                 className === "supply-card" ||
                 (className === "hand-card" && !militia && !militiaDiscardSecond &&
@@ -51,10 +56,9 @@ class Card extends React.Component {
                 : 
                   null
               } 
-              onMouseLeave={this.props.hoverOff} >
-          </img> 
+              onMouseLeave={this.props.hoverOff} />
           : 
-          <img src={
+          <CardImage src={
               id === "deck-card" ||
               (className === "hand-card" && !militia && !militiaDiscardSecond &&
               ((!playerTurn && player === "2") ||
@@ -62,7 +66,7 @@ class Card extends React.Component {
             ? 
               process.env.PUBLIC_URL + "/card-images/cardback.jpg" 
             :
-            process.env.PUBLIC_URL + card.picture} alt="oops" className="rest" onClick={() => this.handleClick()} 
+            process.env.PUBLIC_URL + card.picture} alt="" className="rest" onClick={() => this.handleClick()} 
             onMouseEnter={
               className === "supply-card" || 
               (className === "hand-card" && !militia && !militiaDiscardSecond &&
@@ -73,10 +77,9 @@ class Card extends React.Component {
               : 
                 null
             } 
-            onMouseLeave={this.props.hoverOff}>
-          </img> 
+            onMouseLeave={this.props.hoverOff} />
           }
-      </Fragment>
+      </>
     )
   };
 

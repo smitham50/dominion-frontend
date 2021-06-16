@@ -7,7 +7,6 @@ export default function handleTreasureCard(props) {
 
     if (player === "1" && !playerTurn) {
         if (!mine && !remodel) {
-            debugger
             playTreasureCard1(card)
         } else if (mine) {
             if (card.name === "Copper") {

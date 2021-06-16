@@ -1,7 +1,49 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import SupplyCards from './SupplyCards';
 import PlayerTurnInfo from '../components/PlayerTurnInfo';
+import Button from '../StyledComponents/Button';
 import { connect } from 'react-redux';
+import styled from 'styled-components';
+
+const Message = styled.div`
+  padding-left: 3%;
+  padding-right: 3%;
+  background: #fdb80e;
+  color: white;
+  border: solid 1px #4c4c4c;
+  height: 100%;
+  text-align: center;
+`;
+
+const InteractiveDiv = styled.div`
+  height: 25%;
+  background: #0000002b;
+
+  & .cellar-button {
+    background: #fdb80e;
+  }
+`;
+
+const SupplyAreaContainer = styled.div`
+  width: 100%;
+  height: 75%;
+  display: flex;SupplyAreaContainer
+`;
+
+const Margin = styled.div`
+  width: 7.5%;
+  border: solid 1px #4c4c4c;
+  border-radius: 3px;
+`;
+
+const GameEnd = styled.div`
+  width: 100%;
+  text-align: center;
+  padding-top: 200px;
+  font-size: 5em;
+  background: #d3e7e800;
+  color: white;
+`;
 
 const SupplyArea = (props) => {
   const {
@@ -12,8 +54,8 @@ const SupplyArea = (props) => {
     gameStart1, gameStart2, endCellar1, endCellar2 } = props;
 
   return (
-    <div id="supply-area">
-      <div className="margins">
+    <SupplyAreaContainer>
+      <Margin>
         <PlayerTurnInfo
           key="player1"
           player="Player 1"
@@ -23,68 +65,39 @@ const SupplyArea = (props) => {
           victoryPoints={victoryPoints1}
           turns={turns1}
         />
-        <div className="end-turn">
+        <InteractiveDiv>
           {
             cellar1
-              ?
-              <button className="cellar-button" onClick={endCellar1} >End Discard</button>
-              :
-              !playerTurn && remodel
-                ?
-                <div className="message" >
-                  Trash card and gain card from supply worth up to 2 more
-                </div>
-                :
-                !playerTurn && remodelGain
-                  ?
-                  <div className="message" >
-                    Gain card from supply costing up to {remodelValue}
-                  </div>
-                  :
-                  !playerTurn && mine
-                    ?
-                    <div className="message">
-                      Trash a treasure card for treasure costing up to 3 more
-                    </div>
-                    :
-                    !playerTurn && workshop
-                      ?
-                      <div className="message" >
-                        Gain card from supply costing up to 4
-                      </div>
-                      :
-                      playerTurn && (militia || militiaDiscardSecond)
-                        ?
-                        <div className="message" >
-                          Discard 2 cards or play Moat
-                        </div>
-                        :
-                        !playerTurn && !cellar1 && !gameEnd && gameStart1 && gameStart2 && (!militia && !militiaDiscardSecond)
-                          ?
-                          <button onClick={endTurn1} >End Turn</button>
-                          :
-                          null
+              ? <Button className="cellar-button" onClick={endCellar1} >End Discard</Button>
+              : !playerTurn && remodel
+                ? <Message>Trash card and gain card from supply worth up to 2 more</Message>
+                : !playerTurn && remodelGain
+                  ? <Message>Gain card from supply costing up to {remodelValue}</Message>
+                  : !playerTurn && mine
+                    ? <Message>Trash a treasure card for treasure costing up to 3 more</Message>
+                    : !playerTurn && workshop
+                      ? <Message>Gain card from supply costing up to 4</Message>
+                      : playerTurn && (militia || militiaDiscardSecond)
+                        ? <Message>Discard 2 cards or play Moat</Message>
+                        : !playerTurn && !cellar1 && !gameEnd && gameStart1 && gameStart2 && (!militia && !militiaDiscardSecond)
+                          && <Button onClick={endTurn1} >End Turn</Button>
           }
-        </div>
-      </div>
+        </InteractiveDiv>
+      </Margin>
       {
         gameEnd
-          ?
-          <div id="game-end">
-            {
-              victoryPoints1 > victoryPoints2
-                ?
-                "Player 1 Wins!"
-                :
-                "Player 2 Wins!"
-            }
-          </div>
-          :
-          <Fragment>
-            <SupplyCards />
-          </Fragment>
+          ? <GameEnd>
+              {
+                victoryPoints1 > victoryPoints2
+                  ? "Player 1 Wins!"
+                  : "Player 2 Wins!"
+              }
+            </GameEnd>
+          : <>
+              <SupplyCards />
+            </>
       }
-      <div className="margins" >
+      <Margin>
         <PlayerTurnInfo
           key="player2"
           player="Player 2"
@@ -94,51 +107,26 @@ const SupplyArea = (props) => {
           victoryPoints={victoryPoints2}
           turns={turns2}
         />
-        <div className="end-turn" >
+        <InteractiveDiv>
           {
             cellar2
-              ?
-              <button className="cellar-button" onClick={endCellar2} >End Discard</button>
-              :
-              playerTurn && remodel
-                ?
-                <div className="message" >
-                  Trash card and gain card from supply costing up to 2 more
-                  </div>
-                :
-                playerTurn && remodelGain
-                  ?
-                  <div className="message" >
-                    Gain card from supply costing up to {remodelValue}
-                  </div>
-                  :
-                  playerTurn && mine
-                    ?
-                    <div className="message">
-                      Trash a treasure card for treasure costing up to 3 more
-                      </div>
-                    :
-                    playerTurn && workshop
-                      ?
-                      <div className="message" >
-                        Gain card from supply costing up to 4
-                          </div>
-                      :
-                      !playerTurn && (militia || militiaDiscardSecond)
-                        ?
-                        <div className="message" >
-                          Discard 2 cards or play Moat
-                            </div>
-                        :
-                        playerTurn && !cellar2 && !gameEnd && gameStart1 && gameStart2 && (!militia && !militiaDiscardSecond)
-                          ?
-                          <button onClick={endTurn2} >End Turn</button>
-                          :
-                          null
+              ? <Button className="cellar-button" onClick={endCellar2} >End Discard</Button>
+              : playerTurn && remodel
+                ? <Message>Trash card and gain card from supply costing up to 2 more</Message>
+                : playerTurn && remodelGain
+                  ? <Message>Gain card from supply costing up to {remodelValue}</Message>
+                  : playerTurn && mine
+                    ? <Message>Trash a treasure card for treasure costing up to 3 more</Message>
+                    : playerTurn && workshop
+                      ? <Message>Gain card from supply costing up to 4</Message>
+                      : !playerTurn && (militia || militiaDiscardSecond)
+                        ? <Message>Discard 2 cards or play Moat</Message>
+                        : playerTurn && !cellar2 && !gameEnd && gameStart1 && gameStart2 && (!militia && !militiaDiscardSecond)
+                          && <Button onClick={endTurn2} >End Turn</Button>
           }
-        </div>
-      </div>
-    </div>
+        </InteractiveDiv>
+      </Margin>
+    </SupplyAreaContainer>
   );
 };
 
@@ -203,4 +191,4 @@ function mdp(dispatch) {
   }
 }
 
-export default connect(msp, mdp)(SupplyArea)
+export default connect(msp, mdp)(SupplyArea);

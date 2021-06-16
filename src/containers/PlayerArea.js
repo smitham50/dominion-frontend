@@ -1,11 +1,52 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PlayerDeck from './PlayerDeck';
 import PlayerDiscard from './PlayerDiscard';
 import PlayerHand from './PlayerHand';
 import { connect } from 'react-redux';
+import styled from 'styled-components';
+
+const PlayerCardsContainer = styled.div`
+    width: 43%;
+    height: 100%;
+    display: flex;
+
+    & > * {
+        border: solid 1px #4c4c4c;
+        border-radius: 3px;
+        height: 100%;
+        display: flex;
+        overflow: auto;
+        padding-left: 2px;
+    }
+
+    & > * img {
+        height: 67%;
+        margin-left: 0%;
+        margin-top: 8%;
+    }
+
+    & > *::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+        -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+        border-radius: 10px;
+        background-color: #0a0a0a47;
+    }
+
+    & > *::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+        background-color: #0a0a0a47;
+    }
+
+    & > *::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+        -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+        background-color: #90909099;
+    }
+`;
 
 const PlayerArea = (props) => {
-
     const {
         deck1,
         deck2,
@@ -22,11 +63,11 @@ const PlayerArea = (props) => {
     } = props;
 
     return (
-        <div id={player === "1" ? "player-one-area" : "player-two-area"} >
+        <PlayerCardsContainer>
             {
                 player === "1" 
                 ?
-                <Fragment>
+                <>
                     <PlayerDiscard
                         key={player === "1" ? "discard1" : "discard2"}
                         discard={player === "1" ? discard1 : discard2}
@@ -48,9 +89,9 @@ const PlayerArea = (props) => {
                         turns={player === "1" ? turns1 : turns2}
                         deck={player === "1" ? deck1 : deck2}
                     />
-                </Fragment>
+                </>
                 :
-                <Fragment>
+                <>
                     <PlayerHand
                         key={player === "1" ? "hand1" : "hand2"}
                         hand={player === "1" ? hand1 : hand2}
@@ -72,9 +113,9 @@ const PlayerArea = (props) => {
                         discard={player === "1" ? discard1 : discard2}
                         player={player}
                     />
-                </Fragment>
+                </>
             }
-        </div>
+        </PlayerCardsContainer>
     );
 };
 

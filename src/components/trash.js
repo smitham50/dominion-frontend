@@ -2,6 +2,27 @@ import React, { useEffect } from 'react';
 import Card from './Card';
 import { connect } from 'react-redux';
 import axios from 'axios';
+import styled from 'styled-components';
+
+const TrashContainer = styled.div`
+  width: 14%;
+  border: solid 1px #4c4c4c;
+  border-radius: 3px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  overflow: auto;
+
+  & > img {
+    height: 67%;
+    margin-left: 0%;
+    margin-top: 8%;
+  }
+
+  & .rest {
+    margin-left: -47%;
+  }
+`;
 
 const Trash = (props) => {
   const { trash, setTrash } = props;
@@ -20,14 +41,18 @@ const Trash = (props) => {
 
   const renderTrash = () => {
     return trash.map((card, index) => {
-      return <Card key={card.id} card={card} index={index} />
+      return  <Card 
+                key={card.id} 
+                card={card} 
+                index={index} 
+              />
     });
   };
 
   return (
-    <div id="trash" >
+    <TrashContainer>
       {renderTrash()}
-    </div>
+    </TrashContainer>
   );
 };
 
