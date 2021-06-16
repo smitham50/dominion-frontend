@@ -1,6 +1,7 @@
 import React from 'react';
 import Card from '../components/Card';
 import styled from 'styled-components';
+import Button from '../StyledComponents/Button';
 
 const PlayerDeckContainer = styled.div`
   width: 25%;
@@ -35,7 +36,7 @@ const PlayerDeck = (props) => {
         deck.length > 0
           ? renderDeck()
           : turns === 0
-              && <button onClick={() => handleDeal(player)}>Deal Cards</button>
+              && <Button onClick={() => handleDeal(player)}>Deal Cards</Button>
       }
     </PlayerDeckContainer>
   );

@@ -20,34 +20,3 @@ html, body {
 img {
   border-radius: 3px;
 }
-
-#game-end {
-  width: 100%;
-  text-align: center;
-  padding-top: 200px;
-  font-size: 5em;
-  background: #d3e7e800;
-  color: white;
-}
-
-button {
-  width: 100%;
-  height: 100%;
-  font-family: 'Saira Semi Condensed', sans-serif;
-  font-size: 1em;
-  background: #38add4;
-  color: white;
-  border: solid 1px #4c4c4c;
-  border-radius: 3px;
-}
-
-.cellar-button {
-  width: 100%;
-  height: 100%;
-  font-family: 'Saira Semi Condensed', sans-serif;
-  font-size: 1em;
-  background: #fdb80e;
-  color: white;
-  border: solid 1px #4c4c4c;
-  border-radius: 3px;
-}

@@ -24,9 +24,7 @@ const PlayerDiscard = (props) => {
 
   return (
     <PlayerDiscardContainer>
-      {
-        props.discard.length > 0 && renderDiscard()
-      }
+      { props.discard.length > 0 && renderDiscard() }
     </PlayerDiscardContainer>
   );
 };

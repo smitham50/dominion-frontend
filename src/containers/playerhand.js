@@ -1,6 +1,7 @@
 import React from 'react';
 import Card from '../components/Card';
 import styled from 'styled-components';
+import Button from '../StyledComponents/Button';
 
 const PlayerHandContainer = styled.div`
   width: 50%;
@@ -37,7 +38,7 @@ const PlayerHand = (props) => {
         hand.length > 0
           ? renderHand()
           : turns === 0 && deck.length > 0
-            && <button onClick={() => handleDraw(player)}>Draw Hand</button>
+            && <Button onClick={() => handleDraw(player)}>Draw Hand</Button>
       }
     </PlayerHandContainer>
   );
