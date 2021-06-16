@@ -20,7 +20,7 @@ const TrashContainer = styled.div`
   }
 
   & .rest {
-    margin-left: -45%;
+    margin-left: -47%;
   }
 `;
 

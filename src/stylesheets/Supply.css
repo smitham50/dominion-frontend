@@ -5,36 +5,6 @@
   border-radius: 3px;
 }
 
-.player-turn-info {
-  display: flex;
-  justify-content: space-around;
-  background: #0000002b;
-  color: white;
-  padding-left: 5%;
-  flex-direction: column;
-  height: 75%;
-}
-
-.player-tag {
-  height: 9%;
-}
-
-.player-actions {
-  height: 7%;
-}
-
-.player-buys {
-  height: 7%;
-}
-
-.player-wallet {
-  height: 7%;
-}
-
-.player-vps {
-  height: 7%;
-}
-
 .message {
   padding-left: 3%;
   padding-right: 3%;
