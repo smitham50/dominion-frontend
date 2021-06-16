@@ -94,23 +94,7 @@
 } */
 
 /* TRASH STYLING */
-#trash {
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  overflow: auto;
-}
 
-#trash img {
-  height: 67%;
-  margin-top: 6%;
-}
-
-#trash .rest {
-  height: 67%;
-  margin-top: 6%;
-  margin-left: -46%;
-}
 /* END TRASH STYLING */
 
 /* END IMG STYLING */

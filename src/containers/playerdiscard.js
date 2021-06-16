@@ -13,7 +13,12 @@ const PlayerDiscardContainer = styled.div`
 const PlayerDiscard = (props) => {
   const renderDiscard = () => {
     return props.discard.map((card, index) => {
-      return <Card key={card.id} card={card} index={index} className="discard-card" />
+      return  <Card 
+                key={card.id} 
+                card={card} 
+                index={index} 
+                className="discard-card" 
+              />
     });
   };
 

@@ -51,22 +51,3 @@ button {
   border: solid 1px #4c4c4c;
   border-radius: 3px;
 }
-
-#trash {
-  width: 14%;
-  border: solid 1px #4c4c4c;
-  border-radius: 3px;
-}
-
-.card-info {
-  width: 14%;
-  height: 100%;
-  background: #00000033;
-  border: solid 1px #4c4c4c;
-  border-radius: 3px;
-  color: white;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-}
