@@ -59,9 +59,7 @@ const Trash = (props) => {
 function msp(state) {
   const { trash } = state.supply;
 
-  return {
-    trash: trash
-  };
+  return { trash: trash };
 };
 
 function mdp(dispatch) {
